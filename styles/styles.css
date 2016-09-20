@@ -1,4 +1,94 @@
+body {
+    background-color: #d2d8c7;
+}
+
+footer{
+    background-color: #777d6a;
+    width: 100%;
+    padding-bottom: 0px;
+    text-align: center;
+    position:fixed;
+    bottom:0px;
+}
+
 #logo {
   width: 150px;
   height: 75px;
+}
+
+.content {
+    background-color: #d2d8c7;
+}
+
+.banner{
+    background-color: #777d6a;
+    width: 100%;
+}
+
+.breadCrumb{
+    background-color: #a9ae9f;
+    width: 100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+}
+
+.navMenu {
+    background-color: #999f8e;
+    margin-bottom: 0px;
+}
+
+
+@media screen and (min-width: 767px) {
+    .noPad  {
+        padding-right:1px;
+        padding-left:0px; 
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}
+@media (max-width:767px) {
+    .navM  {
+        height: auto;
+    }
+}
+
+@media (min-width:768px) {
+    .navM  {
+        height: 85%;
+    }
+}
+
+
+
+
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+#topnavbar {
+    margin: 0;
+}
+#topnavbar.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
