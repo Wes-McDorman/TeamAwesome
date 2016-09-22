@@ -7,16 +7,15 @@
 <title>Team Awesome</title>
 <link rel="stylesheet" href="styles/bootstrap.min.css">
 <link rel="stylesheet" href="styles/styles.css">
-
+<script type = "text/javascript"  src ="js/regValidator.js" ></script>
 </head>
 
 <body style="margin: 0px; padding: 0px; font-family: 'Trebuchet MS',verdana;">
 
-<table width="100%" style="height: 100%;" cellpadding="10" cellspacing="0" border="0">
-<tr>
+
 
 <!-- ============ THE HEADER SECTION ============== -->
-<td colspan="3" style="height: 100px;" bgcolor="#777d6a"><h1> <img src="images/World_Flag_map.png" class="img-circle" id="logo"> International Students</h1></td></tr>
+
     
 <div class="container banner" id="banner">
   <div class="row banner">
@@ -33,25 +32,13 @@
   </div>
 </div>
 
-    
-<!-- ============ THE NAVIGATION BAR SECTION ============== -->
-<tr><td colspan="3" valign="middle" height="30" bgcolor="#a9ae9f"><a href="#">Home</a></td></tr>
-
-<tr>
 <!-- ============ THE LEFT COLUMN (MENU) ============== -->
-<td width="20%" valign="top" bgcolor="#999f8e">
-<a href="#">Profile</a><br>
-<a href="#">Notifications</a><br>
-<a href="#">Settings</a><br>
-<a href="#">Help</a>
-<br>
-<a href="#">Log out</a><br>
-</td>
+
 
 <div class="row">
   <div class="col-sm-2">
     <div class="sidebar-nav">
-      <div class="navbar navbar-default navMenu" role="navigation">
+      <div class="navbar navbar-default navMenu navM" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -86,10 +73,17 @@
     </div>
   </div>
     
-<!-- ============ THE MIDDLE COLUMN (CONTENT) ============== -->
+<!-- ============ (CONTENT) ============== -->
 <div class="col-sm-10 content">
-
-<h1>Student Registration</h1>    
+    
+   <h1>Student / Volunteer Registration</h1> 
+    
+    <div class="row">
+        <div class="col-sm-2" ></div>
+            <div class="col-sm-9" id="errorSpace"></div>
+        <div class="col-sm-1"></div>
+    </div>
+    
 <form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action = "">
 <div class="form-group">
   <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">My name is:</label>
@@ -161,38 +155,16 @@
         </div>
     </form>
 
-  </div>
+</div>
 </div>
     <footer>Copyright &#64; TA</footer>
     <br>
-<!-- ============ THE MIDDLE COLUMN (CONTENT) ============== -->
-<td width="55%" valign="top" bgcolor="#d2d8c7">
 
-<h2>Home page</h2>
-
- <br>
- &quot;Talent wins games, but teamwork and intelligence wins championships. -Michael Jordan&quot;
- <br>
-
-<br>
-&quot;The speed of the boss is the speed of the team.&quot; -Lee Iacocca
-<br>
-
-<br>
-
-
-<br>
-
-</td></tr>
-
-
-<!-- ============ THE FOOTER SECTION ============== -->
-<tr><td colspan="3" align="center" height="20" bgcolor="#777d6a">Copyright &#64; ZP</td></tr>
-</table>
     
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+<script type = "text/javascript"  src = "js/regValidatorr.js"></script>
 </body>
 
 </html>
