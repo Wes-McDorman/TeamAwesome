@@ -53,7 +53,7 @@ footer{
 .navMenu {
     background-color: #999f8e;
     margin-bottom: 0px;
-    margin-left: 7px;
+    margin-left: 0px;
 }
 
 
@@ -68,6 +68,9 @@ footer{
 @media (max-width:767px) {
     .navM  {
         height: auto;
+    }
+    .content{
+        padding-left: 18px;
     }
 }
 
