@@ -14,10 +14,10 @@ function chkName() {
   var pos2 = myName.value.search(/^[A-Z][a-z]+, ?[A-Z][a-z]+$/);
 
 if (((pos === 0) || (pos2 === 0))) {
-    document.getElementById("errorSpace").innerHTML = "";
+    document.getElementById("errorName").innerHTML = "";
     return true; 
   } else
-      document.getElementById("errorSpace").innerHTML += "The name you entered (" + myName.value +
+      document.getElementById("errorName").innerHTML = "The name you entered (" + myName.value +
           ") is not in the correct form." +
           "The correct form is:" +
           " Last-name, First-name, Middle-initial. ";
@@ -33,11 +33,12 @@ function chkPhone() {
 // Test the format of the input phone number
   var pos = myPhone.value.search(/^\d{3}-\d{3}-\d{4}$/);
   if (pos != 0) {
-      document.getElementById("errorSpace").innerHTML += "<br>The phone number you entered (" + myPhone.value +
+      document.getElementById("errorPhone").innerHTML = "The phone number you entered (" + myPhone.value +
           ") is not in the correct format." +
           "The correct form is: ddd-ddd-dddd. ";
     return false;
   } else
+      document.getElementById("errorPhone").innerHTML = "";
     return true;
 }
 
@@ -48,12 +49,13 @@ function chkEmail() {
 // Test the format of the input phone number
   var emailRegEx =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   if (!(myEmail.value.match(emailRegEx))) {
-      document.getElementById("errorSpace").innerHTML += "<br>The email you entered (" + myEmail.value +
+      document.getElementById("errorEmail").innerHTML = "The email you entered (" + myEmail.value +
           ") is not in the correct form. \n" +
           "The correct form is: xxx@xxx.xxx \n";
     
     return false;
   } else
+      document.getElementById("errorEmail").innerHTML = "";
     return true;
 }
 
@@ -61,13 +63,13 @@ function chkEmailMatch() {
   var myEmail = document.getElementById("inputEmail");
   var myEmail2 = document.getElementById("inputEmail2");
   if (!(myEmail2.value.match(myEmail.value))) {
-      document.getElementById("errorSpace").innerHTML += "<br>The email you entered (" + myEmail2.value +
+      document.getElementById("errorEmailMatch").innerHTML = "The email you entered (" + myEmail2.value +
           ") does not match  (" + myEmail.value +
           ")\n";
     document.getElementById("inputEmail2").focus();
     return false;
   } else
-     
+     document.getElementById("errorEmailMatch").innerHTML = "";
     return true;
 }
 
@@ -75,14 +77,27 @@ function chkPasswordMatch() {
   var myPass = document.getElementById("inputPassword");
   var myPass2 = document.getElementById("inputPassword2");
   if (!(myPass2.value.match(myPass.value))) {
-      document.getElementById("errorSpace").innerHTML += "<br>Please check that your passwords match and try again.\n";
+      document.getElementById("errorPassMatch").innerHTML = "Please check that your passwords match and try again.\n";
     document.getElementById("inputEmail2").focus();
     return false;
   } else
+      document.getElementById("errorPassMatch").innerHTML = "";
     return true;
 }
 
-
+function chkContactPhone() {
+  var myPhone = document.getElementById("contactPhone");
+// Test the format of the input phone number
+  var pos = myPhone.value.search(/^\d{3}-\d{3}-\d{4}$/);
+  if (pos != 0) {
+      document.getElementById("errorContactPhone").innerHTML = "The phone number you entered (" + myPhone.value +
+          ") is not in the correct format." +
+          "The correct form is: ddd-ddd-dddd. ";
+    return false;
+  } else
+      document.getElementById("errorContactPhone").innerHTML = "";
+    return true;
+}
 
 /*function formValidation(){
     var submitValid = false;
