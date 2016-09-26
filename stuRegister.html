@@ -74,77 +74,190 @@
 <!-- ============ (CONTENT) ============== -->
 <div class="col-sm-10 content">
     
-   <h1>Student / Volunteer Registration</h1> 
-     
+   <h1 class="pageTitle pageTitleWords">Intl. Student Registration</h1> 
+<br><br><br>
 
-
-    
-    <div class="row">
-        <div class="col-sm-2" ></div>
-            <div class="col-sm-9" id="errorSpace"></div>
-        <div class="col-sm-1"></div>
-    </div>
     
 <form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action = "">
     
-    <input type="radio" name="userType" value="volunteer" required> I am a International Student<br>
-    <input type="radio" name="userType" value="student"> I am a Volunteer<br>
-    
 <div class="form-group">
-  <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">My name is:</label>
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">Name:</label>
     <div class="col-xs-12 col-sm-9 noPad">
-        <input class="form-control " type="text"
-        id="fName" placeholder="FirstName, LastName, MiddleInitial" required />
+        <input class="form-control" type="text"
+        id="fName" placeholder="FirstName, LastName, MiddleInitial" required /> <span id="errorName"></span>
     </div>
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputEmail">E-mail Address:</label>
-    <div class="col-sm-9 noPad">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="inputEmail">E-mail Address:</label>
+    <div class="col-xs-12 col-sm-9 noPad">
         <input class="form-control" type="email"
-        id="inputEmail" placeholder="Email" required>  
+        id="inputEmail" placeholder="Email" required /> <span class="err" id="errorEmail"></span>  
     </div>
 </div>
     
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputEmail2">Type it again:</label>
+  <label class="col-sm-2 control-label noPad" for="inputEmail2">Re-Enter:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="email"
-        id="inputEmail2" placeholder="Email" required>  
+        id="inputEmail2" placeholder="Email" required><span id="errorEmailMatch"></span>  
     </div>
 </div>
     
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputEmail">Phone Number:</label>
-    <div class="col-sm-6 noPad">
+  <label class="col-sm-2 control-label noPad" for="inputAffliation">Affliation:</label>
+    <div class="col-sm-9 noPad">
+        <input class="form-control" type="text"
+        id="affliation" placeholder="WCF / GTCFA" required>
+    </div>
+</div>
+    
+<div class="form-group">
+  <label class="col-sm-2 control-label noPad" for="inputPhone">Phone Number:</label>
+    <div class="col-sm-4 noPad">
         <input class="form-control" type="tel"
-        id="phone" placeholder="###-###-####"> 
+        id="phone" placeholder="###-###-####" required><span id="errorPhone"></span> 
     </div>
-    <div class="col-sm-4 noPad">(Optional)</div>
+    <div class="col-sm-6 noPad"></div>
 </div>
+   
+<section class="col-xs-0 col-sm-2"></section>
 
+<section class="col-xs-6 col-sm-2 dayCell">
+    <fieldset>
+        <div class="item weekDay">
+            <label>Gender</label>
+        </div>
+        <div class="item">
+            <input type="radio" name="gender" value="male" id="male">
+            <label for="male">Male</label>
+        </div>
+        <div class="item">
+           <input type="radio" name="gender" value="female" id="female">
+            <label for="female">Female</label>
+        </div>
+    </fieldset>
+</section>
+    
+<section class="col-xs-0 col-sm-1"></section>
+    
+<section class="col-xs-6 col-sm-2 dayCell">
+    <fieldset>
+        <div class="item weekDay">
+            <label>Type</label>
+        </div>
+        <div class="item">
+            <input type="checkbox" name="volPickUp" value="volPickUp" id="volPickUp">
+            <label for="valPickUp">Pick-Up</label>
+        </div>
+        <div class="item">
+           <input type="checkbox" name="volHome" value="volHome">
+            <label for="volHome">Home-Share</label>
+        </div>
+    </fieldset>
+</section>    
+    
+<section class="col-xs-0 col-sm-5"></section>
+
+<section class="col-xs-0 col-sm-12"><br></section>
+
+    
+    
+    
+    
 <div class="form-group">
     <div class="col-sm-2">
     </div>
-    <label class="col-sm-12 " for="inputPassword"> <span class="orangeText">Protect your information with a password.</span></label>
+    <label class="col-sm-12 " for="inputPassword"> <span>Flight Information</span></label>
 </div>
+     
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="airline">Airline:</label>
+    <div class="col-xs-12 col-sm-9 noPad">
+        <input class="form-control" type="text"
+        id="airline" placeholder="Delta, Korean Air, etc." required /> 
+    </div>
+</div>
+
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="flightNumber">Flight Number:</label>
+    <div class="col-xs-12 col-sm-3 noPad">
+        <input class="form-control" type="text"
+        id="flightNumber" placeholder="A233" required />   
+    </div>
+  <label class="col-sm-2 control-label noPad" for="flightDateTime">Date/Time:</label>
+    <div class="col-xs-12 col-sm-3 noPad">
+        <input class="form-control" type="datetime-local"
+        id="flightDateTime" required>  
+    </div>
+</div>
+    
+<div class="form-group">
+  
+</div>
+    
+    
+    
+    
+<div class="form-group">
+    <div class="col-sm-12"><br><br>
+    </div>
+    <div class="col-sm-2">
+    </div>
+    <label class="col-sm-12 " for="inputPassword"> <span>Protect your information with a password.</span></label>
+</div>    
+    
 
 <div class="form-group">
   <label class="col-sm-2 control-label noPad" for="inputPassword">Password:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="password"
-        id="inputPassword" placeholder="Password" required>  
+        id="inputPassword" placeholder="Password" required> 
     </div>
 </div>
     
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputPassword2">Type it again:</label>
+  <label class="col-sm-2 control-label noPad" for="inputPassword2">Re-Enter:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="password"
-        id="inputPassword2" placeholder="Password" required>  
+        id="inputPassword2" placeholder="Password" required><span id="errorPassMatch"></span>  
     </div>
 </div>
 
+<br><br>
+<!-- ============ (Emergency Contact) ============== -->
+
+<div class="form-group">
+    <div class="col-sm-2">
+    </div>
+    <label class="col-sm-12 " for="inputPassword"> <span>Emergency Contact</span></label>
+</div>   
+    
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="contactName">Name:</label>
+    <div class="col-xs-12 col-sm-9 noPad">
+        <input class="form-control " type="text"
+        id="contactName" placeholder="FirstName, LastName, MiddleInitial" required />
+    </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label noPad" for="contactRelation">Relationship:</label>
+    <div class="col-sm-9 noPad">
+        <input class="form-control" type="text"
+        id="contactRelation" placeholder="Parent, Spouse, etc." required>  
+    </div>
+</div>
+    
+<div class="form-group">
+  <label class="col-sm-2 control-label noPad" for="contactPhone">Phone Number:</label>
+    <div class="col-sm-9 noPad">
+        <input class="form-control" type="tell"
+        id="contactPhone" placeholder="###-###-####" required><span id="errorPhone"></span>   
+    </div>
+</div>
+
+    
 <div class="form-group">
     <div class="checkbox">
         <div class="col-sm-10 col-sm-offset-9">
@@ -155,10 +268,10 @@
             
 
             
-     </div>       
- </div>
-        </div>
-    </form>
+        </div>       
+    </div>
+</div>
+</form>
 
 </div>
 </div>
