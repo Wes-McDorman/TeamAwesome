@@ -17,12 +17,6 @@ footer{
     color: black;
 }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #d2d8c7;
-    color: black;
-}
-
-
 #logo {
     width: 150px;
     height: 75px;
@@ -36,13 +30,14 @@ footer{
     overflow-y: auto;
     overflow-x: hidden;
     height: 75%;
+    width:82.2 %;
     padding-left: 32px;
 }
 
 .banner{
     background-color: #777d6a;
     width: 100%;
-    margin-left: 5px;
+    margin-left: 0px;
     padding-left: 10px;
     border-width: 1px;
 }
