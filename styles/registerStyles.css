@@ -57,6 +57,9 @@
     .dayCell{
        padding-left: 10px; 
     }
+    .content{
+        padding-bottom: 50px;
+    }
 }
 .weekDay {
     background-color: #c1d1c1;
