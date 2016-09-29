@@ -72,6 +72,14 @@ footer{
     .content{
         padding-left: 18px;
     }
+    #logo{
+        width: 75px;
+        height: 37px;
+    }
+    h1{
+        font-size: 1em;
+        font-weight: bolder;
+    }
 }
 
 @media (min-width:768px) {
