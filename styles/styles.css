@@ -17,6 +17,11 @@ footer{
     color: black;
 }
 
+.navbar-default .navbar-nav > li > a {
+
+    color: black;
+}
+
 #logo {
     width: 150px;
     height: 75px;
