@@ -26,7 +26,7 @@ footer{
     width: 150px;
     height: 75px;
     padding-left: 15px;
-    border-width: 1px;
+    border-width: 2px;
     border-style:groove;
 }
 
@@ -34,7 +34,7 @@ footer{
     background-color: #d2d8c7;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 75%;
+    height: 85%;
     width:82.2 %;
     padding-left: 32px;
 }
@@ -44,14 +44,14 @@ footer{
     width: 100%;
     margin-left: 0px;
     padding-left: 10px;
-    border-width: 1px;
+    border-width: 2px;
 }
 
 .breadCrumb{
     background-color: #a9ae9f;
     width: 100%;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin-bottom: 0;
 }
 
