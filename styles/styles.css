@@ -22,6 +22,25 @@ footer{
     color: black;
 }
 
+/* removing anchor tag styles */
+
+a.deco-none {
+    color:#000000 !important;
+    text-decoration:none;
+
+}
+
+.bg-menu:hover {
+    background-color:#0079C1;
+    color:#FFFFFF;
+}
+
+.clickable {
+    cursor:pointer; 
+}
+
+/* end of removing anchr tag styles */
+
 #logo {
     width: 150px;
     height: 75px;
