@@ -1,17 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<html lang="en">
+<html>
 
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="styles/bootstrap.min.css">
-	<link rel="stylesheet" href="styles/styles.css">
-
-	<title>Team Awesome</title>
+<title>Team Awesome</title>
+<link rel="stylesheet" href="styles/bootstrap.min.css">
+<link rel="stylesheet" href="styles/styles.css">
 
 </head>
 
@@ -33,8 +28,6 @@
       <ol class="breadcrumb">
         <li><a href="login.html">Log In</a></li>
         <li>Register: <a href="stuRegister.html">Student</a> | <a href="volRegister.html">Volunteer</a> </li>
-		<li><a href="aboutUs.html">Who We Are</a></li>
-		<li><a href="contact_us.html">Contact Us</a></li>
       </ol>
   </div>
 </div>
@@ -58,10 +51,11 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="indexGP.html">Home</a></li>
+            <li><a href="aboutUs.html">Who We Are</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                        <li><a href="#">Student</a></li>
+                        <li><a href="stuPage.html">Student</a></li>
                         <li><a href="volHome.html">Volunteer</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Admin only</li>
@@ -76,29 +70,31 @@
       </div>
     </div>
   </div>
-  <br>
-  <br>
 
 <!-- ============ (CONTENT) ============== -->
 	<br>
+    <br>
+    <br>
 	<div class="container">
 		<div class="jumbotron">
 			<h1>About Us</h1>
-        <p class="lead">We are a humble team of college students who are passionate about helping students abroad to get the right information about their volunteer position and to feel welcome when they land into their destination. We are determined to craft unique experiences for the students during their stay in the country.</p>
-        <p><a class="btn btn-lg btn-success" href="login.html" role="button">Join Us Now</a></p>
+            <p class="lead">We are a humble team of college students who are passionate about helping students abroad to get the right information about their volunteer position and to feel welcome when they land into their destination. We are determined to craft unique experiences for the students during their stay in the country.</p>
+            <div class="btn-group">
+                <a class="btn btn-s btn-success" href="stuRegister.html" role="button" style="margin-bottom:4px;white-space:normal;">Students, Join Us Now!</a>
+                <a class="btn btn-s btn-info" href="volRegister.html" role="button" style="margin-bottom:4px;white-space:normal;">Volunteers, Join Us Now!</a>
+            </div>
 		</div><!--End jumbotron-->
 	</div>
 	  
 	
 </div><!--End row container -->
 	<footer class="container-fluid">
-		<p>&copy; 2016 Team Awesome</p
+        <p>&copy; 2016 Team Awesome</p>
 	</footer>
     
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
