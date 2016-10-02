@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+
+<title>Team Awesome</title>
+<link rel="stylesheet" href="styles/bootstrap.min.css">
+<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/logoutStyles.css">
+
+</head>
+
+<body style="margin: 0px; padding: 0px; font-family: 'Trebuchet MS',verdana;">
+
+
+
+<!-- ============ THE HEADER SECTION ============== -->
+
+
+<div class="container banner" id="banner">
+  <div class="row banner">
+      <h1> <img src="images/World_Flag_map.png" class="img-circle" id="logo"> International Students</h1>
+  </div>
+</div>
+
+<div class="container breadCrumb" id="banner">
+  <div class="row breadCrumb">
+      <ol class="breadcrumb">
+        <li><a href="login.html">Log In</a></li>
+        <li>Register: <a href="stuRegister.html">Student</a> | <a href="volRegister.html">Volunteer</a> </li>
+      </ol>
+  </div>
+</div>
+
+<!-- ============ THE LEFT COLUMN (MENU) ============== -->
+
+
+<div class="row">
+  <div class="col-sm-2">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default navMenu navM" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Navigation Menu</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="indexGP.html">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                        <li><a href="#">Student</a></li>
+                        <li><a href="volHome.html">Volunteer</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Admin only</li>
+                        <li><a href="adminHome.html">Admin</a></li>
+                </ul>
+            </li>
+            <li><a href="contact_us.html">Help</a></li>
+            <li><a href="#">Log Out</a></li>
+          </ul>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+<!-- ============ (CONTENT) ============== -->
+<div class="col-sm-10 content">
+    <h3>You have successfully logged off.</h3>
+    <h4>Click <a href="login.html">here</a> to log in again.</h4>
+
+    <div class="carousel slide" id="quotes">
+
+        <ol class="carousel-indicators">
+            <li data-target="#quotes" data-slide-to="0" class="active"></li>
+            <li data-target="#quotes" data-slide-to="1"></li>
+            <li data-target="#quotes" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+
+            <div class="item active">
+                <div class="logoutquote">
+                    <hgroup>     
+                        <h2><em>"One's desination is never a place, but a new way of seeing things."</em></h2>
+                        <h3>- Henry Miller</h3>
+                    </hgroup>
+                </div>
+                <div class="overlay"></div>
+                <img src="images/logout_atlanta.jpg" alt="atlanta_img" style="width:100%;">
+                <!-- source : https://pixabay.com/en/atlanta-georgia-city-cities-1584094/ -->
+            </div>
+
+            <div class="item">
+                <div class="logoutquote">
+                    <hgroup>     
+                        <h2><em>'Nobody can discover the world for somebody else. Only when we discover it for ourselves does it become common ground and a common bond and we cease to be alone.'</em></h2>
+                        <h3>- Wendell Berry</h3>
+                    </hgroup>
+                </div>
+                <div class="overlay"></div>
+                <img src="images/logout_map.jpg" alt="map_img" style="width:100%;">
+                <!-- source : https://pixabay.com/en/map-map-of-the-world-old-country-1434486/ -->
+            </div>
+
+            <div class="item">
+                <div class="logoutquote">
+                    <hgroup>     
+                        <h2><em>'Life begins at the end of your comfort zone.'</em></h2>
+                        <h3>- Neale Donald Walsch</h3>
+                    </hgroup>
+                </div>
+                <div class="overlay"></div>
+                <img src="images/logout_wing.jpg" alt="airplane_img" style="width:100%;">
+                <!-- source : https://pixabay.com/en/wing-plane-flying-airplane-sky-221526/ -->
+            </div>
+
+        </div><!-- carousel-inner -->
+
+        <a class="left carousel-control" href="#quotes" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="right carousel-control" href="#quotes" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+	
+    </div> <!-- carousel -->
+
+</div>
+</div>
+    <footer>Copyright &#64; TA</footer>
+    <br>
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+
+</html>
