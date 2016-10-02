@@ -42,11 +42,11 @@ a.deco-none {
 /* end of removing anchr tag styles */
 
 #logo {
-    width: 150px;
-    height: 75px;
+    width: 260px;
+    height: 95px;
     padding-left: 15px;
     border-width: 2px;
-    border-style:groove;
+    
 }
 
 .content {
