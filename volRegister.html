@@ -86,10 +86,18 @@
 <form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action = "">
 
 <div class="form-group">
-  <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">Name:</label>
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">First Name:</label>
     <div class="col-xs-12 col-sm-9 noPad">
         <input class="form-control" type="text"
-        id="fName" placeholder="FirstName, LastName, MiddleInitial" required /> <span id="errorName"></span>
+        id="fName" placeholder="FirstName" required /> <span id="errorFName"></span>
+    </div>
+</div>
+    
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="lName">Last Name:</label>
+    <div class="col-xs-12 col-sm-9 noPad">
+        <input class="form-control" type="text"
+        id="lName" placeholder="LastName" required /> <span id="errorLName"></span>
     </div>
 </div>
 
@@ -97,28 +105,28 @@
   <label class="col-xs-12 col-sm-2 control-label noPad" for="address">Address:</label>
     <div class="col-xs-12 col-sm-9 noPad">
         <input class="form-control" type="text"
-        id="fName" placeholder="123 Road St YourTown, GA, #####" required />
+        id="address" placeholder="123 Road St YourTown, GA, #####" required />
     </div>
 </div>
 
 <div class="form-group">
-  <label class="col-xs-12 col-sm-2 control-label noPad" for="inputEmail">E-mail Address:</label>
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="email">E-mail Address:</label>
     <div class="col-xs-12 col-sm-9 noPad">
         <input class="form-control" type="email"
-        id="inputEmail" placeholder="Email" required /> <span class="err" id="errorEmail"></span>
+        id="email" placeholder="Email" required /> <span class="err" id="errorEmail"></span>
     </div>
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputEmail2">Re-Enter:</label>
+  <label class="col-sm-2 control-label noPad" for="email2">Re-Enter:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="email"
-        id="inputEmail2" placeholder="Email" required><span id="errorEmailMatch"></span>
+        id="email2" placeholder="Email" required><span id="errorEmailMatch"></span>
     </div>
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputAffliation">Affliation:</label>
+  <label class="col-sm-2 control-label noPad" for="affliation">Affliation:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="text"
         id="affliation" placeholder="WCF / GTCFA" required>
@@ -126,12 +134,12 @@
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputPhone">Phone Number:</label>
+  <label class="col-sm-2 control-label noPad" for="phone">Phone Number:</label>
     <div class="col-sm-4 noPad">
         <input class="form-control" type="tel"
         id="phone" placeholder="###-###-####" required><span id="errorPhone"></span>
     </div>
-    <div class="col-sm-6 noPad"></div>
+    
 </div>
 
 <section class="col-xs-0 col-sm-2"></section>
@@ -173,156 +181,90 @@
 <section class="col-xs-0 col-sm-5"></section>
 
 <section class="col-xs-0 col-sm-12"><br></section>
+    
+    
+    
+<div class="form-group">
+  <label class="col-xs-12 col-sm-4 control-label noPad" for="vehPersonNum"># passengers your vehicle handles:</label>
+    <div class="col-xs-12 col-sm-2 noPad">
+        <input class="form-control" type="number"
+        id="vehiclePersonNum" placeholder="#" required /> 
+    </div>
+    <div class="col-sm-6 noPad"></div>
+</div>
 
 <div class="form-group">
+  <label class="col-xs-12 col-sm-4 control-label noPad" for="vehSuitcaseNum"># suitcases your vehicle handles:</label>
+    <div class="col-xs-12 col-sm-2 noPad">
+        <input class="form-control" type="number"
+        id="vehSuitcaseNum" placeholder="#" required /> 
+    </div>
+    <div class="col-xs-0 col-sm-6 noPad"></div>
+</div>
+    
+    
+    
+<section class="item weekDay">
+<div class="form-group noPad">
     <div class="col-sm-2">
     </div>
-    <label class="col-sm-12 " for="inputPassword"> <span>Check All Days of Availablity</span></label>
+    <div class="col-sm-12">
+    <label> <span>Create Ranges of Pick-Up Availablity</span></label>
+    <button type="button" class="btn btn-default btn-xs alignRight">Add New Range</button>
+    </div>
+</div>    
+</section>
+    
+<section class="item">
+<div class="form-group">
+  <label class="col-sm-3 control-label noPad" for="inputPassword">Start Date/Time:</label>
+    <div class="col-sm-4 noPad">
+        <input class="form-control" type="datetime-local"
+        id="availPUStart" required>
+    </div>
+    <div class="col-sm-5 noPad"></div>
 </div>
-
-
-<div class="form-group days">
-    <div class="col-sm-2">
+    
+<div class="form-group">
+  <label class="col-sm-3 control-label noPad" for="inputPassword">End Date/Time:</label>
+    <div class="col-sm-4 noPad">
+        <input class="form-control" type="datetime-local"
+        id="availPUEnd" required>
     </div>
-
-<section class="col-xs-4 col-sm-1 dayCell">
-    <fieldset>
-        <div class="item weekDay">
-            <label>Sun</label>
-        </div>
-        <div class="item">
-            <input type="checkbox" id="sunA">
-            <label for="sunA">AM</label>
-        </div>
-        <div class="item">
-           <input type="checkbox" id="sunP">
-            <label for="sunP">PM</label>
-        </div>
-    </fieldset>
-</section>
-
-<section class="col-xs-4 col-sm-1 dayCell">
-<fieldset>
-    <div class="item weekDay">
-        <label>Mon</label>
-    </div>
-    <div class="item">
-        <input type="checkbox" id="monA">
-        <label for="monA">AM</label>
-    </div>
-    <div class="item">
-       <input type="checkbox" id="monP">
-        <label for="monP">PM</label>
-    </div>
-</fieldset>
-</section>
-
-<section class="col-xs-4 col-sm-1 dayCell">
-<fieldset>
-    <div class="item weekDay">
-        <label>Tue</label>
-    </div>
-    <div class="item">
-        <input type="checkbox" id="tueA">
-        <label for="tueA">AM</label>
-    </div>
-    <div class="item">
-       <input type="checkbox" id="tueP">
-        <label for="tueP">PM</label>
-    </div>
-</fieldset>
-</section>
-
-<section class="col-xs-4 col-sm-1 dayCell">
-<fieldset>
-    <div class="item weekDay">
-        <label>Wed</label>
-    </div>
-    <div class="item">
-        <input type="checkbox" id="wedA">
-        <label for="wedA">AM</label>
-    </div>
-    <div class="item">
-       <input type="checkbox" id="wedP">
-        <label for="wedP">PM</label>
-    </div>
-</fieldset>
-</section>
-
-<section class="col-xs-4 col-sm-1 dayCell">
-<fieldset>
-    <div class="item weekDay">
-        <label>Thu</label>
-    </div>
-    <div class="item">
-        <input type="checkbox" id="thuA">
-        <label for="thuA">AM</label>
-    </div>
-    <div class="item">
-       <input type="checkbox" id="thuP">
-        <label for="thuP">PM</label>
-    </div>
-</fieldset>
-</section>
-
-<section class="col-xs-4 col-sm-1 dayCell">
-<fieldset>
-    <div class="item weekDay">
-        <label>Fri</label>
-    </div>
-    <div class="item">
-        <input type="checkbox" id="friA">
-        <label for="friA">AM</label>
-    </div>
-    <div class="item">
-       <input type="checkbox" id="friP">
-        <label for="friP">PM</label>
-    </div>
-</fieldset>
-</section>
-<section class="col-xs-4 col-sm-1 dayCell">
-<fieldset>
-    <div class="item weekDay">
-        <label>Sat</label>
-    </div>
-    <div class="item">
-        <input type="checkbox" id="satA">
-        <label for="satA">AM</label>
-    </div>
-    <div class="item">
-       <input type="checkbox" id="satP">
-        <label for="satP">PM</label>
-    </div>
-</fieldset>
-</section>
-<section class="col-sm-3"></section>
-
+    <div class="col-sm-5 noPad"></div>
 </div>
+</section>
+    
+    
+    
+    
 
 
 
+
+    
 <div class="form-group">
     <div class="col-sm-12"><br><br>
     </div>
     <div class="col-sm-2">
     </div>
-    <label class="col-sm-12 " for="inputPassword"> <span>Protect your information with a password.</span></label>
+    <label class="col-sm-12 " for="password"> <span>Protect your information with a password.</span></label>
 </div>
 
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputPassword">Password:</label>
+  <label class="col-sm-2 control-label noPad" for="password">Password:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="password"
-        id="inputPassword" placeholder="Password" required>
+        id="password" placeholder="Password" required>
     </div>
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputPassword2">Re-Enter:</label>
+  <label class="col-sm-2 control-label noPad" for="password2">Re-Enter:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="password"
-        id="inputPassword2" placeholder="Password" required><span id="errorPassMatch"></span>
+        id="password2" placeholder="Password" required><span id="errorPassMatch"></span>
     </div>
 </div>
 

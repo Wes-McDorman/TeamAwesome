@@ -5,22 +5,34 @@
 
 //   events
 // The event handler function for the name text box
-function chkName() {
+function chkFName() {
   var myName = document.getElementById("fName");
 // Test the format of the input name 
-//   Allow the spaces after the commas to be optional
-//   Allow the period after the initial to be optional
-  var pos = myName.value.search(/^[A-Z][a-z]+, ?[A-Z][a-z]+, ?[A-Z]\.?$/);
-  var pos2 = myName.value.search(/^[A-Z][a-z]+, ?[A-Z][a-z]+$/);
+  var pos = myName.value.search(/^[A-z]$/);
 
-if (((pos === 0) || (pos2 === 0))) {
-    document.getElementById("errorName").innerHTML = "";
+if (pos === 0) {
+    document.getElementById("errorFName").innerHTML = "";
     return true; 
   } else
-      document.getElementById("errorName").innerHTML = "The name you entered (" + myName.value +
+      document.getElementById("errorFName").innerHTML = "The name you entered (" + myName.value +
           ") is not in the correct form." +
-          "The correct form is:" +
-          " Last-name, First-name, Middle-initial. ";
+          "There should only be letters.";
+    return false;
+}
+
+
+function chkLName() {
+  var myName = document.getElementById("lName");
+// Test the format of the input name 
+  var pos = myName.value.search(/^[A-z]$/);
+
+if (pos === 0) {
+    document.getElementById("errorLName").innerHTML = "";
+    return true; 
+  } else
+      document.getElementById("errorLName").innerHTML = "The name you entered (" + myName.value +
+          ") is not in the correct form." +
+          "There should only be letters.";
     return false;
 }
 
@@ -45,7 +57,7 @@ function chkPhone() {
 
 // The event handler function for the email text box
 function chkEmail() {
-  var myEmail = document.getElementById("inputEmail");
+  var myEmail = document.getElementById("email");
 // Test the format of the input phone number
   var emailRegEx =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   if (!(myEmail.value.match(emailRegEx))) {
@@ -60,13 +72,13 @@ function chkEmail() {
 }
 
 function chkEmailMatch() {
-  var myEmail = document.getElementById("inputEmail");
-  var myEmail2 = document.getElementById("inputEmail2");
+  var myEmail = document.getElementById("email");
+  var myEmail2 = document.getElementById("email2");
   if (!(myEmail2.value.match(myEmail.value))) {
       document.getElementById("errorEmailMatch").innerHTML = "The email you entered (" + myEmail2.value +
           ") does not match  (" + myEmail.value +
           ")\n";
-    document.getElementById("inputEmail2").focus();
+    document.getElementById("email2").focus();
     return false;
   } else
      document.getElementById("errorEmailMatch").innerHTML = "";
@@ -74,11 +86,11 @@ function chkEmailMatch() {
 }
 
 function chkPasswordMatch() {
-  var myPass = document.getElementById("inputPassword");
-  var myPass2 = document.getElementById("inputPassword2");
+  var myPass = document.getElementById("password");
+  var myPass2 = document.getElementById("password2");
   if (!(myPass2.value.match(myPass.value))) {
       document.getElementById("errorPassMatch").innerHTML = "Please check that your passwords match and try again.\n";
-    document.getElementById("inputEmail2").focus();
+    document.getElementById("password").focus();
     return false;
   } else
       document.getElementById("errorPassMatch").innerHTML = "";
