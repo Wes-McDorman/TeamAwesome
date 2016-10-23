@@ -6,10 +6,11 @@
 <head>
 
 <title>ISP Registration</title>
-<link rel="stylesheet" href="styles/bootstrap.min.css">
-<link rel="stylesheet" href="styles/styles.css">
-<link rel="stylesheet" href="styles/registerStyles.css">
-<script type = "text/javascript"  src ="js/regValidator.js" ></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/registerStyles.css">
+    <script type = "text/javascript"  src ="js/regValidator.js" ></script>
+    <script type = "text/javascript"  src ="js/volunteer.js" ></script>
 </head>
 
 <body style="margin: 0px; padding: 0px; font-family: 'Trebuchet MS',verdana;">
@@ -210,32 +211,32 @@
     </div>
     <div class="col-sm-12">
     <label> <span>Create Ranges of Pick-Up Availablity</span></label>
-    <button type="button" class="btn btn-default btn-xs alignRight">Add New Range</button>
+    <button type="button" class="btn btn-default btn-xs alignRight" id="newRangeBut" onclick="addRange(0)">Add New Range</button>
     </div>
 </div>    
 </section>
     
-<section class="item">
+<section class="item" id="rangeItem">
 <div class="form-group">
-  <label class="col-sm-3 control-label noPad" for="inputPassword">Start Date/Time:</label>
+  <label class="col-sm-3 control-label noPad" for="availPUStart">Start Date/Time:</label>
     <div class="col-sm-4 noPad">
         <input class="form-control" type="datetime-local"
-        id="availPUStart" required>
+        id="availPUStart0" required>
     </div>
     <div class="col-sm-5 noPad"></div>
 </div>
     
 <div class="form-group">
-  <label class="col-sm-3 control-label noPad" for="inputPassword">End Date/Time:</label>
+  <label class="col-sm-3 control-label noPad" for="availPUEnd">End Date/Time:</label>
     <div class="col-sm-4 noPad">
         <input class="form-control" type="datetime-local"
-        id="availPUEnd" required>
+        id="availPUEnd0" required>
     </div>
     <div class="col-sm-5 noPad"></div>
 </div>
 </section>
     
-    
+   
     
     
 
