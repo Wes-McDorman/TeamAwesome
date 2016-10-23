@@ -1,0 +1,58 @@
+CREATE TABLE Volunteers
+( 	
+	Volunteer_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  	fName CHAR(20),
+	lName CHAR(20),
+	address CHAR(100),
+	email CHAR(35),
+	password CHAR(15),
+	affiliation CHAR(20),
+	phone CHAR(15),
+	isMale BOOLEAN,
+	canPickUp BOOLEAN,
+	canHomeShare BOOLEAN, 
+	passengers SMALLINT UNSIGNED,
+	suitcases SMALLINT UNSIGNED,
+	contactName CHAR(50),
+	contactPhone CHAR(15),
+	contactRelation CHAR(30)
+);
+
+CREATE TABLE VolAvailables
+( 	Avail_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Volunteer_id INT NOT NULL,
+	beginTime DATETIME,
+	endTime DATETIME,
+	filled BOOLEAN
+);
+
+CREATE TABLE Students
+(
+	Student_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	fName CHAR(20),
+	lName CHAR(20),
+	address CHAR(100),
+	email CHAR(35),
+	password CHAR(15),
+	affiliation CHAR(20),
+	phone CHAR(15),
+	isMale BOOLEAN,
+	needPickUp BOOLEAN,
+	needHomeShare BOOLEAN,
+	beginHomeShare DATETIME,
+	endHomeShare DATETIME,
+	airline CHAR(25),
+	flightNumber CHAR(25),
+	arivalTime DATETIME,
+	contactName CHAR(50),
+	contactPhone CHAR(15),
+	contactRelation CHAR(30)
+	
+);
+
+CREATE TABLE Admins
+(
+	Admin_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	email CHAR(35),
+	password CHAR(15)
+);
