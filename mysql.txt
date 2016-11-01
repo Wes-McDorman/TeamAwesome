@@ -1,29 +1,24 @@
 CREATE TABLE Volunteers
 ( 	
-	Volunteer_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  	fName CHAR(20),
-	lName CHAR(20),
-	address CHAR(100),
-	zip SMALLINT,
-	email CHAR(35),
-	password CHAR(15),
+	PRIMARY KEY(user_id),
+    	FOREIGN KEY (user_id) REFERENCES Users(user_id),
 	affiliation CHAR(20),
-	phone CHAR(15),
-	isMale BOOLEAN,
 	canPickUp BOOLEAN,
 	canHomeShare BOOLEAN, 
 	passengers SMALLINT UNSIGNED,
 	suitcases SMALLINT UNSIGNED,
+	beginHomeShare DATETIME,
+	endHomeShare DATETIME
 );
 
 CREATE TABLE Contacts
 (
 	Contact_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	isVolunteer BOOLEAN,
-	User_id INT NOT NULL,
-	contactName CHAR(50),
-	contactPhone CHAR(15),
-	contactRelation CHAR(30)
+	FOREIGN KEY (user_id) REFERENCES Users(user_id),
+	contactName VARCHAR(50),
+	contactPhone VARCHAR(15),
+	contactRelation VARCHAR(30)
 );
 
 CREATE TABLE VolAvailables
@@ -37,22 +32,16 @@ CREATE TABLE VolAvailables
 
 CREATE TABLE Students
 (
-	Student_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	fName CHAR(20),
-	lName CHAR(20),
-	address CHAR(100),
-	email CHAR(35),
-	password CHAR(15),
-	affiliation CHAR(20),
-	phone CHAR(15),
-	isMale BOOLEAN,
+	PRIMARY KEY(user_id),
+    	FOREIGN KEY (user_id) REFERENCES Users(user_id),
+	affiliation VARCHAR(20),
 	needPickUp BOOLEAN,
 	needHomeShare BOOLEAN,
 	beginHomeShare DATETIME,
 	endHomeShare DATETIME,
-	airline CHAR(25),
-	flightNumber CHAR(25),
-	arrivalTime DATETIME,
+	airline VARCHAR(25),
+	flightNumber VARCHAR(25),
+	arrivalTime DATETIME
 );
 
 CREATE TABLE PickUps
@@ -63,9 +52,23 @@ CREATE TABLE PickUps
 	date DATETIME
 );
 
-CREATE TABLE Admins
+CREATE TABLE HomeShares
 (
-	Admin_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	email CHAR(35),
-	password CHAR(15)
+	HomeShare_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	FOREIGN KEY (vol_id) REFERENCES Volunteers(user_id),
+	FOREIGN KEY (stu_id) REFERENCES Students(user_id)
+);
+
+CREATE TABLE Users
+(
+	Users_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(35),
+	password VARCHAR(15),
+	user_type VARCHAR(15),
+	fName VARCHAR(20),
+	lName VARCHAR(20),
+	address VARCHAR(100),
+	zip SMALLINT,
+	phone VARCHAR(15),
+	isMale BOOLEAN
 );
