@@ -1,4 +1,6 @@
-CREATE TABLE Users
+
+
+CREATE TABLE IF NOT EXISTS Users
 (
 	user_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	email VARCHAR(35),
@@ -12,9 +14,9 @@ CREATE TABLE Users
 	isMale BOOLEAN
 );
 
-CREATE TABLE Volunteers
+CREATE TABLE IF NOT EXISTS Volunteers
 ( 	
-	Volunteer_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	Volunteer_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	affiliation CHAR(20),
 	canPickUp BOOLEAN,
 	canHomeShare BOOLEAN, 
@@ -22,31 +24,43 @@ CREATE TABLE Volunteers
 	suitcases SMALLINT UNSIGNED,
 	beginHomeShare DATETIME,
 	endHomeShare DATETIME,
-    	CONSTRAINT uid_FK FOREIGN KEY(user_id) REFERENCES Users(user_id)
+    	user_id INT(10) unsigned NOT NULL,
+    	CONSTRAINT FK_users FOREIGN KEY(user_id) 
+	REFERENCES Users(user_id) 
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
-CREATE TABLE Contacts
+CREATE TABLE IF NOT EXISTS Contacts
 (
-	Contact_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	Contact_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	isVolunteer BOOLEAN,
 	contactName VARCHAR(50),
 	contactPhone VARCHAR(15),
 	contactRelation VARCHAR(30),
-	CONSTRAINT cuid_FK FOREIGN KEY(Contact_id) REFERENCES Users(user_id)
+	user_id INT(10) unsigned NOT NULL,
+    	CONSTRAINT FK_users2 FOREIGN KEY(user_id) 
+	REFERENCES Users(user_id) 
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
-CREATE TABLE VolAvailables
+CREATE TABLE IF NOT EXISTS VolAvailables
 ( 	
-	Avail_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	Avail_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	volunteer_id INT(10) unsigned NOT NULL,
 	beginTime DATETIME,
 	endTime DATETIME,
 	filled BOOLEAN,
-	CONSTRAINT vavailid_FK FOREIGN KEY(Avail_id) REFERENCES Volunteers(Volunteer_id)
+	CONSTRAINT FK_volunteers FOREIGN KEY(volunteer_id) 
+	REFERENCES Volunteers(volunteer_id) 
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
-CREATE TABLE Students
+CREATE TABLE IF NOT EXISTS Students
 (
-	Student_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	Student_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	affiliation VARCHAR(20),
 	needPickUp BOOLEAN,
 	needHomeShare BOOLEAN,
@@ -55,24 +69,40 @@ CREATE TABLE Students
 	airline VARCHAR(25),
 	flightNumber VARCHAR(25),
 	arrivalTime DATETIME,
-	CONSTRAINT stuid_FK FOREIGN KEY(Student_id) REFERENCES Users(user_id)
+	user_id INT(10) unsigned NOT NULL,
+    	CONSTRAINT FK_users3 FOREIGN KEY(user_id) 
+	REFERENCES Users(user_id) 
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
-CREATE TABLE PickUps
+CREATE TABLE IF NOT EXISTS PickUps
 (
-	PickUp_id INT UNSIGNED NOT NULL,
+	PickUp_id INT UNSIGNED NOT NULL PRIMARY KEY,
 	Student_id INT(10) UNSIGNED NOT NULL,
 	Volunteer_id INT(10) UNSIGNED NOT NULL,
 	date DATETIME,
-    	CONSTRAINT stupickid_FK FOREIGN KEY(Student_id) REFERENCES Students(Student_id),
-    	CONSTRAINT volpickid_FK FOREIGN KEY(Volunteer_id) REFERENCES Volunteers(Volunteer_id)
+    	CONSTRAINT FK_stu_id FOREIGN KEY(Student_id)
+	REFERENCES Students(Student_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+    	CONSTRAINT FK_vol_id FOREIGN KEY(Volunteer_id) 
+	REFERENCES Volunteers(Volunteer_id)	
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
 
-CREATE TABLE HomeShares
+CREATE TABLE IF NOT EXISTS HomeShares
 (
 	HomeShare_id INT UNSIGNED NOT NULL PRIMARY KEY,
 	Student_id INT(10) UNSIGNED NOT NULL,
 	Volunteer_id INT(10) UNSIGNED NOT NULL,
-    	CONSTRAINT stuhomeid_FK FOREIGN KEY(Student_id) REFERENCES Students(Student_id),
-    	CONSTRAINT volhomeid_FK FOREIGN KEY(Volunteer_id) REFERENCES Volunteers(Volunteer_id)
+    	CONSTRAINT FK_stu_id2 FOREIGN KEY(Student_id)
+	REFERENCES Students(Student_id)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+    	CONSTRAINT FK_vol_id2 FOREIGN KEY(Volunteer_id) 
+	REFERENCES Volunteers(Volunteer_id)	
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
 );
