@@ -65,6 +65,11 @@
   </div>
 
 <!-- ============ (CONTENT) ============== -->
+<!-- User elements => fName lName inputEmail inputPhone gender password  -->
+    
+<!-- Student Elements => airline flightNumber flightDateTime needPickUp needHome  affiliation homeStart homeEnd-->
+    
+<!-- Contact Elements => contactName contactRelation contactPhone -->
 <div class="col-sm-10 content">
 
    <h1 class="pageTitle pageTitleWords">Intl. Student Registration</h1>
@@ -106,7 +111,7 @@
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="inputAffliation">Affliation:</label>
+  <label class="col-sm-2 control-label noPad" for="affiliation">Affliation:</label>
     <div class="col-sm-9 noPad">
         <input class="form-control" type="text"
         id="affliation" placeholder="WCF / GTCFA" required>
@@ -142,34 +147,57 @@
 
 <section class="col-xs-0 col-sm-1"></section>
 
-<section class="col-xs-6 col-sm-2 dayCell">
+<section class="col-xs-6 col-sm-3 dayCell">
     <fieldset>
         <div class="item weekDay">
-            <label>Type</label>
+            <label>Type of Service Requested</label>
         </div>
         <div class="item">
             <input type="checkbox" name="volPickUp" value="volPickUp" id="volPickUp">
-            <label for="valPickUp">Pick-Up</label>
+            <label for="needPickUp">Pick-Up</label>
         </div>
         <div class="item">
            <input type="checkbox" name="volHome" value="volHome">
-            <label for="volHome">Home-Share</label>
+            <label for="needHome">Home-Share</label>
         </div>
     </fieldset>
 </section>
 
-<section class="col-xs-0 col-sm-5"></section>
+<section class="col-xs-0 col-sm-4"></section>
 
 <section class="col-xs-0 col-sm-12"><br></section>
+    
+ 
+    
+<!-- TODO: JS this to show if volHome checkbox checked -->    
+<section class="item" id="rangeItem">
+<div class="form-group">
+  <label class="col-sm-3 control-label noPad" for="homeStart">Start Date/Time:</label>
+    <div class="col-sm-4 noPad">
+        <input class="form-control" type="datetime-local"
+        id="homeStart" required>
+    </div>
+    <div class="col-sm-5 noPad"></div>
+</div>
+    
+<div class="form-group">
+  <label class="col-sm-3 control-label noPad" for="homeEnd">End Date/Time:</label>
+    <div class="col-sm-4 noPad">
+        <input class="form-control" type="datetime-local"
+        id="homeEnd" required>
+    </div>
+    <div class="col-sm-5 noPad"></div>
+</div>
+</section>
 
 
 
-
-
+    
+    
 <div class="form-group">
     <div class="col-sm-2">
     </div>
-    <label class="col-sm-12 " for="inputPassword"> <span>Flight Information</span></label>
+    <label class="col-sm-12 " > <span>Flight Information</span></label>
 </div>
 
 <div class="form-group">

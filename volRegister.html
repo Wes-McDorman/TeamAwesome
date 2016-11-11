@@ -67,13 +67,21 @@
   </div>
 
 <!-- ============ (CONTENT) ============== -->
+<!-- User elements => fName, lName, inputEmail, inputPhone, gender, password, address, zip -->
+    
+<!-- Volunteer Elements => affiliation, canPickUp, canHome, passengers, suitcases -->
+    
+<!-- Contact Elements => contactName, contactRelation, contactPhone -->
+    
+<!-- VolAvailables => availPUStart0. availPUEnd0 -->
+    
 <div class="col-sm-10 content">
 
    <h1 class="pageTitle pageTitleWords">Volunteer Registration</h1>
 <br><br><br>
 
 
-<form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action = "">
+<form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action = "postVolunteer.php">
 
 <div class="form-group">
   <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">First Name:</label>
@@ -95,7 +103,15 @@
   <label class="col-xs-12 col-sm-2 control-label noPad" for="address">Address:</label>
     <div class="col-xs-12 col-sm-9 noPad">
         <input class="form-control" type="text"
-        id="address" placeholder="123 Road St YourTown, GA, #####" required />
+        id="address" placeholder="123 Road St YourTown, GA" required />
+    </div>
+</div>
+    
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="zip">Zip Code:</label>
+    <div class="col-xs-12 col-sm-9 noPad">
+        <input class="form-control" type="text"
+        id="zip" placeholder="#####" required />
     </div>
 </div>
 
@@ -124,10 +140,10 @@
 </div>
 
 <div class="form-group">
-  <label class="col-sm-2 control-label noPad" for="phone">Phone Number:</label>
+  <label class="col-sm-2 control-label noPad" for="inputPhone">Phone Number:</label>
     <div class="col-sm-4 noPad">
         <input class="form-control" type="tel"
-        id="phone" placeholder="###-###-####" required><span id="errorPhone"></span>
+        id="inputPhone" placeholder="###-###-####" required><span id="errorPhone"></span>
     </div>
     
 </div>
@@ -158,12 +174,12 @@
             <label>Type</label>
         </div>
         <div class="item">
-            <input type="checkbox" name="volPickUp" value="volPickUp" id="volPickUp">
-            <label for="valPickUp">Pick-Up</label>
+            <input type="checkbox" name="canPickUp" value="canPickUp" id="canPickUp">
+            <label for="canPickUp">Pick-Up</label>
         </div>
         <div class="item">
-           <input type="checkbox" name="volHome" value="volHome">
-            <label for="volHome">Home-Share</label>
+           <input type="checkbox" name="canHome" value="canHome">
+            <label for="canHome">Home-Share</label>
         </div>
     </fieldset>
 </section>

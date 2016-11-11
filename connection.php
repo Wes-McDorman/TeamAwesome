@@ -2,7 +2,7 @@
 //define variables -- hostname,username,and password will be changed when we upload it to our remote server.
 $hostname = "localhost";
 $username = "root";
-$password = "";
+$password = "";                 //enter password for Production Deployment
 $dbname = "teamawesome";
 
 //making the connection to mysql
