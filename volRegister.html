@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/registerStyles.css">
     <script type = "text/javascript"  src ="js/regValidator.js" ></script>
-    <script type = "text/javascript"  src ="js/volunteer.js" ></script>
+    
 </head>
 
 <body style="margin: 0px; padding: 0px; font-family: 'Trebuchet MS',verdana;">
@@ -74,6 +74,8 @@
 <!-- Contact Elements => contactName, contactRelation, contactPhone -->
     
 <!-- VolAvailables => availPUStart0. availPUEnd0 -->
+    
+<!--    pickUpRangeIterator  -->
     
 <div class="col-sm-10 content">
 
@@ -188,64 +190,27 @@
 
 <section class="col-xs-0 col-sm-12"><br></section>
     
+ <div id="carInfoArea">     
+</div>    
     
-    
-<div class="form-group">
-  <label class="col-xs-12 col-sm-4 control-label noPad" for="passengers"># passengers your vehicle handles:</label>
-    <div class="col-xs-12 col-sm-2 noPad">
-        <input class="form-control" type="number"
-        id="passengers" placeholder="#" required /> 
-    </div>
-    <div class="col-sm-6 noPad"></div>
-</div>
+<input type="label" name="pickUpRangeIterator" id="pickUpRangeIterator" value="0">
 
-<div class="form-group">
-  <label class="col-xs-12 col-sm-4 control-label noPad" for="suitcases"># suitcases your vehicle handles:</label>
-    <div class="col-xs-12 col-sm-2 noPad">
-        <input class="form-control" type="number"
-        id="suitcases" placeholder="#" required /> 
-    </div>
-    <div class="col-xs-0 col-sm-6 noPad"></div>
-</div>
     
+
     
-    
-<section class="item weekDay">
+   
 <div class="form-group noPad">
     <div class="col-sm-2">
     </div>
-    <div class="col-sm-12">
-    <label> <span>Create Ranges of Pick-Up Availablity</span></label>
-    <button type="button" class="btn btn-default btn-xs alignRight" id="newRangeBut" onclick="addRange(0)">Add New Range</button>
+    <div class="col-sm-12" id="addRangeButArea">
+
     </div>
-</div>    
-</section>
-    
-<section class="item" id="rangeItem">
-<div class="form-group">
-  <label class="col-sm-3 control-label noPad" for="availPUStart">Start Date/Time:</label>
-    <div class="col-sm-4 noPad">
-        <input class="form-control" type="datetime-local"
-        id="availPUStart0" required>
-    </div>
-    <div class="col-sm-5 noPad"></div>
-</div>
-    
-<div class="form-group">
-  <label class="col-sm-3 control-label noPad" for="availPUEnd">End Date/Time:</label>
-    <div class="col-sm-4 noPad">
-        <input class="form-control" type="datetime-local"
-        id="availPUEnd0" required>
-    </div>
-    <div class="col-sm-5 noPad"></div>
-</div>
-</section>
-    
-   
-    
+</div>   
     
 
+<section class="item" id="addBut">
 
+</section>
 
 
     
@@ -329,10 +294,12 @@
         <p>&copy; 2016 Team Awesome</p>
 	</footer>
     
-    <script src="js/jquery-2.1.4.min.js"></script>
+    
+    <script type = "text/javascript" src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
     <script type = "text/javascript"  src = "js/regValidatorr.js"></script>
+    <script type = "text/javascript"  src ="js/volunteer.js" ></script>
 </body>
 
 </html>

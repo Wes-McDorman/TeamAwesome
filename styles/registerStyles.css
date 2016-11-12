@@ -19,15 +19,6 @@
      padding-bottom: 100px;
 }
 
-@media (max-width:767px) {
-    .pageTitle{
-        font-size: 1.5em;
-        margin-left: -17px;
-        padding-left: 15px;
-        padding-top: 8px;
-    }
-}
-
 @media (max-width: 480px){
     .pageTitle{
         font-size: 1em;
@@ -57,14 +48,7 @@
     padding-right: 0px;
 }
 
-@media (max-width: 767px){
-    .dayCell{
-       padding-left: 10px; 
-    }
-    .content{
-        padding-bottom: 175px;
-    }
-}
+
 .weekDay {
     background-color: #c1d1c1;
 }
@@ -88,4 +72,76 @@
 
 .alignRight {
     float: right;
+}
+
+.dateRangeDark {
+    background-color: darkslategrey;
+    padding-top: 25px;
+    color: aliceblue
+}
+
+.dateRangeLight {
+    background-color: dimgrey;
+    padding-top: 25px;
+    color: aliceblue
+}
+.removeBut {
+    float: left;
+    margin-top: -23px;
+    margin-left: 35px;
+}
+
+.control-label, .form-control {
+    margin-top: -10px;
+}
+
+.bigbut {
+    padding: 15px;
+    margin-top: 25px;
+}
+
+@media (max-width: 767px){
+    .dayCell{
+       padding-left: 10px; 
+    }
+    .content{
+        padding-bottom: 175px;
+    }
+
+    .pageTitle{
+        font-size: 1.5em;
+        margin-left: -17px;
+        padding-left: 15px;
+        padding-top: 1px;
+    }
+    .control-label, .control-form {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+    .noPad{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        
+    }
+    .removeBut {
+        float: right;
+        margin-top: 15px;
+        margin-left: 35px;
+        padding: 10
+    }
+    .breadcrumb {
+        height: 25px;
+        padding: 0px;
+    }
+    .bigbut {
+        padding: 5px;
+        margin-top: 5px;
+}
+}
+@media (max-width: 357px){
+    .breadcrumb {
+        height: 41px;
+        padding: 0px;
+    }
 }

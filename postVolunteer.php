@@ -31,8 +31,8 @@ $contactRelation = $_POST['contactRelation'];
 $contactPhone = $_POST['contactPhone'];
     
 //VolAvailables DB elements
-$availPUStart = $_POST['availPUStart'];
-$availPUEnd = $_POST['availPUEnd'];
+
+$puIterator = $_POST['pickUpRangeIterator'];
  
 //Parameters used to check for duplicate User registration
 $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='".$email."'");
@@ -77,16 +77,23 @@ if(!empty($newUserId)){
     }
 
 //Create VolAvailables Entry
-    if(!empty($availPUStart) && !empty($availPUEnd)){         
+for ($x = ($puIterator + 1); $x >= 0; $x--) {    
+    $availPUStart = $_POST['availPUStart'.$x];
+    $availPUEnd = $_POST['availPUEnd'.$x];
+    if(!empty($availPUStart) && !empty($availPUEnd)){                       //TODO: loop x iterations
 		mysqli_query($dbc, "INSERT INTO Users(volunteer_id, beginTime, endTime, filled) 
 		VALUES ('$newUserId', '$availPUStart', '$availPUEnd', 'false')");
     }else{
         echo "ERROR: Missing Contact Information"
     }
+}
     
+    
+//Success    
     echo " Account successfully created!";	           
     echo "<br><center><a href='index.html'>Log In</a></center>";      
-}else{		
+}else{	
+//Failure
     echo "ERROR: Missing required information!";	
     echo "<strong>Please complete the form...</strong>";
      }          
