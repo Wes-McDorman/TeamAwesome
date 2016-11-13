@@ -1,4 +1,11 @@
-
+.up{
+    margin-bottom:45px;
+}
+.homeTitle{
+    padding-bottom: 13px;
+    padding-left: 60px;
+    font-weight: 400;
+}
 .pageTitle {
     background-image: url("../images/black.png");
     background-repeat: repeat;

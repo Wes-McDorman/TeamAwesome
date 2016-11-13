@@ -7,12 +7,15 @@ function addRange(e) {
     if(e == 0){
         e = 1;
     }else{
-        e = e + 1;
-        if(e % 2 == 0){
+        var puRangeIterator = document.getElementById("pickUpRangeIterator");
+        e = puRangeIterator.value;
+
+        if(shadeSwitch === "Dark"){
             shadeSwitch = "Light";
         }else{
             shadeSwitch = "Dark";
         };
+       
     var button = document.getElementById("addBut");
     var addRangeButArea = document.getElementById("addRangeButArea");
     var newRangeBut = '<button type="button" class="btn btn-default btn-xs" id="newRangeBut" onclick="addRange(' + e + ')">Add New Range</button>';
@@ -22,7 +25,7 @@ function addRange(e) {
   '<label class="col-sm-3 control-label noPad" for="availPUStart">Start Date/Time:</label>' +
     '<div class="col-sm-4 noPad">' +
         '<input class="form-control" type="datetime-local"' +
-        'id="availPUStart'+ e +'" required>'  +
+        'name="availPUStart'+ e +'" required>'  +
     '</div>' +
     '<div class="col-sm-5 noPad"></div>' +
 '</div>' +
@@ -31,19 +34,23 @@ function addRange(e) {
   '<label class="col-sm-3 control-label noPad" for="availPUEnd">End Date/Time:</label>' +
     '<div class="col-sm-4 noPad">' +
         '<input class="form-control" type="datetime-local"' +
-        'id="availPUEnd'+ e +'" required>' +
+        'name="availPUEnd'+ e +'" required>' +
     '</div>' +
-    '<div class="col-sm-5 noPad"><button type="button" class="btn btn-default btn-xs alignRight removeBut" id="deleteRangeBut' + e + '" onclick="deleteRange(' + e + ')">Remove this Range</button></div>'+
+    '<div class="col-sm-5 noPad" id="delButArea' + e + '"><button type="button" class="btn btn-default btn-xs alignRight removeBut" id="deleteRangeBut' + e + '" onclick="deleteRange(' + e + ')">Remove this Range</button></div>'+
 '</div>' +
 '</section>';
-        
-    var puRangeIterator = document.getElementById("pickUpRangeIterator");
+            
+
+    if(e != 1){
+        var lastDeleteBut = document.getElementById("deleteRangeBut" + (e - 1) );
+        lastDeleteBut.parentNode.removeChild(lastDeleteBut);
+    }else{};
         if(puRangeIterator.value  !== null){
             puRangeIterator.value = parseInt(puRangeIterator.value) + 1;
         }else{};
     button.innerHTML = newRangeBut;
     addRangeButArea.innerHTML += rangeHtml;  
-        
+         
     }
 };
 
@@ -55,6 +62,15 @@ function deleteRange(x){
             puRangeIterator.value = parseInt(puRangeIterator.value) - 1;
         }else{};
     dateSection.parentNode.removeChild(dateSection);
+    if(puRangeIterator.value > 1){
+                var lastId = puRangeIterator.value - 1;
+        var previousRemoveButArea = document.getElementById("delButArea" + lastId);
+
+        var replaceRemoveBut = '<button type="button" class="btn btn-default btn-xs alignRight removeBut" id="deleteRangeBut' + lastId + '" onclick="deleteRange(' + lastId + ')">Remove this Range</button>';
+        previousRemoveButArea.innerHTML = replaceRemoveBut;
+    }else{
+        
+    }
 }
 
 
@@ -62,6 +78,34 @@ function deleteRange(x){
 window.onload = function() {
 
 $('#newRangeBut').click(addRange(e));
+
+$('#canHome').click(function(){
+        var hsDateArea = document.getElementById("homeShareDateArea");      
+
+        if($(this).is(':checked')){
+            var hsDateInput = '<div class="up" ><div class="col-sm-12 homeTitle">HomeShare Availability</div>' +
+'<div class="form-group">'+
+  '<label class="col-sm-2 control-label noPad" for="availPUStart">Start:</label>' +
+    '<div class="col-sm-8 noPad">' +
+        '<input class="form-control" type="datetime-local"' +
+        'name="beginHomeShare'+ e +'" required>'  +
+    '</div>' +
+    '<div class="col-sm-2 noPad"></div>' +
+'</div>' +
+    
+'<div class="form-group">' +
+  '<label class="col-sm-2 control-label noPad" for="availPUEnd">End:</label>' +
+    '<div class="col-sm-8 noPad">' +
+        '<input class="form-control" type="datetime-local"' +
+        'name="endHomeShare'+ e +'" required>' +
+    '</div>' +
+    '<div class="col-sm-2 noPad"></div>'+
+'</div></div>';
+            hsDateArea.innerHTML = hsDateInput;
+        }else{
+            hsDateArea.innerHTML = "";
+        }
+});
     
 $('#canPickUp').click(function(){ 
         var carInfoArea = document.getElementById("carInfoArea");
@@ -96,7 +140,7 @@ $('#canPickUp').click(function(){
   '<label class="col-sm-3 control-label noPad" for="availPUStart">Start Date/Time:</label>' +
     '<div class="col-sm-4 noPad">' +
         '<input class="form-control" type="datetime-local"' +
-        'id="availPUStart'+ e +'" required>'  +
+        'name="availPUStart'+ e +'" required>'  +
     '</div>' +
     '<div class="col-sm-5 noPad"></div>' +
 '</div>' +
@@ -105,7 +149,7 @@ $('#canPickUp').click(function(){
   '<label class="col-sm-3 control-label noPad" for="availPUEnd">End Date/Time:</label>' +
     '<div class="col-sm-4 noPad">' +
         '<input class="form-control" type="datetime-local"' +
-        'id="availPUEnd'+ e +'" required>' +
+        'name="availPUEnd'+ e +'" required>' +
     '</div>' +
     '<div class="col-sm-5 noPad"></div>'+
 '</div>' +
@@ -113,7 +157,8 @@ $('#canPickUp').click(function(){
   
         carInfoArea.innerHTML = carInfo;
         addRangeButArea.innerHTML = addRangeBut;
-        
+        var puRangeIterator = document.getElementById("pickUpRangeIterator");
+        puRangeIterator.value = parseInt(puRangeIterator.value) + 1;
         
     } else {
        
