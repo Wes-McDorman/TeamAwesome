@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 //User DB elements
  
 if(isset($_POST['fName'])){$fName = $_POST['fName'];}
-        echo "   got past the POST condition ".$fName;
 $lName = $_POST['lName'];
 $email = $_POST['email'];
 $phone = $_POST['inputPhone'];
@@ -95,11 +94,12 @@ if($numrows != 0){
 }
 
 $newUserId = $dbc->insert_id;
-    
+
 if(!empty($newUserId)){
 
 //Create Volunteer Entry        
-    if(!empty($affiliation) && ($canPickUp || $canHome)){       //TODO: rethink which fields to validate
+    if(!empty($affiliation) && ($canPickUp || $canHome)){       
+
         mysqli_query($dbc, "INSERT INTO Volunteers(affiliation, canPickUp, canHomeShare, passengers,
         suitcases, beginHomeShare, endHomeShare, user_id) 
         VALUES ('$affiliation', '$canPickUp', '$canHome', '$passengers', '$suitcases', '$beginHomeShare',
@@ -107,23 +107,28 @@ if(!empty($newUserId)){
     }else{
         echo "ERROR: Missing Volunteer Information";
     }
-
+$newVolId= $dbc->insert_id;
 //Create Contact Entry
-    if(!empty($contactName) && !empty($contactPhone)){          
-		mysqli_query($dbc, "INSERT INTO Users(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
-		VALUES ('$contactName', '$contactRelation', '$contactPhone', 'true', '$newUserId')");
+    if(!empty($contactName) && !empty($contactPhone)){    
+        echo "made it past three";
+		mysqli_query($dbc, "INSERT INTO contacts(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
+		VALUES ('$contactName', '$contactRelation', '$contactPhone', '1', '$newUserId')");
     }else{
         echo "ERROR: Missing Contact Information";
     }
 
 //Create VolAvailables Entry
 if($canPickUp === true){
-for ($x = ($puIterator + 1); $x >= 1; $x--) {    
+for ($x = ($puIterator - 1); $x >= 0; $x--) { 
+    echo "<br> puIterator = ".$puIterator;
     $availPUStart = $_POST['availPUStart'.$x];
     $availPUEnd = $_POST['availPUEnd'.$x];
-    if(!empty($availPUStart) && !empty($availPUEnd)){                       //TODO: loop x iterations
-		mysqli_query($dbc, "INSERT INTO Users(volunteer_id, beginTime, endTime, filled) 
-		VALUES ('$newUserId', '$availPUStart', '$availPUEnd', 'false')");
+    if(!empty($availPUStart) && !empty($availPUEnd)){  
+        echo "<br> availPUStart = ".$availPUStart;
+                echo "<br> availPUend = ".$availPUEnd;
+		mysqli_query($dbc, "INSERT INTO volavailables(volunteer_id, beginTime, endTime, filled) 
+		VALUES ('$newVolId', '$availPUStart', '$availPUEnd', '0')");
+        echo ("Error description: " . mysqli_error($dbc));
     }else{
         echo "ERROR: Missing Contact Information";
     }
