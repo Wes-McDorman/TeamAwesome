@@ -16,6 +16,7 @@ $phone = $_POST['inputPhone'];
 $password = $_POST['password'];
 $address = $_POST['address'];
 $zip = $_POST['zip'];
+$userType = "vol";
 $getGender = $_POST['gender'];
     if($getGender == 'male'){
         $isMale = true;
@@ -62,6 +63,7 @@ if(isset($_POST['suitcases'])){
 }else{
     $suitcases = 0;
 }
+    
 //Contact DB elements
 $contactName = $_POST['contactName'];
 $contactRelation = $_POST['contactRelation'];
@@ -86,12 +88,12 @@ if($numrows != 0){
 
 //Create User Entry
     if(!empty($fName) && !empty($lName) && !empty($email) && !empty($phone) && !empty($password)){       //TODO: rethink which fields to validate       
-		mysqli_query($dbc, "INSERT INTO Users(fName, lName, email, password, address, zip, phone, isMale) 
-		VALUES ('$fName', '$lName', '$email', '$password', '$address', '$zip', '$phone', '$isMale')");
+		mysqli_query($dbc, "INSERT INTO Users(fName, lName, user_type, email, password, address, zip, phone, isMale) 
+		VALUES ('$fName', '$lName', '$userType', '$email', '$password', '$address', '$zip', '$phone', '$isMale')");
     }else{
         echo "ERROR: Missing User Information";
     }
-}
+
 
 $newUserId = $dbc->insert_id;
 
@@ -108,6 +110,7 @@ if(!empty($newUserId)){
         echo "ERROR: Missing Volunteer Information";
     }
 $newVolId= $dbc->insert_id;
+    
 //Create Contact Entry
     if(!empty($contactName) && !empty($contactPhone)){    
         echo "made it past three";
@@ -145,7 +148,7 @@ for ($x = ($puIterator - 1); $x >= 0; $x--) {
      }          
     }
 }
-
+}
 
 ?>
 
