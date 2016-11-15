@@ -67,18 +67,18 @@
 <div class="col-sm-10 content">
 
 	<h1>Please Log In</h1>
-    
-        <form action="login.php" method="post">
             
-            <div class="form-group">
+        <div class="form-group">
+    
+            <form action="login_function.php" method="POST">
               <label class="col-sm-2 control-label noPad" for="login_email">E-mail address: </label>
               <div class="col-sm-9 noPad">
-                  <input class="form-control" type="email" id="login_email" placeholder="Email" required>
+                  <input class="form-control" type="email" name="login_email" placeholder="Email">
               </div>
 
               <label class="col-sm-2 control-label noPad" for="login_pw">Password: </label>
               <div class="col-sm-9 noPad">
-                  <input class="form-control" type="password" id="login_pw" placeholder="Password" required>
+                  <input class="form-control" type="password" name="login_pw" placeholder="Password">
               </div>
 
               <div class="col-sm-10 col-sm-offset-5">
@@ -87,9 +87,9 @@
               <div class="col-sm-4 noPad">
                     Not registered yet? Click to register: <a href="stuRegister.html">Students</a> | <a href="volRegister.html">Volunteer</a>
               </div>
-            </div>
+            </form>
             
-        </form>
+        </div>
 
 </div>
 </div>
