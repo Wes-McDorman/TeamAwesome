@@ -76,57 +76,51 @@
 
                     <!-- ============ (CONTENT) ============== -->
                     <div class='col-sm-10 content'>
-                    <h2>Student Page</h2>
-                      Thank you for choosing International Student Hub, ".$row['fName']." ".$row['lName']."!
-                    <br>
-                    <br>
-                     <!-- ===Information displayed === -->
-                    <div class='panel-group'>
-                      <div class='panel panel-info'>
-                      <div class='panel-body'>Student ID:</div>
-                      </div>
-                      <div class='panel panel-info'>
-                      <div class='panel-body'>Your next task:</div>
-                      </div>
-                      <div class='panel panel-info'>
-                      <div class='panel-body'>Completed tasks:</div>
-                      </div>
-                    </div>
-                    
-                    <hr/>
-                    
-                    <div>
-                      <label>Places to go in Atlanta</label>
-                    </div>
-                    <div class='panel-group'>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.georgiaaquarium.org/experience/visit/tickets' target='_blank'>Georgia Aquarium</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='https://www.worldofcoca-cola.com/purchase-tickets/' target='_blank'>World of Coca-Cola</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.cnn.com/tour/' target='_blank'>CNN Center</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://atlanta.braves.mlb.com/atl/ballpark/information/' target='_blank'>Turner Field</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://foxtheatre.org/shows-and-events/' target='_blank'>Fox Theatre</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.atlantahistorycenter.com/visit-us' target='_blank'>Atlanta History Center</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.piedmontpark.org/visit/history.html' target='_blank'>Piedmont Park</a></div>
+                        <h2>Student Page</h2>
+                          Thank you for choosing International Student Hub, ".$row['fName']." ".$row['lName']."!
+                        <br>
+                        <br>
+                         <!-- ===Information displayed === -->
+                        <div class='panel-group'>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Student ID:</div>
+                          </div>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Your next task:</div>
+                          </div>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Completed tasks:</div>
+                          </div>
                         </div>
 
-                    <br><br><br><br>
-                    <br>
-                     </div>
+                        <hr/>
 
-                    </div>
-
+                        <div>
+                          <label>Places to go in Atlanta</label>
+                        </div>
+                        <div class='panel-group'>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='http://www.georgiaaquarium.org/experience/visit/tickets' target='_blank'>Georgia Aquarium</a></div>
+                            </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='https://www.worldofcoca-cola.com/purchase-tickets/' target='_blank'>World of Coca-Cola</a></div>
+                            </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='http://www.cnn.com/tour/' target='_blank'>CNN Center</a></div>
+                            </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='http://atlanta.braves.mlb.com/atl/ballpark/information/' target='_blank'>Turner Field</a></div>
+                            </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='http://foxtheatre.org/shows-and-events/' target='_blank'>Fox Theatre</a></div>
+                            </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='http://www.atlantahistorycenter.com/visit-us' target='_blank'>Atlanta History Center</a></div>
+                            </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><a href='http://www.piedmontpark.org/visit/history.html' target='_blank'>Piedmont Park</a></div>
+                            </div>
+                         </div>
 
                         <br><br><br><br>
                         <br>
