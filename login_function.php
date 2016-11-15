@@ -46,7 +46,7 @@ if($numrows != 0){
                 session_start();
                 $_SESSION['login'] = "0";
                 $_SESSION['email'] = $dbemail;
-                include("adminHome.html");
+                include("adminHome.php");
             }
             
 		}else{
