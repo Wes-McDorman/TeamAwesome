@@ -27,22 +27,22 @@ if($numrows != 0){
 	
 	if($login_email==$dbemail){
 		if($login_password==$dbpass){
-            if($dbuser_type == 'stu') {
+            if($dbuser_type != 'admin') {
                 
-                session_start();
-                $_SESSION['login'] = "1";
-                $_SESSION['email'] = $dbemail;
-                include("stuPage.php");
+                if($dbuser_type == 'stu') {
+                    session_start();
+                    $_SESSION['login'] = "1";
+                    $_SESSION['email'] = $dbemail;
+                    include("stuPage.php");
+                } else {
+                    session_start();
+                    $_SESSION['login'] = "2";
+                    $_SESSION['email'] = $dbemail;
+                    include("volHome.php");    
+                }
                 
-            } if($dbuser_type == 'vol') {
-                
-                session_start();
-                $_SESSION['login'] = "2";
-                $_SESSION['email'] = $dbemail;
-                include("volHome.php");
-                
-            } else {
-                
+            }
+            else {
                 session_start();
                 $_SESSION['login'] = "0";
                 $_SESSION['email'] = $dbemail;
