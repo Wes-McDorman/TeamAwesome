@@ -65,13 +65,12 @@
                                     <ul class='dropdown-menu'>
                                         <li class='dropdown-header'>Manage Student</li>
                                             <li><a href='adminHome.php'>Update Information</a></li>
-                                            <li><a href='adminHome.php'>Delete Student</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Manage Volunteer</li>
                                             <li><a href='adminHome.php'>Update Information</a></li>
-                                            <li><a href='adminHome.php'>Delete Volunteer</a></li>
                                         <li class='divider'></li>
-                                        <li class='dropdown-header'>Admin only</li>
+                                        <li class='dropdown-header'></li>
+                                            <li><a href='delete_user.php'>Delete Users</a></li>
                                             <li><a href='adminHome.php'>Update Admin Information</a></li>
                                     </ul>
                                 </li>
