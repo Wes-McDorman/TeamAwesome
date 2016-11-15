@@ -48,9 +48,8 @@ function addRange(e) {
         if(puRangeIterator.value  !== null){
             puRangeIterator.value = parseInt(puRangeIterator.value) + 1;
         }else{};
-    button.innerHTML = newRangeBut;
-    addRangeButArea.innerHTML += rangeHtml;  
-         
+            button.innerHTML = newRangeBut;
+            addRangeButArea.innerHTML += rangeHtml;          
     }
 };
 
@@ -63,9 +62,8 @@ function deleteRange(x){
         }else{};
     dateSection.parentNode.removeChild(dateSection);
     if(puRangeIterator.value > 1){
-                var lastId = puRangeIterator.value - 1;
+        var lastId = puRangeIterator.value - 1;
         var previousRemoveButArea = document.getElementById("delButArea" + lastId);
-
         var replaceRemoveBut = '<button type="button" class="btn btn-default btn-xs alignRight removeBut" id="deleteRangeBut' + lastId + '" onclick="deleteRange(' + lastId + ')">Remove this Range</button>';
         previousRemoveButArea.innerHTML = replaceRemoveBut;
     }else{
@@ -73,6 +71,27 @@ function deleteRange(x){
     }
 }
 
+function editOldRange(x){
+    document.getElementById('oldAvailPUStart' + x).disabled = false;
+    document.getElementById('oldAvailPUEnd' + x).disabled = false;
+    
+    var rangeEditList = document.getElementById("rangeEditList");
+    var thisAvailId = document.getElementById("thisAvailId" + x).value;
+    
+    rangeEditList.value = rangeEditList.value + thisAvailId + "-" + x + " " ;
+}
+
+function deleteOldRange(x){
+    var deleteButId = "oldDelButArea" + x;
+    var deleteButArea = document.getElementById(deleteButId);
+    var rangeDelList = document.getElementById("rangeDelList");
+    var thisAvailId = document.getElementById("thisAvailId" + x).value;
+    
+    document.getElementById('oldAvailPUStart' + x).disabled = true;
+    document.getElementById('oldAvailPUEnd' + x).disabled = true;
+    deleteButArea.innerHTML = "<center><div class='removeBut'> This availability will be deleted<br> when the form is submitted. </div></center>";
+    rangeDelList.value = rangeDelList.value + " " +thisAvailId;
+}
 
 
 window.onload = function() {
@@ -113,11 +132,11 @@ $('#canPickUp').click(function(){
     
     if($(this).is(':checked')){
         
-        var carInfo = '<div class="form-group">' +
-  '<label class="col-xs-12 col-sm-5 control-label noPad" ' +
+        var carInfo = '<div class="form-group ">' +
+  '<label class="col-xs-12 col-sm-5 control-label noPad " ' +
   'for="passengers"># passengers your vehicle handles:</label> ' +
     '<div class="col-xs-12 col-sm-2 noPad">' +
-        '<input class="form-control" type="number" ' +
+        '<input class="form-control" type="number" name="passengers"' +
         'id="passengers" placeholder="#" required /> ' +
     '</div> ' +
     '<div class="col-sm-5 noPad"></div> ' +
@@ -127,7 +146,7 @@ $('#canPickUp').click(function(){
   '<label class="col-xs-12 col-sm-5 control-label noPad" ' +
   'for="suitcases"># suitcases your vehicle handles:</label>' +
     '<div class="col-xs-12 col-sm-2 noPad"> ' +
-        '<input class="form-control" type="number"' +
+        '<input class="form-control" type="number" name="suitcases"' +
         'id="suitcases" placeholder="#" required />' + 
     '</div>' +
     '<div class="col-xs-0 col-sm-5 noPad"></div>' +

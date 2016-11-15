@@ -113,7 +113,6 @@ $newVolId= $dbc->insert_id;
     
 //Create Contact Entry
     if(!empty($contactName) && !empty($contactPhone)){    
-        echo "made it past three";
 		mysqli_query($dbc, "INSERT INTO contacts(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
 		VALUES ('$contactName', '$contactRelation', '$contactPhone', '1', '$newUserId')");
     }else{
@@ -123,12 +122,9 @@ $newVolId= $dbc->insert_id;
 //Create VolAvailables Entry
 if($canPickUp === true){
 for ($x = ($puIterator - 1); $x >= 0; $x--) { 
-    echo "<br> puIterator = ".$puIterator;
     $availPUStart = $_POST['availPUStart'.$x];
     $availPUEnd = $_POST['availPUEnd'.$x];
     if(!empty($availPUStart) && !empty($availPUEnd)){  
-        echo "<br> availPUStart = ".$availPUStart;
-                echo "<br> availPUend = ".$availPUEnd;
 		mysqli_query($dbc, "INSERT INTO volavailables(volunteer_id, beginTime, endTime, filled) 
 		VALUES ('$newVolId', '$availPUStart', '$availPUEnd', '0')");
         echo ("Error description: " . mysqli_error($dbc));
