@@ -1,6 +1,13 @@
 body {
     background-color: #d2d8c7;
     overflow:hidden;
+    margin: 0px; 
+    padding: 0px; 
+    font-family: 'Trebuchet MS',verdana;
+}
+
+h1 {
+    font-family: 'Raleway',sans-serif;
 }
 
 footer{

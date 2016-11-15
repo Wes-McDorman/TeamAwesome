@@ -32,7 +32,7 @@ if($numrows != 0){
                 session_start();
                 $_SESSION['login'] = "1";
                 $_SESSION['email'] = $dbemail;
-                include("stu_session.php");
+                include("stuPage.php");
                 
             } if($dbuser_type == 'vol') {
                 
