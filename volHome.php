@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if ((isset($_SESSION['login']) && $_SESSION['login'] == "1")) {
+    if ((isset($_SESSION['login']) && $_SESSION['login'] == "2")) {
         
         include("connection.php");
         
@@ -15,7 +15,7 @@
 
                     <head>
 
-                        <title>Student Home</title>
+                        <title>Volunteer Home</title>
                         <link rel='stylesheet' href='styles/bootstrap.min.css'>
                         <link rel='stylesheet' href='styles/styles.css'>
 
@@ -57,14 +57,14 @@
                             </div>
                             <div class='navbar-collapse collapse sidebar-navbar-collapse'>
                               <ul class='nav navbar-nav'>
-                                <li class='active'><a href='stuPage.php'>Home</a></li>
+                                <li class='active'><a href='volHome.php'>Home</a></li>
                                 <li class='dropdown'>
                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Profile<b class='caret'></b></a>
                                     <ul class='dropdown-menu'>
-                                            <li><a href='stuPage.php'>Update Information</a></li>
+                                            <li><a href='volHome.php'>Update Information</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Account Information</li>
-                                            <li><a href='stuPage.php'>Change Password</a></li>
+                                            <li><a href='volHome.php'>Change Password</a></li>
                                     </ul>
                                 </li>
                               </ul>
@@ -76,56 +76,68 @@
 
                     <!-- ============ (CONTENT) ============== -->
                     <div class='col-sm-10 content'>
-                    <h2>Student Page</h2>
-                      Thank you for choosing International Student Hub, ".$row['fName']." ".$row['lName']."!
-                    <br>
-                    <br>
-                     <!-- ===Information displayed === -->
-                    <div class='panel-group'>
-                      <div class='panel panel-info'>
-                      <div class='panel-body'>Student ID:</div>
-                      </div>
-                      <div class='panel panel-info'>
-                      <div class='panel-body'>Your next task:</div>
-                      </div>
-                      <div class='panel panel-info'>
-                      <div class='panel-body'>Completed tasks:</div>
-                      </div>
-                    </div>
-                    
-                    <hr/>
-                    
-                    <div>
-                      <label>Places to go in Atlanta</label>
-                    </div>
-                    <div class='panel-group'>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.georgiaaquarium.org/experience/visit/tickets' target='_blank'>Georgia Aquarium</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='https://www.worldofcoca-cola.com/purchase-tickets/' target='_blank'>World of Coca-Cola</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.cnn.com/tour/' target='_blank'>CNN Center</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://atlanta.braves.mlb.com/atl/ballpark/information/' target='_blank'>Turner Field</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://foxtheatre.org/shows-and-events/' target='_blank'>Fox Theatre</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.atlantahistorycenter.com/visit-us' target='_blank'>Atlanta History Center</a></div>
-                        </div>
-                        <div class='panel panel-info'>
-                            <div class='panel-body'><a href='http://www.piedmontpark.org/visit/history.html' target='_blank'>Piedmont Park</a></div>
+                        <h2>Volunteer Home Page</h2>
+                        Thank you for being a volunteer, ".$row['fName']." ".$row['lName']."!
+                        <br>
+                        <br>
+                         <!-- ===Information displayed === -->
+                        <div class='panel-group'>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Volunteer ID:</div>
+                          </div>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Your next task:</div>
+                          </div>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Completed tasks:</div>
+                          </div>
                         </div>
 
-                    <br><br><br><br>
-                    <br>
-                     </div>
 
-                    </div>
+                          <div>
+                              <label>Airport Settings</label>
+                          </div>
+                          <div class='panel-group'>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Will you pick up students from the airport?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Which time period do you prefer to pick up?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>How many students plus luggage could your vehicle handle?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>How many trips to airport are you willing to go?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Comments:</div>
+                            </div>
+                          </div>
+
+                            <div>
+                                <label>Housing Settings</label>
+                            </div>
+                          <div class='panel-group'>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Will you provide temporary housing?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Home address:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>How many students could you host at the same time?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>How long will you provide housing?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Which period of time will you provide housing?:</div>
+                            </div>
+                            <div class='panel panel-info'>
+                            <div class='panel-body'>Comments:</div>
+                            </div>
+                          </div>
 
 
                         <br><br><br><br>

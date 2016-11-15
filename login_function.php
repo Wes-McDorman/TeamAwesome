@@ -39,7 +39,7 @@ if($numrows != 0){
                 session_start();
                 $_SESSION['login'] = "2";
                 $_SESSION['email'] = $dbemail;
-                include("volHome.html");
+                include("volHome.php");
                 
             } else {
                 
