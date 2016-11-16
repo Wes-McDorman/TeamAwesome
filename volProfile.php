@@ -168,9 +168,16 @@ $pickUpDates = $pickUpDates.'
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="indexGP.html">Home</a></li>
-            <li><a href="aboutUs.html">Who We Are</a></li>
-            <li><a href="contact_us.html">Help</a></li>
+            <li class="active"><a href="volHome.php">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                        <li><a href="volHome.php">Update Information</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Account Information</li>
+                        <li><a href="volHome.php">Change Password</a></li>
+                </ul>
+            </li>
           </ul>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div><!--/.nav-collapse -->
