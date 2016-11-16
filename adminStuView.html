@@ -56,15 +56,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Manage Student</li>
-                        <li><a href="adminHome.html">Update Information</a></li>
-                        <li><a href="adminHome.html">Delete Student</a></li>
+                        <li><a href="adminHome.php">Update Information</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Manage Volunteer</li>
-                        <li><a href="adminHome.html">Update Information</a></li>
-                        <li><a href="adminHome.html">Delete Volunteer</a></li>
+                        <li><a href="adminHome.php">Update Information</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">Admin only</li>
-                        <li><a href="adminHome.html">Update Admin Information</a></li>
+                    <li class="dropdown-header"></li>
+                        <li><a href="delete_user.php">Delete Users</a></li>
+                        <li><a href="adminHome.php">Update Admin Information</a></li>
                 </ul>
             </li>
           </ul>
@@ -88,13 +87,13 @@
 
       <div class="panel panel-info">
       <div class="panel-body">Students:
-        <ul>
+        <ul id="stuList">
           <li>Timmy Two Shoes</li>
           <li>Bill Blabla</li>
         </ul>
       </div>
       </div>
-
+      <button type="button" id="showStuButton" class="btn btn-info">Show more...</button>
       <br>
       <br>
     </div>
@@ -107,7 +106,7 @@
 	<footer class="container-fluid">
         <p>&copy; 2016 Team Awesome</p>
 	</footer>
-
+    <script src="js/showMore_ButtonLogic.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>

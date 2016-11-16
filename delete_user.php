@@ -1,12 +1,42 @@
+<?php
+//avoid error notices, display only warnings:
+error_reporting(0);
+// $email = $_POST['email'];
+$showDivFlag = true;
+//check if user clicked the delete button in the form:
+        
+        //start with a session
+session_start();
+
+if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
+     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        include("connection.php");
+
+        $getid = mysqli_real_escape_string($dbc, trim($_POST['id']));
+
+    //delete user where email = $email_from_form_input: 
+        mysqli_query($dbc, "DELETE FROM users WHERE user_id='$getid'");		
+        echo "<h1 class='text-success'>Successfully deleted!</h1>";
+        $showDivFlag = false;
+     }
+}
+?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
 
 <head>
 
-<title>Admin</title>
-<link rel="stylesheet" href="styles/bootstrap.min.css">
-<link rel="stylesheet" href="styles/styles.css">
+    <title>Admin</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 
 </head>
 
@@ -76,29 +106,34 @@
 
 <!-- ============ (CONTENT) ============== -->
 <div class="col-sm-10 content">
-    <h2>Volunteer List</h2>
+    <h2>Admin Home Page</h2>
 
+    <div id = "formDiv" <?php if ($showDivFlag == false) { ?> style='display:none' <?php } ?>>
+        <h4> Are you sure you want to delete this user?</h4>
+        <form action="delete_user.php" method="post">
+            <div class="form-group col-md-8 col-md-offset-2">
+                <label for="id">User ID: </label>
+                <input type="text" class="form-control" name="id" maxlength="50" value="<?php echo $_GET['user_id']; ?>">
+            </div>
+            <div class="form-group col-md-8 col-md-offset-2">
+                <label for="fname">User Type: </label>
+                <input type="text" class="form-control" name="fname" maxlength="50" value="<?php echo $_GET['user_type']; ?>">
+            </div>
+            <div class="form-group col-md-8 col-md-offset-2">
+                <label for="fname">User's First Name: </label>
+                <input type="text" class="form-control" name="fname" maxlength="50" value="<?php echo $_GET['fName']; ?>">
+            </div>
+            <div class="form-group col-md-8 col-md-offset-2">
+                <label for="lname">User's Last Name: </label>
+                <input type="text" class="form-control" name="lname" maxlength="50" value="<?php echo $_GET['lName']; ?>">
+            </div>
 
-    <br>
-    <br>
-     <!-- ===Information displayed === -->
-  <div class="col-sm-10 content">
-    <div class="panel-group">
-
-      <div class="panel panel-info">
-      <div class="panel-body">Volunteers:
-        <ul id = "volList">
-          <li>Timmy Two Shoes</li>
-          <li>Bill Blabla</li>
-        </ul>
-      </div>
-      </div>
-
-        <button type="button" id="showVolButton" class="btn btn-info">Show more...</button>
-      <br>
-      <br>
+            <div class="form-group col-md-8 col-md-offset-2">
+                <input type="submit" name="submit" class="btn btn-success" value="Yes, Delete User Now" />
+                <button class='btn btn-warning' onclick='goBack()'>Go Back</button>
+            </div>
+        </form>
     </div>
-  </div>
 
     <br>
 
@@ -108,7 +143,6 @@
         <p>&copy; 2016 Team Awesome</p>
 	</footer>
 
-    <script src="js/showMore_ButtonLogic.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
