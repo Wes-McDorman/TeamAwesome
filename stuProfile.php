@@ -38,13 +38,13 @@ if($queryStu){
     $needPickUp = $row['needPickUp'];
     $needHomeShare = $row['needHomeShare'];
     $beginHomeShare = $row['beginHomeShare'];
-        $beginHomeShare = str_replace(" ", "T", $beginHomeShare);
+    $beginHomeShare = str_replace(" ", "T", $beginHomeShare);
     $endHomeShare = $row['endHomeShare'];
-        $endHomeShare = str_replace(" ", "T", $endHomeShare);
+    $endHomeShare = str_replace(" ", "T", $endHomeShare);
     $airline = $row['airline'];
     $flightNumber = $row['flightNumber'];
     $arrivalTime = $row['arrivalTime'];
-        $arrivalTime = str_replace(" ", "T", $arrivalTime);
+    $arrivalTime = str_replace(" ", "T", $arrivalTime);
     $studentId = $row['Student_id'];
 }
 
