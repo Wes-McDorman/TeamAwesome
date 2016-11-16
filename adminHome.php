@@ -2,9 +2,9 @@
     session_start();
 
     if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
-        
+
         include("connection.php");
-        
+
         $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE email='".$_SESSION['email']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
@@ -58,8 +58,8 @@
                             <div class='navbar-collapse collapse sidebar-navbar-collapse'>
                               <ul class='nav navbar-nav'>
                                 <li class='active'><a href='adminHome.php'>Home</a></li>
-                                <li><a href='adminStuView.html'>Student Database</a></li>
-                                <li><a href='adminVolView.html'>Volunteer Database</a></li>
+                                <li><a href='adminStuView.php'>Student Database</a></li>
+                                <li><a href='adminVolView.php'>Volunteer Database</a></li>
                                 <li class='dropdown'>
                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Manage<b class='caret'></b></a>
                                     <ul class='dropdown-menu'>
