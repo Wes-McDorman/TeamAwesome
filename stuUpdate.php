@@ -98,11 +98,11 @@ if (mysqli_query($dbc, "UPDATE contacts SET contactName='".$contactName."', cont
 
 
       
- 
+  header('Location: stuPage.php');
         
 
     }else{
-
+  header('Location: stuPage.php');
     }
     
     

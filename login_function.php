@@ -21,6 +21,7 @@ if($numrows != 0){
 		$dbfirstname = $row['fName'];	
 		$dblastname = $row['lName'];
         $dbuser_type = $row['user_type'];
+        $dbuser_id = $row['user_id'];
 		}
 	
 //create condition to check if email and password are equal to the returned row	
@@ -33,11 +34,13 @@ if($numrows != 0){
                     session_start();
                     $_SESSION['login'] = "1";
                     $_SESSION['email'] = $dbemail;
+                    $_SESSION['user_id'] = $dbuser_id;
                     include("stuPage.php");
                 } else {
                     session_start();
                     $_SESSION['login'] = "2";
                     $_SESSION['email'] = $dbemail;
+                    $_SESSION['user_id'] = $dbuser_id;
                     include("volHome.php");    
                 }
                 
@@ -46,6 +49,7 @@ if($numrows != 0){
                 session_start();
                 $_SESSION['login'] = "0";
                 $_SESSION['email'] = $dbemail;
+                $_SESSION['user_id'] = $dbuser_id;
                 include("adminHome.php");
             }
             

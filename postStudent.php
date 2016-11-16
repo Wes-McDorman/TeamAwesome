@@ -102,7 +102,9 @@ $newVolId= $dbc->insert_id;
     }else{
         echo "ERROR: Missing Contact Information";
     }
-    
+     
+    header('Location: login.html');
+
 }else{
 //Failure
     echo "ERROR: Missing required information!";	

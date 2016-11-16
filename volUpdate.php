@@ -193,14 +193,14 @@ if(strlen($rangeDelList) > 0){
 if(!$canPickUp){
             if (mysqli_query($dbc, "DELETE FROM volAvailables WHERE volunteer_id='".$oldVolId."'")){
             echo " Profile DELETED, everything worked fine!";
-
+                
         }else{
             
             echo "<br> ". mysqli_error($dbc);
             echo "<br><br><center><a href='delete_user.php'>Try Again</a></center>";                
         }
 }else{}
-        
+         header('Location: volPage.html');
 
     }else{
 

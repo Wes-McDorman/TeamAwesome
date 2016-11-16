@@ -136,7 +136,7 @@ for ($x = ($puIterator - 1); $x >= 0; $x--) {
     
 //Success    
     echo " Account successfully created!";	           
-    echo "<br><center><a href='index.html'>Log In</a></center>";      
+     header('Location: login.html');    
 }else{	
 //Failure
     echo "ERROR: Missing required information!";	

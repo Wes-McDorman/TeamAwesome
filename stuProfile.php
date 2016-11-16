@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-include('connection.php');
+    if ((isset($_SESSION['login']) && $_SESSION['login'] == "1")) {
+        
+        include("connection.php");
 
-$userId = 34;
+$userId = $_SESSION['user_id'];
 
 // User information collection
 $queryUser = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$userId."'");
@@ -46,7 +48,9 @@ if($queryStu){
     $studentId = $row['Student_id'];
 }
 
-
+    }else{
+        header('Location: login.html');
+    }
 ?>
 
 

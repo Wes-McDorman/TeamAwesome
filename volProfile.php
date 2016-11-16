@@ -1,9 +1,12 @@
 <?php
 session_start();
 
-include('connection.php');
+    if ((isset($_SESSION['login']) && $_SESSION['login'] == "2")) {
+        
+        include("connection.php");
 
-$userId = 33;
+
+$userId = $_SESSION['user_id'];
 
 // User information collection
 $queryUser = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$userId."'");
@@ -99,6 +102,11 @@ $pickUpDates = $pickUpDates.'
 </div>
 </section>';
 }
+
+ }else{
+        header('Location: login.html');
+    }
+
 ?>
 
 
