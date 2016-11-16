@@ -44,17 +44,13 @@ if(isset($_POST['needPickUp']) && $_POST['needPickUp'] == 'needPickUp'){
     $needPickUp = false;
 }
     
-if(isset($_POST['homeStart'])){
-    $homeStart = $_POST['homeStart'];
-}else{
-    $homeStart = null;
-}
+
+    $homeStart = $_POST['beginHomeShare'];
+
     
-if(isset($_POST['homeEnd'])){
-    $homeEnd = $_POST['homeEnd'];
-}else{
-    $homeEnd = null;
-}
+
+    $homeEnd = $_POST['endHomeShare'];
+
     
 //Contact DB elements
 $contactName = $_POST['contactName'];

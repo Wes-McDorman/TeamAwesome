@@ -61,7 +61,7 @@
                                 <li class='dropdown'>
                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Profile<b class='caret'></b></a>
                                     <ul class='dropdown-menu'>
-                                            <li><a href='stuPage.php'>Update Information</a></li>
+                                            <li><a href='stuProfile.php'>Update Information</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Account Information</li>
                                             <li><a href='stuPage.php'>Change Password</a></li>
