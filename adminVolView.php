@@ -13,6 +13,7 @@ session_start();
 <title>Admin</title>
 <link rel="stylesheet" href="styles/bootstrap.min.css">
 <link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/adminStyles.css">
 
 </head>
 
@@ -55,9 +56,9 @@ session_start();
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="adminHome.html">Home</a></li>
-            <li><a href="adminStuView.html">Student Database</a></li>
-            <li><a href="adminVolView.html">Volunteer Database</a></li>
+            <li class="active"><a href="adminHome.php">Home</a></li>
+            <li><a href="adminStuView.php">Student Database</a></li>
+            <li><a href="adminVolView.php">Volunteer Database</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -91,21 +92,21 @@ session_start();
   <div class="col-sm-10 content">
     <div class="panel-group">
 
-        
-        
-        
-        
 
-<table class="striped">
+
+
+
+
+<table class="striped" id="listTableVol">
     <tr class="header">
 
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Email</td>
-        <td>Phone</td>
-        <td>Gender</td>
-        <td>Availability Begins</td>
-        <td>Availability Ends</td>
+        <td> First Name  </td>
+        <td> Last Name  </td>
+        <td> Email  </td>
+        <td> Phone  </td>
+        <td> Gender    </td>
+        <td> Availability Begins    </td>
+        <td> Availability Ends  </td>
     </tr>
     <?php
     $vol_query = mysqli_query($dbc, "SELECT * FROM users");
@@ -113,10 +114,10 @@ session_start();
        while ($u_row = mysqli_fetch_array($vol_query)) {
            if($u_row['user_type'] === "vol"){
                 echo "<tr>";
-                echo "<td>".$u_row['fName']."</td>";
-                echo "<td>".$u_row['lName']."</td>";
-                echo "<td>".$u_row['email']."</td>";
-                echo "<td>".$u_row['phone']."</td>";
+                echo "<td>".$u_row['fName']."<br></td>";
+                echo "<td>".$u_row['lName']."<br></td>";
+                echo "<td>".$u_row['email']."<br></td>";
+                echo "<td>".$u_row['phone']."<br></td>";
 
                if($u_row['isMale']){
                    $gender = "Male";
@@ -126,9 +127,9 @@ session_start();
                echo "<td>".$gender."</td>";
                echo "<td></td><td></td>";
                echo "</tr>";
-               
 
-               
+
+
                $vol_id = $u_row['user_id'];
                $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volunteers WHERE user_id='".$vol_id."'");
                while ($a_row = mysqli_fetch_array($vol_avail_query)) {
@@ -138,27 +139,27 @@ session_start();
                     echo "<td>".$a_row['endTime']."</td>";
 
                     echo "</tr>";
-                   
+
                }
            }
        }
     ?>
 </table>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="panel panel-info">
       <div class="panel-body">Volunteers:
         <ul id = "volList">
