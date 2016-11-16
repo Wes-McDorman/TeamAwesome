@@ -25,7 +25,7 @@ $getGender = $_POST['gender'];
 //Volunteer DB elements
 $affiliation = $_POST['affiliation'];
     
-echo $_POST['canPickUp'];
+
 if(isset($_POST['canPickUp']) && $_POST['canPickUp'] == 'canPickUp'){
     $canPickUp = true;
 }else{
@@ -111,7 +111,7 @@ endHomeShare='".$endHomeShare."' WHERE user_id='".$userId."'")){
     
 //Contact Update
     if(!empty($contactName) && !empty($contactRelation) && !empty($contactPhone)){
-if (mysqli_query($dbc, "UPDATE contacts SET contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone." WHERE user_id='".$userId."'")){
+if (mysqli_query($dbc, "UPDATE contacts SET contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."' WHERE user_id='".$userId."'")){
     echo " Profile Updated!";	
 }else{
     echo "Error updating record:  contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."''";
@@ -125,13 +125,14 @@ if (mysqli_query($dbc, "UPDATE contacts SET contactName='".$contactName."', cont
 
 //Create New VolAvailables Entries
 if($canPickUp == true && $puIterator > 1){
-for ($x = ($puIterator - 1); $x >= 0; $x--) { 
+    
+for ($x = ($puIterator - 1); $x >= 1; $x--) { 
     $availPUStart = $_POST['availPUStart'.$x];
     $availPUEnd = $_POST['availPUEnd'.$x];
     if(!empty($availPUStart) && !empty($availPUEnd)){  
 		mysqli_query($dbc, "INSERT INTO volavailables(volunteer_id, beginTime, endTime, filled) 
 		VALUES ('$oldVolId', '$availPUStart', '$availPUEnd', '0')");
-        echo ("Error description: " . mysqli_error($dbc));
+        echo ("Error VolAvail description: " . mysqli_error($dbc));
     }else{
         echo "ERROR: Missing Contact Information";
     }
@@ -144,13 +145,14 @@ if(strlen($rangeEditList) > 0){
     $rangeKeys = preg_split('/ /', $rangeEditList);
     $editCount = count($rangeKeys) - 1;
     echo "<br>".$editCount."<br>";
-    for($i = ($editCount); $i >= 0; $i--){
+    
+    for($i = ($editCount - 1); $i >= 1; $i--){
         $idKeys = preg_split('/-/', $rangeKeys[$i]);
         $volAvailId = $idKeys[0];
-        $pageDateId = $idKeys[1];
+
         
-        $availPUStart = $_POST['availPUStart'.$pageDateId];
-        $availPUEnd = $_POST['availPUEnd'.$pageDateId];
+        $availPUStart = $_POST['availPUStart'.$i];
+        $availPUEnd = $_POST['availPUEnd'.$i];
         
       
 if (mysqli_query($dbc, "UPDATE volAvailables SET volunteer_id='".$oldVolId."', beginTime='".$availPUStart."', endTime='".$availPUEnd."' WHERE Avail_id='".$volAvailId."'")){
@@ -182,12 +184,22 @@ if(strlen($rangeDelList) > 0){
             echo " Profile DELETED, everything worked fine!";
 
         }else{
-            echo "Error Deleting record: user email=".$emailU."";
             echo "<br> ". mysqli_error($dbc);
             echo "<br><br><center><a href='delete_user.php'>Try Again</a></center>";                
         }
     }
 }
+        
+if(!$canPickUp){
+            if (mysqli_query($dbc, "DELETE FROM volAvailables WHERE volunteer_id='".$oldVolId."'")){
+            echo " Profile DELETED, everything worked fine!";
+
+        }else{
+            
+            echo "<br> ". mysqli_error($dbc);
+            echo "<br><br><center><a href='delete_user.php'>Try Again</a></center>";                
+        }
+}else{}
         
 
     }else{

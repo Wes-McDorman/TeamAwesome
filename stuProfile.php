@@ -3,7 +3,7 @@ session_start();
 
 include('connection.php');
 
-$userId = 33;
+$userId = 34;
 
 // User information collection
 $queryUser = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$userId."'");
@@ -18,46 +18,6 @@ if($queryUser) {
     $isMale = $row['isMale'];
 }
 
-// Volunteer information collection
-$queryVol = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$userId."'");
-if($queryVol){
-    $row = mysqli_fetch_assoc($queryVol);
-    $volId = $row['Volunteer_id'];
-    $affiliation = $row['affiliation'];
-    $canPickUp = $row['canPickUp'];
-    $canHomeShare = $row['canHomeShare'];
-    $passengers = $row['passengers'];
-    $suitcases = $row['suitcases'];
-    $beginHomeShare = $row['beginHomeShare'];
-        $beginHomeShare = str_replace(" ", "T", $beginHomeShare);
-    $endHomeShare = $row['endHomeShare'];
-        $endHomeShare = str_replace(" ", "T", $endHomeShare);
-}
-
-// Volunteer pickUp availablities collection
-if($canPickUp){
-    $oldPickUpIterator = 0;
-    $volAvailBeginArray = array();
-    $volAvailEndArray = array();
-    $volAvailFilledArray = array();
-    $volAvailIdArray = array();
-    $queryVolAvail = mysqli_query($dbc, "SELECT * FROM volAvailables WHERE volunteer_id='".$volId."'");
-    while($row = mysqli_fetch_assoc($queryVolAvail)) {       
-        $beginTime = $row['beginTime'];
-            $beginTime = str_replace(" ", "T", $beginTime);
-        $endTime = $row['endTime'];
-            $endTime = str_replace(" ", "T", $endTime);
-        $filled = $row['filled'];
-        $availId = $row['Avail_id'];
-        echo $beginTime."  ";
-        array_push($volAvailBeginArray, $beginTime);
-        array_push($volAvailEndArray, $endTime);
-        array_push($volAvailFilledArray, $filled);
-        array_push($volAvailIdArray, $availId);
-        $oldPickUpIterator = $oldPickUpIterator + 1;
-    }
-}
-
 // Contact information collection
 $queryContact = mysqli_query($dbc, "SELECT * FROM Contacts WHERE user_id='".$userId."'");
 if($queryContact){
@@ -68,39 +28,26 @@ if($queryContact){
     $contactRelation = $row['contactRelation'];
 }
 
-$pickUpDates = "";
-
-for ($i = 0; $i < $oldPickUpIterator; $i++) { 
-
-$pickUpDates = $pickUpDates.'        
-<section class="item dateRangeDark" id="oldDateRange'.$i.'">
-<div class="form-group">
-  <label class="col-sm-3 control-label noPad" for="availPUStart">Start Date/Time:</label>
-    <div class="col-sm-4 noPad">
-        <input class="form-control" type="datetime-local"
-        name="oldAvailPUStart'.$i.'" id="oldAvailPUStart'.$i.'" value="'.$volAvailBeginArray[$i].'" disabled
-               required>
-    </div>
-    <div class="col-sm-5 noPad"></div>
-</div>
-    
-<input type="hidden" name="thisAvailId'.$i.'" id="thisAvailId'.$i.'" value="'.$volAvailIdArray[$i].'">  
-    
-<div class="form-group">
-  <label class="col-sm-3 control-label noPad" for="availPUEnd">End Date/Time:</label>
-    <div class="col-sm-4 noPad">
-        <input class="form-control" type="datetime-local" id="oldAvailPUEnd'.$i.'"
-        name="oldAvailPUEnd'.$i.'" value="'.$volAvailEndArray[$i].'" disabled
-                required>
-    </div>
-    <div class="col-sm-5 noPad" id="oldDelButArea'.$i.'">
-    <button type="button" class="btn btn-default btn-xs alignRight editAvailBut" id="editOldRangeBut'.$i .'" onclick="editOldRange('.$i.')">Edit this Range</button>
-    <button type="button" class="btn btn-default btn-xs alignRight removeBut" id="deleteOldRangeBut'.$i .'" onclick="deleteOldRange('.$i.')">Delete this Range</button></div>
-</div>
-</section>';
+// Student information collection
+$queryStu = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$userId."'");
+if($queryStu){
+    $row = mysqli_fetch_assoc($queryStu);
+    $affiliation = $row['affiliation'];
+    $needPickUp = $row['needPickUp'];
+    $needHomeShare = $row['needHomeShare'];
+    $beginHomeShare = $row['beginHomeShare'];
+        $beginHomeShare = str_replace(" ", "T", $beginHomeShare);
+    $endHomeShare = $row['endHomeShare'];
+        $endHomeShare = str_replace(" ", "T", $endHomeShare);
+    $airline = $row['airline'];
+    $flightNumber = $row['flightNumber'];
+    $arrivalTime = $row['arrivalTime'];
+        $arrivalTime = str_replace(" ", "T", $arrivalTime);
+    $studentId = $row['Student_id'];
 }
-?>
 
+
+?>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -109,18 +56,19 @@ $pickUpDates = $pickUpDates.'
 
 <head>
 
-<title>ISP Registration</title>
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/registerStyles.css">
-    <script type = "text/javascript"  src ="js/regValidator.js" ></script>
-    
+<title>Student Registration Page</title>
+<link rel="stylesheet" href="styles/bootstrap.min.css">
+<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/registerStyles.css">
+<script type = "text/javascript"  src ="js/regValidator.js" ></script>
 </head>
 
 <body style="margin: 0px; padding: 0px; font-family: 'Trebuchet MS',verdana;">
 
 
 
+    
+    
 <!-- ============ THE HEADER SECTION ============== -->
 
 
@@ -171,23 +119,20 @@ $pickUpDates = $pickUpDates.'
   </div>
 
 <!-- ============ (CONTENT) ============== -->
-<!-- User elements => fName, lName, inputEmail, inputPhone, gender, password, address, zip -->
+<!-- User elements => fName lName inputEmail inputPhone gender password  -->
     
-<!-- Volunteer Elements => affiliation, canPickUp, canHome, passengers, suitcases -->
+<!-- Student Elements => airline flightNumber flightDateTime needPickUp needHome  affiliation homeStart homeEnd-->
     
-<!-- Contact Elements => contactName, contactRelation, contactPhone -->
-    
-<!-- VolAvailables => availPUStart0. availPUEnd0 -->
-    
-<!--    pickUpRangeIterator  -->
-    
+<!-- Contact Elements => contactName contactRelation contactPhone -->
 <div class="col-sm-10 content">
 
-   <h1 class="pageTitle pageTitleWords">Volunteer Profile</h1>
+   <h1 class="pageTitle pageTitleWords">Intl. Student Registration</h1>
 <br><br><br>
 
 
-<form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action ="volUpdate.php" method="POST">
+<form  name="myForm" class="form-horizontal" onSubmit="return formValidation();" action ="stuUpdate.php" method="POST">
+    
+    <input type="hidden" name="userId" value="<?=$userId?>">
 
 <div class="form-group">
   <label class="col-xs-12 col-sm-2 control-label noPad" for="fName">First Name:</label>
@@ -203,24 +148,6 @@ $pickUpDates = $pickUpDates.'
     <div class="col-xs-12 col-sm-6 noPad">
         <input class="form-control" type="text" name="lName"
         id="lName" placeholder="LastName" value="<?=$lName?>"required /> <span id="errorLName"></span>
-    </div>
-    <div class="col-xs-12 col-sm-4"></div>
-</div>
-
-<div class="form-group">
-  <label class="col-xs-12 col-sm-2 control-label noPad" for="address">Address:</label>
-    <div class="col-xs-12 col-sm-6 noPad">
-        <input class="form-control" type="text" name="address"
-        id="address" placeholder="123 Road St YourTown, GA" value="<?=$address?>"required />
-    </div>
-    <div class="col-xs-12 col-sm-4"></div>
-</div>
-    
-<div class="form-group">
-  <label class="col-xs-12 col-sm-2 control-label noPad" for="zip">Zip Code:</label>
-    <div class="col-xs-12 col-sm-6 noPad">
-        <input class="form-control" type="text" name="zip"
-        id="zip" placeholder="#####" value="<?=$zip?>"required />
     </div>
     <div class="col-xs-12 col-sm-4"></div>
 </div>
@@ -261,7 +188,7 @@ $pickUpDates = $pickUpDates.'
     <div class="col-xs-12 col-sm-6"></div>
     
 </div>
-<div class="form-group typeArea">
+
 <section class="col-xs-0 col-sm-1"></section>
 
 <section class="col-xs-6 col-sm-2 dayCell">
@@ -269,24 +196,22 @@ $pickUpDates = $pickUpDates.'
         <div class="item weekDay">
             <label>Gender</label>
         </div>
-        <div class="item"> 
-
-            
-            <input type="radio" name="gender" value="male" id="male"  
-<?php
+        <div class="item">
+            <input type="radio" name="gender" value="male" id="male"
+                   <?php
   if ($isMale) {
     echo 'checked="checked" ';
   }
-?>/> 
-            <label for="male" >Male</label>
+?>>
+            <label for="male">Male</label>
         </div>
         <div class="item">
            <input type="radio" name="gender" value="female" id="female" 
-<?php
+                  <?php
   if (!$isMale) {
     echo 'checked="checked" ';
   }
-?>/>  
+?>>
             <label for="female">Female</label>
         </div>
     </fieldset>
@@ -294,37 +219,36 @@ $pickUpDates = $pickUpDates.'
 
 <section class="col-xs-0 col-sm-1"></section>
 
-<section class="col-xs-6 col-sm-2 dayCell">
+<section class="col-xs-6 col-sm-3 dayCell">
     <fieldset>
         <div class="item weekDay">
-            <label>Type</label>
+            <label>Service Requested</label>
         </div>
         <div class="item">
-            <input type="checkbox" name="canHome" value="canHome" id="canHome"
-                   <?php
-  if ($canHomeShare) {
+            <input type="checkbox" name="needPickUp" value="needPickUp" id="needPickUp"
+                    <?php
+  if ($needPickUp) {
     echo 'checked="checked" ';
   }
 ?>>
-            <label for="canHome" >Home-Share</label>
-
+            <label for="needPickUp">Pick-Up</label>
         </div>
         <div class="item">
-            <input type="checkbox" name="canPickUp" value="canPickUp" id="canPickUp" onclick="confirmPickUp" 
-                   <?php
-  if ($canPickUp) {
+           <input type="checkbox" name="needHome" value="needHome" id="needHome"
+                  <?php
+  if ($needHomeShare) {
     echo 'checked="checked" ';
   }
-?>
->
-            <label for="canPickUp">Pick-Up</label>
+?>>
+            <label for="needHome">Home-Share</label>
         </div>
     </fieldset>
 </section>
-
-<section class="col-xs-0 col-sm-6" id="homeShareDateArea">
     
-<? if($canHomeShare){ ?>
+<section class="col-xs-0 col-sm-5" id="homeShareDateArea">
+    
+    
+    <? if($needHomeShare){ ?>
     
     
 <div class="up" ><div class="col-sm-12 homeTitle">HomeShare Availability</div>
@@ -347,99 +271,63 @@ $pickUpDates = $pickUpDates.'
     </div>
 </div>
     
-<? } ?>    
+<? } ?> 
+    
     
 </section>
-
-
-    </div>
-<div id="carInfoArea" class="">
-
-<? if($canPickUp) { ?>
     
-<div class="form-group ">
-  <label class="col-xs-12 col-sm-5 control-label noPad " 
-  for="passengers"># passengers your vehicle handles:</label> 
-    <div class="col-xs-12 col-sm-2 noPad">
-        <input class="form-control" type="number" name="passengers"
-        id="passengers" placeholder="#" value="<?=$passengers ?>" required /> 
-    </div> 
-    <div class="col-sm-5 noPad"></div> 
-</div> 
+<section class="col-xs-0 col-sm-3"></section>
 
+<section class="col-xs-0 col-sm-12"><br></section>
+      
+    
 <div class="form-group">
-  <label class="col-xs-12 col-sm-5 control-label noPad" 
-  for="suitcases"># suitcases your vehicle handles:</label>
-    <div class="col-xs-12 col-sm-2 noPad"> 
-        <input class="form-control" type="number" name="suitcases"
-        id="suitcases" placeholder="#" value="<?=$suitcases?>" required />
-    </div>
-    <div class="col-xs-0 col-sm-5 noPad"></div>
-</div>
-    
-<? } ?>
-    
-</div>    
-    
-    
-    
-    
-    
-    
-    
-    
-<input type="hidden" name="oldPickUpRangeIterator" id="oldPickUpRangeIterator" 
-value="<?=$oldPickUpIterator?>">
-
-<input type="hidden" name="pickUpRangeIterator" id="pickUpRangeIterator" value="1">
-
-<input type="hidden" name="rangeDelList" id="rangeDelList" value="">    
-   
-<input type="hidden" name="rangeEditList" id="rangeEditList" value=""> 
-    
-<input type="hidden" name="userId" value="<?=$userId?>">
-    
-<input type="hidden" name="volId" value="<?=$volId?>">
-    
-    
-<div class="form-group noPad">
     <div class="col-sm-2">
     </div>
-    <div class="col-sm-12" id="addRangeButArea">
-        
-        <? if($canPickUp) { ?>
-        
-<label> <span>Ranges of Pick-Up Availablity</span></label>
+    <label class="col-sm-12 " > <span>Flight Information</span></label>
+</div>
 
-        
-<?= $pickUpDates ?>
-<br>        
-<button type="button" class="btn btn-default btn-xs alignRight bigBut" 
-id="firstNewRangeBut" onclick="addRange(1)">Add New Range</button>
-<br>
-        <? } ?>
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="airline">Airline:</label>
+    <div class="col-xs-12 col-sm-9 noPad">
+        <input class="form-control" type="text" name="airline"
+        id="airline" placeholder="Delta, Korean Air, etc."  value="<?=$airline?>"required />
     </div>
-</div>   
-    
+</div>
 
-<section class="item" id="addBut">
+<div class="form-group">
+  <label class="col-xs-12 col-sm-2 control-label noPad" for="flightNumber">Flight Number:</label>
+    <div class="col-xs-12 col-sm-3 noPad">
+        <input class="form-control" type="text" name="flightNumber"
+        id="flightNumber" placeholder="A233" value="<?=$flightNumber?>"required />
+    </div>
+  <label class="col-sm-2 control-label noPad" for="flightDateTime">Date/Time:</label>
+    <div class="col-xs-12 col-sm-3 noPad">
+        <input class="form-control" type="datetime-local" name="arrivalTime"
+        id="flightDateTime" value="<?=$arrivalTime?>"required>
+    </div>
+</div>
 
-</section>
+<div class="form-group">
+
+</div>
 
 
-    
+
+
 <div class="form-group">
     <div class="col-sm-12"><br><br>
     </div>
     <div class="col-sm-2">
     </div>
-    <label class="col-sm-12 " for="password"> <span>Change Your Password.</span></label>
+    <label class="col-sm-12 " for="inputPassword"> <span>Change your password.</span></label>
 </div>
 
-<!-- need a link to change password page -->
+
 
 <br><br>
 <!-- ============ (Emergency Contact) ============== -->
+
 
 <div class="form-group">
     <div class="col-sm-2">
@@ -474,12 +362,10 @@ id="firstNewRangeBut" onclick="addRange(1)">Add New Range</button>
     <div class="col-xs-12 col-sm-4"></div>
 </div>
 
-
 <div class="form-group">
     <div class="checkbox">
-        <div class="col-sm-10 col-sm-offset-6">
-  <input type="submit" class="btn btn-default"
-  value="submit">
+        <div class="col-sm-10 col-sm-offset-9">
+  <input type="submit" class="btn btn-default" value="Update">
 
 
 
@@ -496,13 +382,11 @@ id="firstNewRangeBut" onclick="addRange(1)">Add New Range</button>
         <p>&copy; 2016 Team Awesome</p>
 	</footer>
     
-    
-    <script type = "text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
     <script type = "text/javascript"  src = "js/regValidatorr.js"></script>
-    <script type = "text/javascript"  src ="js/volunteer.js" ></script>
+    <script type = "text/javascript"  src ="js/studentReg.js" ></script>
 </body>
 
 </html>
-?>

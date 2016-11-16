@@ -3,10 +3,17 @@ var pickUpBox = document.getElementById("canPickUp");
 var e = 0;
 var shadeSwitch = "Dark";
 
+var add = document.querySelector(".form-control");
+var div = document.querySelector("div");
 
+add.addEventListener('click', function () {
+    console.log(div.innerHTML);
+    var input = document.createElement('input')
+    input.type = "datetime-local";
+   
+    div.appendChild(input);
 
-
-
+});
 
 
 
@@ -14,9 +21,6 @@ function addRange(e) {
     if(e == 0){
         e = 1;
     }else{
-
-
-        
         var puRangeIterator = document.getElementById("pickUpRangeIterator");
         e = puRangeIterator.value;
 
@@ -190,12 +194,9 @@ $('#canPickUp').click(function(){
         puRangeIterator.value = parseInt(puRangeIterator.value) + 1;
         
     } else {
-       if (window.confirm("Warning: Proceeding will delete all Pick-Up data.")) { 
+       
         carInfoArea.innerHTML = "";
         addRangeButArea.innerHTML = "";
-       }else{
-           $(this).prop('checked', true);
-       };
         
         
     }
