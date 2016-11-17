@@ -3,7 +3,7 @@
 session_start();
 $logged_in_id = $_SESSION['user_id'];
 //echo "<h1>".$logged_in_id."</h1>"; It is just to check if it works
-$conn = mysqli_connect("localhost","root","milca@18","teamawesome");
+$conn = mysqli_connect("localhost","root","","teamawesome");
 
 if(count($_POST)>0) {
 $result = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$logged_in_id'");
@@ -15,16 +15,16 @@ $message = "Password Changed";
 }
 ?>
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
 
 <head>
 
-<title>Team Awesome</title>
+<title>Change Password Page</title>
 <link rel="stylesheet" href="styles/bootstrap.min.css">
 <link rel="stylesheet" href="styles/styles.css">
+
 <script>
 function validatePassword() {
 var currentPassword,newPassword,confirmPassword,output = true;
@@ -67,7 +67,6 @@ return output;
 
 <!-- ============ THE HEADER SECTION ============== -->
 
-
 <div class="container banner" id="banner">
   <div class="row banner">
       <h1 style=" font-family: 'Raleway',sans-serif"> <img src="images/Logo.png" id="logo"> <strong>International Students</strong>  HUB</h1>
@@ -85,9 +84,9 @@ return output;
       </ol>
   </div>
 </div>
+<br><br>
 
 <!-- ============ THE LEFT COLUMN (MENU) ============== -->
-
 
 <div class="row">
   <div class="col-sm-2">
@@ -114,36 +113,40 @@ return output;
     </div>
   </div>
 
+  
 <!-- ============ (CONTENT) ============== -->
-<div class="col-sm-10 content">
+	
+	<div class="col-sm-10 content">
+		
+		<form  class="horizontal" name="frmChange" method="post" action="" onSubmit="return validatePassword()">
+			<div style="width:300px;">
+			<div class="message"><?php if(isset($message)) { echo $message; } ?></div>
+			<table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
+			<tr class="tableheader">
+			<td colspan="2"><h1>Change Your Password</h1></td>
+			</tr>
+			<tr>
+			<td width="40%"><label>Current Password</label></td>
+			<td width="60%"><input type="password" name="currentPassword" class="txtField"/><span id="currentPassword"  class="required"></span></td>
+			</tr>
+			<tr>
+			<td><label>New Password</label></td>
+			<td><input type="password" name="newPassword" class="txtField"/><span id="newPassword" class="required"></span></td>
+			</tr>
+			<td><label>Confirm Password</label></td>
+			<td><input type="password" name="confirmPassword" class="txtField"/><span id="confirmPassword" class="required"></span></td>
+			</tr>
+			<tr>
+			<td colspan="2"><input type="submit" name="submit" value="UPDATE" class="btn btn-success"></td>
+			</tr>
+			</table>
+			</div>
+		</form>
+		
+	</div>
+   
+</div><!--End row container -->
 
-    <h1>Change Your Password</h1>
-
-    <div class="form-group method="post" action="" onSubmit="return validatePassword()">
-	<div class="message"><?php if(isset($message)) { echo $message; } ?></div>
-        <label class="col-sm-2 control-label noPad" for="help_name">* Current Password: </label>
-            <div class="col-sm-9 noPad">
-               <input type="password" name="currentPassword" class="txtField"/><span id="currentPassword"  class="required"></span>
-            </div>
-		<br><br>
-		<label class="col-sm-2 control-label noPad" for="help_name">* New Password: </label>
-            <div class="col-sm-9 noPad">
-                <input type="password" name="newPassword" class="txtField"/><span id="newPassword" class="required"></span>
-            </div>	
-        <br><br>
-		<label class="col-sm-2 control-label noPad" for="help_name">* Confirm Password: </label>
-            <div class="col-sm-9 noPad">
-                <input type="password" name="confirmPassword" class="txtField"/><span id="confirmPassword" class="required"></span>
-            </div>			            
-		<br><br><br>
-        <<div class="col-sm-9 noPad">
-		<input  class="btn btn-success" type="submit" name="submit" value="Update">           
-        </div>
-    </div>
-
-</div>
-
-</div>
 	<footer class="container-fluid">
         <p>&copy; 2016 Team Awesome</p>
 	</footer>
