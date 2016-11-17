@@ -5,9 +5,11 @@
         
         include("connection.php");
         
-        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE email='".$_SESSION['email']."'");
+        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
+                $info = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$row['user_id']."'");
+                $rowA = mysqli_fetch_assoc($info);
                 echo "
                 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
 
@@ -83,14 +85,34 @@
                          <!-- ===Information displayed === -->
                         <div class='panel-group'>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>Student ID:</div>
-                          </div>
-                          <div class='panel panel-info'>
-                          <div class='panel-body'>Your next task:</div>
-                          </div>
-                          <div class='panel panel-info'>
-                          <div class='panel-body'>Completed tasks:</div>
-                          </div>
+                            <div class='panel-body'><b>General Information:</b>
+                                <ul>
+                                    <li>Student ID: ".$rowA['Student_id']."</li>
+                                    <li>Name: ".$row['fName']." ".$row['lName']."</li>
+                                    <li>Address: ".$row['address']." Zip code: ".$row['zip']."</li>
+                                    <li>Phone number: ".$row['phone']."</li>
+                                    <li>Affiliation: ".$rowA['affiliation']."</li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class='panel panel-info'>
+                              <div class='panel-body'><b>Your Airline Information:</b>
+                                <ul>
+                                    <li>Airline: ".$rowA['airline']."</li>
+                                    <li>Flight Number: ".$rowA['flightNumber']."</li>
+                                    <li>Arrival Time: ".$rowA['arrivalTime']."</li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class='panel panel-info'>
+                              <div class='panel-body'><b>Your Home Share Information:</b>
+                                <ul>
+                                    <li>Home Share Begins: ".$rowA['beginHomeShare']."</li>
+                                    <li>Home Share Ends: ".$rowA['endHomeShare']."</li>
+                                    <b>*** If you didn't request home share, you'll see 0000-00-00 00:00:00.</b>
+                                </ul>
+                              </div>
+                            </div>
                         </div>
 
                         <hr/>
