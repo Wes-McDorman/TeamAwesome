@@ -145,11 +145,11 @@ session_start();
                while ($a_row = mysqli_fetch_array($vol_avail_query)) {
                     echo "<tr>";
                     echo "<td></td><td></td><td></td><td></td><td></td>";
-                    /*
-                    if(is_null($a_row['beginTime'])) {
+              /*
+                    if($a_row['beginTime'] == null) {
                       echo "<td>"."No times Given"."</td>";
                     }
-                    */
+              */
                     echo "<td>".$a_row['beginTime']."</td>";
                     echo "<td>".$a_row['endTime']."</td>";
 
@@ -166,29 +166,29 @@ session_start();
 
 
 
+<!--  All this hard work for nothing
+<div class="panel panel-info">
+<div class="panel-body">Volunteers:
+  <ul id = "volList">
+    <li>Timmy Two Shoes</li>
+    <li>Bill Blabla</li>
+  </ul>
+</div>
+</div>
+
+  <button type="button" id="showVolButton" class="btn btn-info">Show more...</button>
+<br>
+<br>
+</div>
+
+
+
+-->
 
 
 
 
 
-
-
-
-
-
-      <div class="panel panel-info">
-      <div class="panel-body">Volunteers:
-        <ul id = "volList">
-          <li>Timmy Two Shoes</li>
-          <li>Bill Blabla</li>
-        </ul>
-      </div>
-      </div>
-
-        <button type="button" id="showVolButton" class="btn btn-info">Show more...</button>
-      <br>
-      <br>
-    </div>
   </div>
 
     <br>
