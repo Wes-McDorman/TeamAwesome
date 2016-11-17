@@ -5,9 +5,13 @@
         
         include("connection.php");
         
-        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE email='".$_SESSION['email']."'");
+        $query = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
+                $info = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$row['user_id']."'");
+                $rowA = mysqli_fetch_assoc($info);
+                $pickup = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$rowA['Volunteer_id']."'");
+                $rowB = mysqli_fetch_assoc($pickup);
                 echo "
                 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
 
@@ -61,7 +65,7 @@
                                 <li class='dropdown'>
                                   <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Profile<b class='caret'></b></a>
                                     <ul class='dropdown-menu'>
-                                            <li><a href='volHome.php'>Update Information</a></li>
+                                            <li><a href='volProfile.php'>Update Information</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Account Information</li>
                                             <li><a href='volHome.php'>Change Password</a></li>
@@ -83,13 +87,13 @@
                          <!-- ===Information displayed === -->
                         <div class='panel-group'>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>Volunteer ID:</div>
+                          <div class='panel-body'>Volunteer ID: <b>".$rowA['Volunteer_id']."</b></div>
                           </div>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>Your next task:</div>
+                          <div class='panel-body'>Your next task: </div>
                           </div>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>Completed tasks:</div>
+                          <div class='panel-body'>Completed tasks: </div>
                           </div>
                         </div>
 
@@ -102,16 +106,10 @@
                             <div class='panel-body'>Will you pick up students from the airport?:</div>
                             </div>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>Which time period do you prefer to pick up?:</div>
+                            <div class='panel-body'>Time Period: From <b>".$rowB['beginTime']."</b> to <b>".$rowB['endTime']."</b></div>
                             </div>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>How many students plus luggage could your vehicle handle?:</div>
-                            </div>
-                            <div class='panel panel-info'>
-                            <div class='panel-body'>How many trips to airport are you willing to go?:</div>
-                            </div>
-                            <div class='panel panel-info'>
-                            <div class='panel-body'>Comments:</div>
+                            <div class='panel-body'>How many students plus luggage could your vehicle handle?: <b>".$rowA['passengers']."</b> students and <b>".$rowA['suitcases']."</b> luggages</div>
                             </div>
                           </div>
 
@@ -120,22 +118,14 @@
                             </div>
                           <div class='panel-group'>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>Will you provide temporary housing?:</div>
+                            <div class='panel-body'>Will you provide temporary housing?:<br/>
+                            <b>*** If you didn't provide home share, you'll see 0000-00-00 00:00:00 on Housing Period.</b></div>
                             </div>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>Home address:</div>
+                            <div class='panel-body'>Home address: <b>".$row['address'].", ".$row['zip']."</b></div>
                             </div>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>How many students could you host at the same time?:</div>
-                            </div>
-                            <div class='panel panel-info'>
-                            <div class='panel-body'>How long will you provide housing?:</div>
-                            </div>
-                            <div class='panel panel-info'>
-                            <div class='panel-body'>Which period of time will you provide housing?:</div>
-                            </div>
-                            <div class='panel panel-info'>
-                            <div class='panel-body'>Comments:</div>
+                            <div class='panel-body'>Housing Period: From <b>".$rowA['beginHomeShare']."</b> to <b>".$rowA['endHomeShare']."</b></div>
                             </div>
                           </div>
 
