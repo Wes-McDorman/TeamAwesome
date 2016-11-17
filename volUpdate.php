@@ -6,13 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
  
 //User DB elements
 $userId = $_POST['userId'];
-if(isset($_POST['fName'])){$fName = $_POST['fName'];}
-$lName = $_POST['lName'];
-$email = $_POST['email'];
+if(isset($_POST['fName'])){$fName = filter_var($_POST['fName'], FILTER_SANITIZE_STRING);}
+$lName = filter_var($_POST['lName'], FILTER_SANITIZE_STRING);
+$email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
     $originalEmail = $email;
-$phone = $_POST['inputPhone'];
-$address = $_POST['address'];
-$zip = $_POST['zip'];
+$phone = filter_var($_POST['inputPhone'], FILTER_SANITIZE_STRING);
+$address = filter_var($_POST['address'], FILTER_SANITIZE_STRING);
+$zip = filter_var($_POST['zip'], FILTER_SANITIZE_STRING);
 $userType = "vol";
 $getGender = $_POST['gender'];
     if($getGender == 'male'){
@@ -23,7 +23,7 @@ $getGender = $_POST['gender'];
 
     
 //Volunteer DB elements
-$affiliation = $_POST['affiliation'];
+$affiliation = filter_var($_POST['affiliation'], FILTER_SANITIZE_STRING);
     
 
 if(isset($_POST['canPickUp']) && $_POST['canPickUp'] == 'canPickUp'){
@@ -63,9 +63,9 @@ if(isset($_POST['suitcases'])){
 }
     
 //Contact DB elements
-$contactName = $_POST['contactName'];
-$contactRelation = $_POST['contactRelation'];
-$contactPhone = $_POST['contactPhone'];
+$contactName = filter_var($_POST['contactName'], FILTER_SANITIZE_STRING);
+$contactRelation = filter_var($_POST['contactRelation'], FILTER_SANITIZE_STRING);
+$contactPhone = filter_var($_POST['contactPhone'], FILTER_SANITIZE_STRING);
     
 //VolAvailables DB elements
 $puIterator = $_POST['pickUpRangeIterator'];

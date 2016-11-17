@@ -15,7 +15,7 @@ $lName = filter_var($_POST['lName'], FILTER_SANITIZE_STRING);
 if (isset($_POST['email'])) {
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 }else{}
-$phone = $_POST['phone'];
+$phone = $_POST['inputPhone'];
 $password = SHA1($_POST['password']);   //encrypt password in database
 $address = "";
 $zip = "";

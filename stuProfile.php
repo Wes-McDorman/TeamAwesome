@@ -16,7 +16,7 @@ if($queryUser) {
     $email = $row['email'];
     $address = $row['address'];
     $zip = $row['zip'];
-    $phone = $row['phone'];
+    $phone = $row['inputPhone'];
     $isMale = $row['isMale'];
 }
 
