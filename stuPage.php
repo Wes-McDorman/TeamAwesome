@@ -89,7 +89,6 @@
                                 <ul>
                                     <li>Student ID: ".$rowA['Student_id']."</li>
                                     <li>Name: ".$row['fName']." ".$row['lName']."</li>
-                                    <li>Address: ".$row['address']." Zip code: ".$row['zip']."</li>
                                     <li>Phone number: ".$row['phone']."</li>
                                     <li>Affiliation: ".$rowA['affiliation']."</li>
                                 </ul>
