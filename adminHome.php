@@ -21,13 +21,13 @@
 
                     </head>
 
-                    <body>
+                    <body style='margin: 0px; padding: 0px; font-family: Trebuchet MS,verdana;'>
 
                     <!-- ============ THE HEADER SECTION ============== -->
 
                     <div class='container banner' id='banner'>
                       <div class='row banner'>
-                          <h1> <img src='images/Logo.png' id='logo'> <strong>International Students</strong>  HUB</h1>
+                          <h1 style=' font-family: Raleway,sans-serif'> <img src='images/Logo.png' id='logo'> <strong>International Students</strong>  HUB</h1>
                       </div>
                     </div>
 
