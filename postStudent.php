@@ -11,9 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 //User DB Elements  
 if(isset($_POST['fName'])){$fName = $_POST['fName'];}
-$lName = $_POST['lName'];
-$email = $_POST['email'];
-$phone = $_POST['inputPhone'];
+$lName = filter_var($_POST['lName'], FILTER_SANITIZE_STRING);
+if (isset($_POST['email'])) {
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+}else{}
+$phone = $_POST['phone'];
 $password = SHA1($_POST['password']);   //encrypt password in database
 $address = "";
 $zip = "";
@@ -26,10 +28,10 @@ $getGender = $_POST['gender'];
     }
     
 //Student DB Elements
-$airline = $_POST['airline'];
-$flightNumber = $_POST['flightNumber'];
+$airline = filter_var($_POST['airline'], FILTER_SANITIZE_STRING);
+$flightNumber = filter_var($_POST['flightNumber'], FILTER_SANITIZE_STRING);
 $flightDateTime = $_POST['flightDateTime'];
-$affiliation = $_POST['affiliation'];
+$affiliation = filter_var($_POST['affiliation'], FILTER_SANITIZE_STRING);
 $arrivalTime = $_POST['flightDateTime'];
 
 if(isset($_POST['needHome']) && $_POST['needHome'] == 'needHome'){
@@ -53,9 +55,9 @@ if(isset($_POST['needPickUp']) && $_POST['needPickUp'] == 'needPickUp'){
 
     
 //Contact DB elements
-$contactName = $_POST['contactName'];
-$contactRelation = $_POST['contactRelation'];
-$contactPhone = $_POST['contactPhone'];
+$contactName = filter_var($_POST['contactName'], FILTER_SANITIZE_STRING);
+$contactRelation = filter_var($_POST['contactRelation'], FILTER_SANITIZE_STRING);
+$contactPhone = filter_var($_POST['contactPhone'], FILTER_SANITIZE_STRING);
         
 
  //Parameters used to check for duplicate User registration   
