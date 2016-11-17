@@ -319,23 +319,6 @@ if($queryStu){
     </div>
 </div>
 
-<div class="form-group">
-
-</div>
-
-
-
-
-<div class="form-group">
-    <div class="col-sm-12"><br><br>
-    </div>
-    <div class="col-sm-2">
-    </div>
-    <label class="col-sm-12 " for="inputPassword"> <span>Change your password.</span></label>
-</div>
-
-
-
 <br><br>
 <!-- ============ (Emergency Contact) ============== -->
 
@@ -376,12 +359,8 @@ if($queryStu){
 <div class="form-group">
     <div class="checkbox">
         <div class="col-sm-10 col-sm-offset-9">
-  <input type="submit" class="btn btn-default" value="Update">
-
-
-
-
-
+			<input type="submit" class="btn btn-success" value="Update">
+			<a style="margin-right:200px;" href="changepassword.php" class="btn btn-info btn-sm" role="button">Change Your Password</a>
         </div>
     </div>
 </div>
