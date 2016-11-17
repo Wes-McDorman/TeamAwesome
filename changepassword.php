@@ -8,10 +8,14 @@ $conn = mysqli_connect("localhost","root","","teamawesome");
 if(count($_POST)>0) {
 $result = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$logged_in_id'");
 $row=mysqli_fetch_array($result);
-if($_POST["currentPassword"] == $row["password"]) {
-mysqli_query($conn, "UPDATE users set password='".$_POST["newPassword"]."' WHERE user_id='$logged_in_id'");
+if(SHA1($_POST["currentPassword"]) == $row["password"]) {
+    //echo "Current password: ".$row["password"]."<br>"; It is just to check if it works
+    $encrypted_pw = SHA1($_POST["newPassword"]);
+    //echo "Updated pw: ".$encrypted_pw; It is just to check if it works
+mysqli_query($conn, "UPDATE users set password='$encrypted_pw' WHERE user_id='$logged_in_id'");
 $message = "Password Changed";
-} else $message = "Current Password is not correct";
+} else 
+    $message = "Current Password is not correct";
 }
 ?>
 

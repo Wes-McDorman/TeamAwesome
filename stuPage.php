@@ -66,7 +66,7 @@
                                             <li><a href='stuProfile.php'>Update Information</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Account Information</li>
-                                            <li><a href='stuPage.php'>Change Password</a></li>
+                                            <li><a href='changepassword.php'>Change Password</a></li>
                                     </ul>
                                 </li>
                               </ul>
