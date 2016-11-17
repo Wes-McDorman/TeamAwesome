@@ -475,18 +475,12 @@ id="firstNewRangeBut" onclick="addRange(1)">Add New Range</button>
 
 
 <div class="form-group">
-    <div class="checkbox">
-        <div class="col-sm-10 col-sm-offset-6">
-  <input type="submit" class="btn btn-default"
-  value="submit">
-
-
-
-
-
+	<div class="checkbox">
+        <div class="col-sm-10 col-sm-offset-9">
+			<input type="submit" class="btn btn-success" value="Update">
+			<a style="margin-right:200px;" href="changepassword.php" class="btn btn-info btn-sm" role="button">Change Your Password</a>
         </div>
     </div>
-</div>
 </form>
 
 </div>
