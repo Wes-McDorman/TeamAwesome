@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 if(isset($_POST['fName'])){$fName = $_POST['fName'];}
 $lName = $_POST['lName'];
 $email = $_POST['email'];
-$phone = $_POST['phone'];
+$phone = $_POST['inputPhone'];
 $password = SHA1($_POST['password']);   //encrypt password in database
 $address = "";
 $zip = "";

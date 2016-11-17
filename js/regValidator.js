@@ -8,7 +8,7 @@
 function chkFName() {
   var myName = document.getElementById("fName");
 // Test the format of the input name 
-  var pos = myName.value.search(/^[A-z]$/);
+  var pos = myName.value.search(/^[A-Za-z]+$/);
 
 if (pos === 0) {
     document.getElementById("errorFName").innerHTML = "";
@@ -24,7 +24,7 @@ if (pos === 0) {
 function chkLName() {
   var myName = document.getElementById("lName");
 // Test the format of the input name 
-  var pos = myName.value.search(/^[A-z]$/);
+  var pos = myName.value.search(/^[A-Za-z]+$/);
 
 if (pos === 0) {
     document.getElementById("errorLName").innerHTML = "";
@@ -37,20 +37,19 @@ if (pos === 0) {
 
 
 
-
 // The event handler function for the phone number text box
 function chkPhone() {
-  var myPhone = document.getElementById("inputPhone");
+  var myPhone = document.getElementById("inputPhone").value;
 // Test the format of the input phone number
-  var pos = myPhone.value.search(/^\d{3}-\d{3}-\d{4}$/);
-  if (pos != 0) {
-      document.getElementById("errorPhone").innerHTML = "The phone number you entered (" + myPhone.value +
-          ") is not in the correct format." +
-          "The expected format is: ddd-ddd-dddd. ";
-    return false;
-  } else
-      document.getElementById("errorPhone").innerHTML = "";
+var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;  
+  if(myPhone.match(phoneno))  {
+  document.getElementById("errorPhone").innerHTML = "";
     return true;
+  } else
+          document.getElementById("errorPhone").innerHTML = myPhone.value +
+
+          " - The expected format is: ddd-ddd-dddd. ";
+    return false;
 }
 
 
@@ -112,9 +111,10 @@ function chkContactPhone() {
 
 function chkZip() {
     var zip = document.getElementById("zip");
-    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip.value);
+    var zipReg = /^\b\d{5}(-\d{4})?\b$/;
     
-      if (isValidZip != 0) {
+    
+      if (!zip.value.match(zipReg)) {
       document.getElementById("errorZip").innerHTML =  zip.value +" is not in the correct format." ;
     return false;
   } else
