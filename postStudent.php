@@ -36,6 +36,9 @@ $arrivalTime = $_POST['flightDateTime'];
 
 if(isset($_POST['needHome']) && $_POST['needHome'] == 'needHome'){
     $needHome = true;
+    $homeStart = $_POST['beginHomeShare'];
+    $homeEnd = $_POST['endHomeShare'];
+
 }else{
     $needHome = false;
 }
@@ -80,10 +83,15 @@ if(!empty($newUserId)){
     
 //create Student Entry
     if(!empty($affiliation) && ($needPickUp || $needHome)){       
-
-        mysqli_query($dbc, "INSERT INTO Students(affiliation, needPickUp, needHomeShare, beginHomeShare, endHomeShare, airline, flightNumber, arrivalTime, user_id) 
-        VALUES ('$affiliation', '$needPickUp', '$needHome', '$homeStart', '$homeEnd',
-        '$airline', '$flightNumber', '$arrivalTime','$newUserId')");
+        if($needHome){
+            mysqli_query($dbc, "INSERT INTO Students(affiliation, needPickUp, needHomeShare, beginHomeShare, endHomeShare, airline, flightNumber, arrivalTime, user_id) 
+            VALUES ('$affiliation', '$needPickUp', '$needHome', '$homeStart', '$homeEnd',
+            '$airline', '$flightNumber', '$arrivalTime','$newUserId')");
+        }else{
+            mysqli_query($dbc, "INSERT INTO Students(affiliation, needPickUp, needHomeShare, airline, flightNumber, arrivalTime, user_id) 
+            VALUES ('$affiliation', '$needPickUp', '$needHome',
+            '$airline', '$flightNumber', '$arrivalTime','$newUserId')");
+        }
     }else{
         echo "ERROR: Missing Student Information";
     }

@@ -16,7 +16,7 @@ if($queryUser) {
     $email = $row['email'];
     $address = $row['address'];
     $zip = $row['zip'];
-    $phone = $row['inputPhone'];
+    $phone = $row['phone'];
     $isMale = $row['isMale'];
 }
 
@@ -259,15 +259,15 @@ if($queryStu){
 <section class="col-xs-0 col-sm-5" id="homeShareDateArea">
     
     
-    <? if($needHomeShare){ ?>
+    <? if($needHomeShare){ 
     
-    
+    echo '
 <div class="up" ><div class="col-sm-12 homeTitle">HomeShare Availability</div>
     <div class="form-group">
       <label class="col-sm-2 control-label noPad" for="beginHomeShare">Start:</label>
         <div class="col-sm-8 noPad">
             <input class="form-control" type="datetime-local"
-            name="beginHomeShare" value="<?=$beginHomeShare?>" required>
+            name="beginHomeShare" value="'.$beginHomeShare.'" required>
         </div>
         <div class="col-sm-2 noPad"></div>
     </div>
@@ -276,13 +276,13 @@ if($queryStu){
       <label class="col-sm-2 control-label noPad" for="endHomeShare">End:</label>
         <div class="col-sm-8 noPad">
             <input class="form-control" type="datetime-local"
-            name="endHomeShare" value="<?=$endHomeShare?>" required>
+            name="endHomeShare" value="'.$endHomeShare.'" required>
         </div>
         <div class="col-sm-2 noPad"></div>
     </div>
-</div>
+</div>'
     
-<? } ?> 
+ } ?> 
     
     
 </section>
