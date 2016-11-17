@@ -1,56 +1,18 @@
 <?php
+//require_once('login_function.php');
 session_start();
+$logged_in_id = $_SESSION['user_id'];
+//echo "<h1>".$logged_in_id."</h1>"; It is just to check if it works
+$conn = mysqli_connect("localhost","root","milca@18","teamawesome");
 
-    if ((isset($_SESSION['login']) && $_SESSION['login'] == "1")) {
-        
-        include("connection.php");
-
-$userId = $_SESSION['user_id'];
-
-// User information collection
-$queryUser = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$userId."'");
-if($queryUser) {
-    $row = mysqli_fetch_assoc($queryUser);
-    $fName = $row['fName'];
-    $lName = $row['lName'];
-    $email = $row['email'];
-    $address = $row['address'];
-    $zip = $row['zip'];
-    $phone = $row['phone'];
-    $isMale = $row['isMale'];
+if(count($_POST)>0) {
+$result = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$logged_in_id'");
+$row=mysqli_fetch_array($result);
+if($_POST["currentPassword"] == $row["password"]) {
+mysqli_query($conn, "UPDATE users set password='".$_POST["newPassword"]."' WHERE user_id='$logged_in_id'");
+$message = "Password Changed";
+} else $message = "Current Password is not correct";
 }
-
-// Contact information collection
-$queryContact = mysqli_query($dbc, "SELECT * FROM Contacts WHERE user_id='".$userId."'");
-if($queryContact){
-    $row = mysqli_fetch_assoc($queryContact);
-    $isVolunteer = $row['isVolunteer'];
-    $contactName = $row['contactName'];
-    $contactPhone = $row['contactPhone'];
-    $contactRelation = $row['contactRelation'];
-}
-
-// Student information collection
-$queryStu = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$userId."'");
-if($queryStu){
-    $row = mysqli_fetch_assoc($queryStu);
-    $affiliation = $row['affiliation'];
-    $needPickUp = $row['needPickUp'];
-    $needHomeShare = $row['needHomeShare'];
-    $beginHomeShare = $row['beginHomeShare'];
-    $beginHomeShare = str_replace(" ", "T", $beginHomeShare);
-    $endHomeShare = $row['endHomeShare'];
-    $endHomeShare = str_replace(" ", "T", $endHomeShare);
-    $airline = $row['airline'];
-    $flightNumber = $row['flightNumber'];
-    $arrivalTime = $row['arrivalTime'];
-    $arrivalTime = str_replace(" ", "T", $arrivalTime);
-    $studentId = $row['Student_id'];
-}
-
-    }else{
-        header('Location: login.html');
-    }
 ?>
 
 
@@ -63,6 +25,39 @@ if($queryStu){
 <title>Team Awesome</title>
 <link rel="stylesheet" href="styles/bootstrap.min.css">
 <link rel="stylesheet" href="styles/styles.css">
+<script>
+function validatePassword() {
+var currentPassword,newPassword,confirmPassword,output = true;
+
+currentPassword = document.frmChange.currentPassword;
+newPassword = document.frmChange.newPassword;
+confirmPassword = document.frmChange.confirmPassword;
+
+if(!currentPassword.value) {
+	currentPassword.focus();
+	document.getElementById("currentPassword").innerHTML = "required";
+	output = false;
+}
+else if(!newPassword.value) {
+	newPassword.focus();
+	document.getElementById("newPassword").innerHTML = "required";
+	output = false;
+}
+else if(!confirmPassword.value) {
+	confirmPassword.focus();
+	document.getElementById("confirmPassword").innerHTML = "required";
+	output = false;
+}
+if(newPassword.value != confirmPassword.value) {
+	newPassword.value="";
+	confirmPassword.value="";
+	newPassword.focus();
+	document.getElementById("confirmPassword").innerHTML = "not same";
+	output = false;
+} 	
+return output;
+}
+</script>
 
 </head>
 

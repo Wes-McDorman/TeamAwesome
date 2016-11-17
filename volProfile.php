@@ -109,8 +109,6 @@ $pickUpDates = $pickUpDates.'
 
 ?>
 
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -152,7 +150,6 @@ $pickUpDates = $pickUpDates.'
 
 <!-- ============ THE LEFT COLUMN (MENU) ============== -->
 
-
 <div class="row">
   <div class="col-sm-2">
     <div class="sidebar-nav">
@@ -175,11 +172,11 @@ $pickUpDates = $pickUpDates.'
                         <li><a href="volHome.php">Update Information</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Account Information</li>
-                        <li><a href="volHome.php">Change Password</a></li>
+                        <li><a href="changepassword.php">Change Password</a></li>
                 </ul>
             </li>
           </ul>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+           
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -219,16 +216,16 @@ $pickUpDates = $pickUpDates.'
         <input class="form-control" type="text" name="lName"
         id="lName" placeholder="LastName" value="<?=$lName?>"required /> <span id="errorLName"></span>
     </div>
-    <div class="col-xs-12 col-sm-4"></div>
+    <div class="col-xs-10 col-sm-4"></div>
 </div>
 
 <div class="form-group">
-  <label class="col-xs-12 col-sm-2 control-label noPad" for="address">Address:</label>
-    <div class="col-xs-12 col-sm-6 noPad">
+  <label class="col-xs-10 col-sm-2 control-label noPad" for="address">Address:</label>
+    <div class="col-xs-10 col-sm-6 noPad">
         <input class="form-control" type="text" name="address"
         id="address" placeholder="123 Road St YourTown, GA" value="<?=$address?>"required />
     </div>
-    <div class="col-xs-12 col-sm-4"></div>
+    <div class="col-xs-10 col-sm-4"></div>
 </div>
     
 <div class="form-group">
@@ -441,19 +438,6 @@ id="firstNewRangeBut" onclick="addRange(1)">Add New Range</button>
 
 </section>
 
-
-    
-<div class="form-group">
-    <div class="col-sm-12"><br><br>
-    </div>
-    <div class="col-sm-2">
-    </div>
-    <label class="col-sm-12 " for="password"> <span>Change Your Password.</span></label>
-</div>
-
-<!-- need a link to change password page -->
-
-<br><br>
 <!-- ============ (Emergency Contact) ============== -->
 
 <div class="form-group">
