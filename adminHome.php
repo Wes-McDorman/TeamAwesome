@@ -5,9 +5,21 @@
 
         include("connection.php");
 
-        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE email='".$_SESSION['email']."'");
+        $query = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
+                $stu = mysqli_query($dbc, "SELECT * FROM students");
+                $vol = mysqli_query($dbc, "SELECT * FROM volunteers");
+                $volPickup = mysqli_query($dbc, "SELECT * FROM volavailables");
+                $contacts = mysqli_query($dbc, "SELECT * FROM contacts");
+                $homeshares = mysqli_query($dbc, "SELECT * FROM homeshares");
+                $pickups = mysqli_query($dbc, "SELECT * FROM pickups");
+                $stuInfo = mysqli_fetch_assoc($stu);
+                $volInfo = mysqli_fetch_assoc($vol);
+                $volPickupInfo = mysqli_fetch_assoc($volPickup);
+                $contactsInfo = mysqli_fetch_assoc($contacts);
+                $homesharesInfo = mysqli_fetch_assoc($homeshares);
+                $pickupsInfo = mysqli_fetch_assoc($pickups);
                 echo "
                 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
 
@@ -102,18 +114,18 @@
                           </div>
                           </div>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>General requests:
-                              <ol>
-                                <li>This one</li>
-                                <li>That one</li>
-                              </ol>
-                          </div>
-                          </div>
-                          <div class='panel panel-info'>
                           <div class='panel-body'>Airport pickup list:
                             <ul>
                               <li>Timmy Two Shoes picking up Sammy Somoa from airport:??????</li>
                               <li>Bill Blabla picking up Jimbo Jones from Airport:??????</li>
+                            </ul>
+                          </div>
+                          </div>
+                          <div class='panel panel-info'>
+                          <div class='panel-body'>Home share list:
+                            <ul>
+                              <li>picking up Sammy Somoa is staying at Timmy Two Shoes's house from date to date</li>
+                              <li>picking up Sammy Somoa is staying at Timmy Two Shoes's house from date to date</li>
                             </ul>
                           </div>
                           </div>
