@@ -48,9 +48,6 @@ if(isset($_POST['needPickUp']) && $_POST['needPickUp'] == 'needPickUp'){
     
 
     $homeStart = $_POST['beginHomeShare'];
-
-    
-
     $homeEnd = $_POST['endHomeShare'];
 
     

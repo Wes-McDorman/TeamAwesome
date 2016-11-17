@@ -4,8 +4,8 @@ include("connection.php");
 //grab values email and password from login form
 
 $login_email = $_POST['login_email']; //must matching with the name in the login form
-$login_password = $_POST['login_pw'];
-
+$login_passwordw = $_POST['login_pw'];
+$login_password = sha1($login_passwordw);
 //create the query and number of rows returned from the query
 $query = mysqli_query($dbc, "SELECT * FROM users WHERE email='".$login_email."'");
 $numrows = mysqli_num_rows($query);
