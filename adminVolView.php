@@ -97,7 +97,7 @@ session_start();
 
 
 
-<table class="striped" id="listTableVol">
+<table class="table table-hover">
     <tr class="header">
 
         <td> First Name  </td>
@@ -125,8 +125,8 @@ session_start();
                    $gender = "Female";
                }
                echo "<td>".$gender."</td>";
-               echo "<td></td><td></td>";
-               echo "</tr>";
+               //echo "<td></td><td></td>";
+               //echo "</tr>";
 
 
 
@@ -143,8 +143,8 @@ session_start();
                }
                */
                while ($a_row = mysqli_fetch_array($vol_avail_query)) {
-                    echo "<tr>";
-                    echo "<td></td><td></td><td></td><td></td><td></td>";
+                    //echo "<tr>";
+                    //echo "<td></td><td></td><td></td><td></td><td></td>";
               /*
                     if($a_row['beginTime'] == null) {
                       echo "<td>"."No times Given"."</td>";
@@ -157,6 +157,7 @@ session_start();
                     echo "</tr>";
 
                }
+               echo "</tr>";
            }
        }
     ?>
