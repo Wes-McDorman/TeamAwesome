@@ -97,22 +97,22 @@ session_start();
 
 
 
-<table class="striped" id="listTableVol">
+<table class="table table-striped table-hover" id="listTableVol">
     <tr class="header">
 
-        <td> First Name  </td>
-        <td> Last Name  </td>
-        <td> Email  </td>
-        <td> Phone  </td>
-        <td> Gender    </td>
-        <td> Homeshare Begins    </td>
-        <td> Homeshare Ends  </td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Email</td>
+        <td>Phone</td>
+        <td>Gender</td>
+        <td>Homeshare Begins</td>
+        <td>Homeshare Ends</td>
 
     </tr>
     <?php
     $stu_query = mysqli_query($dbc, "SELECT * FROM users");
     $stu_avail_query = mysqli_query($dbc, "SELECT * FROM students");
-       while ($u_row = mysqli_fetch_array($stu_query)) {
+       while($u_row = mysqli_fetch_array($stu_query)) {
            if($u_row['user_type'] === "stu"){
                 echo "<tr>";
                 echo "<td>".$u_row['fName']."</td>";
@@ -126,8 +126,8 @@ session_start();
                    $gender = "Female";
                }
                echo "<td>".$gender."</td>";
-               echo "<td></td><td></td>";
-               echo "</tr>";
+               //echo "<td></td><td></td>";
+               //echo "</tr>";
 
 
 
@@ -148,8 +148,8 @@ session_start();
 
 
                while ($a_row = mysqli_fetch_array($stu_avail_query)) {
-                    echo "<tr>";
-                    echo "<td></td><td></td><td></td><td></td><td></td>";
+                    //echo "<tr>";
+                    //echo "<td></td><td></td><td></td><td></td><td></td>";
 
                     echo "<td>".$a_row['beginHomeShare']."</td>";
                     echo "<td>".$a_row['endHomeShare']."</td>";
@@ -158,6 +158,7 @@ session_start();
                     echo "</tr>";
 
                }
+               echo "</tr>";
 
            }
        }

@@ -5,12 +5,15 @@
   background-color: white;
 }
 
+
+
+td {
+  padding: 5px;
+  background-color: white;
+}
+
 .header {
   background-color: teal;
 
   padding: 10px;
-}
-
-td {
-  padding: 5px;
 }
