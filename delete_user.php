@@ -17,7 +17,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
 
     //delete user where email = $email_from_form_input: 
         mysqli_query($dbc, "DELETE FROM users WHERE user_id='$getid'");		
-        echo "<h1 class='text-success'>Successfully deleted!</h1>";
+        $successMsg = "<h1 class='text-success'>Successfully deleted!</h1>";
         $showDivFlag = false;
      }
 }
@@ -107,7 +107,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
 <!-- ============ (CONTENT) ============== -->
 <div class="col-sm-10 content">
     <h2>Admin Home Page</h2>
-
+    <?php echo $successMsg; ?>
     <div id = "formDiv" <?php if ($showDivFlag == false) { ?> style='display:none' <?php } ?>>
         <h4> Are you sure you want to delete this user?</h4>
         <form action="delete_user.php" method="post">
