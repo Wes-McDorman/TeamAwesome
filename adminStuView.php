@@ -89,7 +89,7 @@ session_start();
     <br>
     <br>
      <!-- ===Information displayed === -->
-  <div class="col-sm-10 content">
+  <div class="col-sm-12 content">
     <div class="panel-group">
 
 
@@ -100,13 +100,13 @@ session_start();
 <table class="table table-striped table-hover" id="listTableVol">
     <tr class="header">
 
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Email</td>
-        <td>Phone</td>
-        <td>Gender</td>
-        <td>Homeshare Begins</td>
-        <td>Homeshare Ends</td>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>Homeshare Begins</th>
+        <th>Homeshare Ends</th>
 
     </tr>
     <?php
@@ -126,13 +126,31 @@ session_start();
                    $gender = "Female";
                }
                echo "<td>".$gender."</td>";
-               //echo "<td></td><td></td>";
-               //echo "</tr>";
+               
+               
+                $stu_user_id = $u_row['user_id'];
+               $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
+
+               
+               
+            $a_row = mysqli_fetch_assoc($stu_id);
+
+               if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
+                        echo "<td>".$a_row['beginHomeShare']."</td>";
+                        echo "<td>".$a_row['endHomeShare']."</td>";
+                    }else{
+                        echo "<td>N/A</td>";
+                        echo "<td>N/A</td>";
+
+                    echo "</tr>";
+                    }
+           }else{}
+      }
+               echo "</tr>";
 
 
 
-               $stu_id = $u_row['user_id'];
-               $stu_id_query = mysqli_query($dbc, "SELECT student_id FROM students WHERE user_id='".$stu_id."'");
+
 
                /*
                //not working
@@ -147,21 +165,24 @@ session_start();
                //comment all the things!
 
 
-               while ($a_row = mysqli_fetch_array($stu_avail_query)) {
+/*               while ($a_row = mysqli_fetch_array($stu_avail_query)) {
                     //echo "<tr>";
-                    //echo "<td></td><td></td><td></td><td></td><td></td>";
-
-                    echo "<td>".$a_row['beginHomeShare']."</td>";
-                    echo "<td>".$a_row['endHomeShare']."</td>";
-
+                    
+                    if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
+                        echo "<td></td><td></td><td></td><td></td><td></td>";
+                        echo "<td>".$a_row['beginHomeShare']."</td>";
+                        echo "<td>".$a_row['endHomeShare']."</td>";
+                    }else{
+                        
+                   
 
                     echo "</tr>";
-
+                    }
                }
-               echo "</tr>";
+               echo "</tr>";*/
 
-           }
-       }
+           
+       
     ?>
 </table>
 
