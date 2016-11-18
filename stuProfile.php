@@ -259,7 +259,7 @@ if($queryStu){
 <section class="col-xs-0 col-sm-5" id="homeShareDateArea">
     
     
-    <? if($needHomeShare){ 
+    <?php if($needHomeShare){ 
     
     echo '
 <div class="up" ><div class="col-sm-12 homeTitle">HomeShare Availability</div>
@@ -280,9 +280,9 @@ if($queryStu){
         </div>
         <div class="col-sm-2 noPad"></div>
     </div>
-</div>'
+</div>';
     
- } ?> 
+ }else{} ?> 
     
     
 </section>

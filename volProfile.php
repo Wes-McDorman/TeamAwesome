@@ -52,7 +52,7 @@ if($canPickUp){
             $endTime = str_replace(" ", "T", $endTime);
         $filled = $row['filled'];
         $availId = $row['Avail_id'];
-        echo $beginTime."  ";
+
         array_push($volAvailBeginArray, $beginTime);
         array_push($volAvailEndArray, $endTime);
         array_push($volAvailFilledArray, $filled);
@@ -73,6 +73,7 @@ if($queryContact){
 
 $pickUpDates = "";
 
+if(isset($oldPickUpIterator)){
 for ($i = 0; $i < $oldPickUpIterator; $i++) { 
 
 $pickUpDates = $pickUpDates.'        
@@ -102,7 +103,7 @@ $pickUpDates = $pickUpDates.'
 </div>
 </section>';
 }
-
+}
  }else{
         header('Location: login.html');
     }

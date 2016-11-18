@@ -36,21 +36,22 @@ if(isset($_POST['canPickUp']) && $_POST['canPickUp'] == 'canPickUp'){
 
 if(isset($_POST['canHome']) && $_POST['canHome'] == 'canHome'){
     $canHome = true;
+    if(isset($_POST['beginHomeShare'])){
+        $beginHomeShare = $_POST['beginHomeShare'];
+    }else{
+        $beginHomeShare = null;
+    }
+
+    if(isset($_POST['endHomeShare'])){
+        $endHomeShare = $_POST['endHomeShare'];
+    }else{
+        $endHomeShare = null;
+    }
 }else{
     $canHome = false;
 }   
     
-if(isset($_POST['beginHomeShare'])){
-    $beginHomeShare = $_POST['beginHomeShare'];
-}else{
-    $beginHomeShare = null;
-}
-    
-if(isset($_POST['endHomeShare'])){
-    $endHomeShare = $_POST['endHomeShare'];
-}else{
-    $endHomeShare = null;
-}
+
     
 if(isset($_POST['passengers'])){
     $passengers = $_POST['passengers'];
@@ -100,15 +101,21 @@ $newUserId = $dbc->insert_id;
 if(!empty($newUserId)){
 
 //Create Volunteer Entry        
-    if(!empty($affiliation) && ($canPickUp || $canHome)){       
-
-        mysqli_query($dbc, "INSERT INTO Volunteers(affiliation, canPickUp, canHomeShare, passengers,
-        suitcases, beginHomeShare, endHomeShare, user_id) 
-        VALUES ('$affiliation', '$canPickUp', '$canHome', '$passengers', '$suitcases', '$beginHomeShare',
-        '$endHomeShare', '$newUserId')");
+    if(!empty($affiliation) ){       
+        if($canHome){
+            mysqli_query($dbc, "INSERT INTO Volunteers(affiliation, canPickUp, canHomeShare, passengers,
+            suitcases, beginHomeShare, endHomeShare, user_id) 
+            VALUES ('$affiliation', '$canPickUp', '$canHome', '$passengers', '$suitcases', '$beginHomeShare',
+            '$endHomeShare', '$newUserId')");
+        }else{
+            mysqli_query($dbc, "INSERT INTO Volunteers(affiliation, canPickUp, canHomeShare, passengers,
+            suitcases, user_id) 
+            VALUES ('$affiliation', '$canPickUp', '$canHome', '$passengers', '$suitcases', '$newUserId')");
+        }
     }else{
         echo "ERROR: Missing Volunteer Information";
     }
+    
 $newVolId= $dbc->insert_id;
     
 //Create Contact Entry
