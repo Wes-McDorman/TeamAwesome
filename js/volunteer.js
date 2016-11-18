@@ -117,7 +117,7 @@ $('#canHome').click(function(){
   '<label class="col-sm-2 control-label noPad" for="availPUStart">Start:</label>' +
     '<div class="col-sm-8 noPad">' +
         '<input class="form-control" type="datetime-local"' +
-        'name="beginHomeShare'+ e +'" required>'  +
+        ' id="beginHomeShare" name="beginHomeShare" required>'  +
     '</div>' +
     '<div class="col-sm-2 noPad"></div>' +
 '</div>' +
@@ -126,7 +126,7 @@ $('#canHome').click(function(){
   '<label class="col-sm-2 control-label noPad" for="availPUEnd">End:</label>' +
     '<div class="col-sm-8 noPad">' +
         '<input class="form-control" type="datetime-local"' +
-        'name="endHomeShare'+ e +'" required>' +
+        ' id="endHomeShare" name="endHomeShare" required>' +
     '</div>' +
     '<div class="col-sm-2 noPad"></div>'+
 '</div></div>';

@@ -200,7 +200,7 @@ if(!$canPickUp){
             echo "<br><br><center><a href='delete_user.php'>Try Again</a></center>";                
         }
 }else{}
-         header('Location: volPage.html');
+         header('Location: volHome.php');
 
     }else{
 
