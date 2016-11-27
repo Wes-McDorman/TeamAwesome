@@ -140,11 +140,7 @@ $pickUpDates = $pickUpDates.'
 <div class="container breadCrumb" id="banner">
   <div class="row breadCrumb">
       <ol class="breadcrumb">
-        <li>
-            <a href="stuRegister.html" class="deco-none"><span class="glyphicon glyphicon-pencil"></span> Student Register</a> | 
-            <a href="volRegister.html" class="deco-none"><span class="glyphicon glyphicon-pencil"></span> Volunteer Register</a>
-        </li>
-        <li><a href="login.html" class="deco-none"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+        <li><a href="logout_function.php" class="deco-none"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
       </ol>
   </div>
 </div>
@@ -173,7 +169,7 @@ $pickUpDates = $pickUpDates.'
                         <li><a href="volHome.php">Update Information</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Account Information</li>
-                        <li><a href="changepassword.php">Change Password</a></li>
+                        <li><a href="volChangePw.php">Change Password</a></li>
                 </ul>
             </li>
           </ul>

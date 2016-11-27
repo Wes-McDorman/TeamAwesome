@@ -85,11 +85,7 @@ if($queryStu){
 <div class="container breadCrumb" id="banner">
   <div class="row breadCrumb">
       <ol class="breadcrumb">
-        <li>
-            <a href="stuRegister.html" class="deco-none"><span class="glyphicon glyphicon-pencil"></span> Student Register</a> | 
-            <a href="volRegister.html" class="deco-none"><span class="glyphicon glyphicon-pencil"></span> Volunteer Register</a>
-        </li>
-        <li><a href="login.html" class="deco-none"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+        <li><a href="logout_function.php" class="deco-none"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
       </ol>
   </div>
 </div>
@@ -119,11 +115,12 @@ if($queryStu){
                         <li><a href='stuProfile.php'>Update Information</a></li>
                     <li class='divider'></li>
                     <li class='dropdown-header'>Account Information</li>
-                        <li><a href='stuPage.php'>Change Password</a></li>
+                        <li><a href='stuChangePw.php'>Change Password</a></li>
                 </ul>
             </li>
+            <li><a href="stuHelpful.php">Helpful Links</a></li>
           </ul>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -137,7 +134,7 @@ if($queryStu){
 <!-- Contact Elements => contactName contactRelation contactPhone -->
 <div class="col-sm-10 content">
 
-   <h1 class="pageTitle pageTitleWords">Intl. Student Registration</h1>
+   <h1 class="pageTitle pageTitleWords">Student Profile</h1>
 <br><br><br>
 
 

@@ -80,15 +80,10 @@ return output;
 <div class="container breadCrumb" id="banner">
   <div class="row breadCrumb">
       <ol class="breadcrumb">
-        <li>
-            <a href="stuRegister.html" class="deco-none"><span class="glyphicon glyphicon-pencil"></span> Student Register</a> | 
-            <a href="volRegister.html" class="deco-none"><span class="glyphicon glyphicon-pencil"></span> Volunteer Register</a>
-        </li>
-        <li><a href="login.html" class="deco-none"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+        <li><a href="logout_function.php" class="deco-none"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
       </ol>
   </div>
 </div>
-<br><br>
 
 <!-- ============ THE LEFT COLUMN (MENU) ============== -->
 
@@ -107,44 +102,49 @@ return output;
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="indexGP.html">Home</a></li>
-            <li><a href="aboutUs.html">Who We Are</a></li>
-            <li><a href="contact_us.html">Help</a></li>
+            <li class="active"><a href="volHome.php">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                        <li><a href="volHome.php">Update Information</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Account Information</li>
+                        <li><a href="volChangePw.php">Change Password</a></li>
+                </ul>
+            </li>
           </ul>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+           
         </div><!--/.nav-collapse -->
       </div>
     </div>
   </div>
-
   
 <!-- ============ (CONTENT) ============== -->
 	
 	<div class="col-sm-10 content">
 		
 		<form  class="horizontal" name="frmChange" method="post" action="" onSubmit="return validatePassword()">
-			<div style="width:300px;">
 			<div class="message"><?php if(isset($message)) { echo $message; } ?></div>
 			<table border="0" cellpadding="10" cellspacing="0" width="500" align="center" class="tblSaveForm">
-			<tr class="tableheader">
-			<td colspan="2"><h1>Change Your Password</h1></td>
-			</tr>
-			<tr>
-			<td width="40%"><label>Current Password</label></td>
-			<td width="60%"><input type="password" name="currentPassword" class="txtField"/><span id="currentPassword"  class="required"></span></td>
-			</tr>
-			<tr>
-			<td><label>New Password</label></td>
-			<td><input type="password" name="newPassword" class="txtField"/><span id="newPassword" class="required"></span></td>
-			</tr>
-			<td><label>Confirm Password</label></td>
-			<td><input type="password" name="confirmPassword" class="txtField"/><span id="confirmPassword" class="required"></span></td>
-			</tr>
-			<tr>
-			<td colspan="2"><input type="submit" name="submit" value="UPDATE" class="btn btn-success"></td>
-			</tr>
+                <tr class="tableheader">
+                    <td colspan="2"><h1>Change Your Password</h1></td>
+                </tr>
+                <tr>
+                    <td width="40%"><label>Current Password</label></td>
+                    <td width="60%"><input type="password" name="currentPassword" class="txtField"/><span id="currentPassword"  class="required"></span></td>
+                </tr>
+			     <tr>
+                    <td><label>New Password</label></td>
+                    <td><input type="password" name="newPassword" class="txtField"/><span id="newPassword" class="required"></span></td>
+			     </tr>
+                <tr>
+                    <td><label>Confirm Password</label></td>
+                    <td><input type="password" name="confirmPassword" class="txtField"/><span id="confirmPassword" class="required"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" name="submit" value="UPDATE" class="btn btn-success"></td>
+                </tr>
 			</table>
-			</div>
 		</form>
 		
 	</div>
