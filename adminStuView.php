@@ -2,6 +2,9 @@
 include('connection.php');
 session_start();
 
+    if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
+        $userId = $_SESSION['user_id'];
+
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -184,7 +187,7 @@ session_start();
 
 
 
-            ?>
+    ?>
         </table>
 <!--  All this hard work for nothing
 <div class="panel panel-info">
@@ -221,3 +224,4 @@ session_start();
 </body>
 
 </html>
+<?php } ?>
