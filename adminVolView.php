@@ -89,79 +89,86 @@ session_start();
     <br>
     <br>
      <!-- ===Information displayed === -->
-  <div class="col-sm-10 content">
     <div class="panel-group">
+    <table class="table table-striped table-hover">
+        <tr class="header">
+
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Pick Up Begins</th>
+            <th>Pick Up Ends</th>
+            <th># of Passengers</th>
+            <th># of Suitcases</th>
+            <th>Begin Home Share</th>
+            <th>End Home Share</th>
+            <th>User ID</th>
+        </tr>
+        <?php
+        $vol_query = mysqli_query($dbc, "SELECT * FROM users");
+        $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volAvailables");
+           while ($u_row = mysqli_fetch_array($vol_query)) {
+               if($u_row['user_type'] === "vol"){
+                    echo "<tr>";
+                    echo "<td>".$u_row['fName']."<br></td>";
+                    echo "<td>".$u_row['lName']."<br></td>";
+                    echo "<td>".$u_row['email']."<br></td>";
+                    echo "<td>".$u_row['phone']."<br></td>";
+
+                   if($u_row['isMale']){
+                       $gender = "Male";
+                   }else{
+                       $gender = "Female";
+                   }
+                   echo "<td>".$gender."</td>";
+                   //echo "<td></td><td></td>";
+                   //echo "</tr>";
 
 
 
+                   $vol_id = $u_row['user_id'];
+                   $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volavailables WHERE user_id='".$vol_id."'");
+
+                   /*
+                   //not working
+                   if(empty($vol_avail_query)) {
+                       echo "<tr>";
+                       echo "<td></td><td></td><td></td><td></td><td></td>";
+                       echo "<td>"."No times Given"."</td>";
+                       echo "</tr>";
+                   }
+                   */
+                   while ($a_row = mysqli_fetch_array($vol_avail_query)) {
+                        //echo "<tr>";
+                        //echo "<td></td><td></td><td></td><td></td><td></td>";
+                  /*
+                        if($a_row['beginTime'] == null) {
+                          echo "<td>"."No times Given"."</td>";
+                        }
+                  */
+                        echo "<td>".$a_row['beginTime']."</td>";
+                        echo "<td>".$a_row['endTime']."</td>";
+
+                   }
+
+                   $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
+
+                   while ($b_row = mysqli_fetch_array($vol_id_query1)) {
+                        echo "<td>".$b_row['passengers']."</td>";
+                        echo "<td>".$b_row['suitcases']."</td>";
+                        echo "<td>".$b_row['beginHomeShare']."</td>";
+                        echo "<td>".$b_row['endHomeShare']."</td>";
+                        echo "<td>".$b_row['user_id']."</td>";
 
 
-
-<table class="table table-hover">
-    <tr class="header">
-
-        <td> First Name  </td>
-        <td> Last Name  </td>
-        <td> Email  </td>
-        <td> Phone  </td>
-        <td> Gender    </td>
-        <td> Availability Begins    </td>
-        <td> Availability Ends  </td>
-    </tr>
-    <?php
-    $vol_query = mysqli_query($dbc, "SELECT * FROM users");
-    $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volAvailables");
-       while ($u_row = mysqli_fetch_array($vol_query)) {
-           if($u_row['user_type'] === "vol"){
-                echo "<tr>";
-                echo "<td>".$u_row['fName']."<br></td>";
-                echo "<td>".$u_row['lName']."<br></td>";
-                echo "<td>".$u_row['email']."<br></td>";
-                echo "<td>".$u_row['phone']."<br></td>";
-
-               if($u_row['isMale']){
-                   $gender = "Male";
-               }else{
-                   $gender = "Female";
-               }
-               echo "<td>".$gender."</td>";
-               //echo "<td></td><td></td>";
-               //echo "</tr>";
-
-
-
-               $vol_id = $u_row['user_id'];
-               $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volunteers WHERE user_id='".$vol_id."'");
-
-               /*
-               //not working
-               if(empty($vol_avail_query)) {
-                   echo "<tr>";
-                   echo "<td></td><td></td><td></td><td></td><td></td>";
-                   echo "<td>"."No times Given"."</td>";
+                   }
                    echo "</tr>";
                }
-               */
-               while ($a_row = mysqli_fetch_array($vol_avail_query)) {
-                    //echo "<tr>";
-                    //echo "<td></td><td></td><td></td><td></td><td></td>";
-              /*
-                    if($a_row['beginTime'] == null) {
-                      echo "<td>"."No times Given"."</td>";
-                    }
-              */
-                    echo "<td>".$a_row['beginTime']."</td>";
-                    echo "<td>".$a_row['endTime']."</td>";
-
-
-                    echo "</tr>";
-
-               }
-               echo "</tr>";
            }
-       }
-    ?>
-</table>
+        ?>
+    </table>
 
 
 
@@ -185,15 +192,9 @@ session_start();
 
 
 -->
-
-
-
-
-
   </div>
-
-    <br>
-
+      
+      <br>
 </div>
 </div>
 	<footer class="container-fluid">

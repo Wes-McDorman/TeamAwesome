@@ -89,103 +89,103 @@ session_start();
     <br>
     <br>
      <!-- ===Information displayed === -->
-  <div class="col-sm-12 content">
     <div class="panel-group">
+        <table class="table table-striped table-hover" id="listTableVol">
+            <tr class="header">
 
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Gender</th>
+                <th>Homeshare Begins</th>
+                <th>Homeshare Ends</th>
+                <th>Airline</th>
+                <th>Flight Number</th>
+                <th>Arrival Time</th>
+                <th>User ID</th>
 
+            </tr>
+            <?php
+            $stu_query = mysqli_query($dbc, "SELECT * FROM users");
+            $stu_avail_query = mysqli_query($dbc, "SELECT * FROM students");
+        while($u_row = mysqli_fetch_array($stu_query)) {
+           if($u_row['user_type'] === "stu"){
+                echo "<tr>";
+                echo "<td>".$u_row['fName']."</td>";
+                echo "<td>".$u_row['lName']."</td>";
+                echo "<td>".$u_row['email']."</td>";
+                echo "<td>".$u_row['phone']."</td>";
 
-
-
-
-<table class="table table-striped table-hover" id="listTableVol">
-    <tr class="header">
-
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Gender</th>
-        <th>Homeshare Begins</th>
-        <th>Homeshare Ends</th>
-
-    </tr>
-    <?php
-    $stu_query = mysqli_query($dbc, "SELECT * FROM users");
-    $stu_avail_query = mysqli_query($dbc, "SELECT * FROM students");
-while($u_row = mysqli_fetch_array($stu_query)) {
-   if($u_row['user_type'] === "stu"){
-        echo "<tr>";
-        echo "<td>".$u_row['fName']."</td>";
-        echo "<td>".$u_row['lName']."</td>";
-        echo "<td>".$u_row['email']."</td>";
-        echo "<td>".$u_row['phone']."</td>";
-
-       if($u_row['isMale']){
-           $gender = "Male";
-       }else{
-           $gender = "Female";
-       }
-       echo "<td>".$gender."</td>";
-       
-       $stu_user_id = $u_row['user_id'];
-       $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
-       $a_row = mysqli_fetch_assoc($stu_id);
-
-       if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
-                echo "<td>".$a_row['beginHomeShare']."</td>";
-                echo "<td>".$a_row['endHomeShare']."</td>";
-            }else{
-                echo "<td>N/A</td>";
-                echo "<td>N/A</td>";
-                echo "</tr>";
-            }
-       
-   }else{}
-}
-        echo "</tr>";
-
-
-
-
-
-               /*
-               //not working
-               if(empty($vol_avail_query)) {
-                   echo "<tr>";
-                   echo "<td></td><td></td><td></td><td></td><td></td>";
-                   echo "<td>"."No times Given"."</td>";
-                   echo "</tr>";
+               if($u_row['isMale']){
+                   $gender = "Male";
+               }else{
+                   $gender = "Female";
                }
-               */
+               echo "<td>".$gender."</td>";
 
-               //comment all the things!
+               $stu_user_id = $u_row['user_id'];
+               $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
+               $a_row = mysqli_fetch_assoc($stu_id);
 
-
-/*               while ($a_row = mysqli_fetch_array($stu_avail_query)) {
-                    //echo "<tr>";
-                    
-                    if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
-                        echo "<td></td><td></td><td></td><td></td><td></td>";
+               if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
                         echo "<td>".$a_row['beginHomeShare']."</td>";
                         echo "<td>".$a_row['endHomeShare']."</td>";
+                        echo "<td>".$a_row['airline']."</td>";
+                        echo "<td>".$a_row['flightNumber']."</td>";
+                        echo "<td>".$a_row['arrivalTime']."</td>";
+                        echo "<td>".$a_row['user_id']."</td>";
                     }else{
-                        
-                   
-
-                    echo "</tr>";
+                        echo "<td>N/A</td>";
+                        echo "<td>N/A</td>";
+                        echo "<td>N/A</td>";
+                        echo "<td>N/A</td>";
+                        echo "<td>N/A</td>";
+                        echo "<td>N/A</td>";
+                        echo "</tr>";
                     }
-               }
-               echo "</tr>";*/
 
-           
-       
-    ?>
-</table>
+           }else{}
+        }
+                echo "</tr>";
 
 
 
 
 
+                       /*
+                       //not working
+                       if(empty($vol_avail_query)) {
+                           echo "<tr>";
+                           echo "<td></td><td></td><td></td><td></td><td></td>";
+                           echo "<td>"."No times Given"."</td>";
+                           echo "</tr>";
+                       }
+                       */
+
+                       //comment all the things!
+
+
+        /*               while ($a_row = mysqli_fetch_array($stu_avail_query)) {
+                            //echo "<tr>";
+
+                            if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
+                                echo "<td></td><td></td><td></td><td></td><td></td>";
+                                echo "<td>".$a_row['beginHomeShare']."</td>";
+                                echo "<td>".$a_row['endHomeShare']."</td>";
+                            }else{
+
+
+
+                            echo "</tr>";
+                            }
+                       }
+                       echo "</tr>";*/
+
+
+
+            ?>
+        </table>
 <!--  All this hard work for nothing
 <div class="panel panel-info">
 <div class="panel-body">Volunteers:
@@ -204,11 +204,6 @@ while($u_row = mysqli_fetch_array($stu_query)) {
 
 
 -->
-
-
-
-
-
   </div>
 
     <br>

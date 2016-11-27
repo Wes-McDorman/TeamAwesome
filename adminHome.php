@@ -103,7 +103,7 @@
 
                         <br>
                         <br>
-                      <div class='col-sm-10 content'>
+                        
                         <div class='panel-group'>
                           <div class='panel panel-info'>
                           <div class='panel-body'>Today's activity:
@@ -127,7 +127,6 @@
                               <li>picking up Sammy Somoa is staying at Timmy Two Shoes's house from date to date</li>
                               <li>picking up Sammy Somoa is staying at Timmy Two Shoes's house from date to date</li>
                             </ul>
-                          </div>
                           </div>
 
                           <br>
