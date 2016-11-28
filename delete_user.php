@@ -17,7 +17,8 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
 
     //delete user where email = $email_from_form_input: 
         mysqli_query($dbc, "DELETE FROM users WHERE user_id='$getid'");		
-        $successMsg = "<h1 class='text-success'>Successfully deleted!</h1>";
+        $successMsg = "<h1 class='text-success'>Successfully deleted!</h1><br><br>
+                <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
         $showDivFlag = false;
      }
 }
@@ -32,6 +33,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
     <title>Admin</title>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/adminStyles.css">
     <script>
         function goBack() {
             window.history.back();
@@ -79,23 +81,23 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="adminHome.html">Home</a></li>
-            <li><a href="adminStuView.html">Student Database</a></li>
-            <li><a href="adminVolView.html">Volunteer Database</a></li>
+            <li class="active"><a href="adminHome.php">Home</a></li>
+            <li><a href="adminStuView.php">Student Database</a></li>
+            <li><a href="adminVolView.php">Volunteer Database</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pick Up/Home Share<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-header">Manage Student</li>
-                        <li><a href="adminHome.php">Update Information</a></li>
+                    <li class="dropdown-header">Pick Up</li>
+                        <li><a href="matchPickUp.php">Match Pick Up</a></li>
+                        <li><a href="adminHome.php">Pick Up List</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">Manage Volunteer</li>
-                        <li><a href="adminHome.php">Update Information</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header"></li>
-                        <li><a href="delete_user.php">Delete Users</a></li>
-                        <li><a href="adminHome.php">Update Admin Information</a></li>
+                    <li class="dropdown-header">Home Share</li>
+                        <li><a href="adminHome.php">Match Home Share</a></li>
+                        <li><a href="adminHome.php">Home Share List</a></li>
                 </ul>
             </li>
+            <li><a href="delete_user.php">Delete Users</a></li>
+            <li><a href="adminHome.php">Update Admin Information</a></li>
           </ul>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div><!--/.nav-collapse -->

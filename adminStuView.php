@@ -63,19 +63,19 @@ session_start();
             <li><a href="adminStuView.php">Student Database</a></li>
             <li><a href="adminVolView.php">Volunteer Database</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage<b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pick Up/Home Share<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-header">Manage Student</li>
-                        <li><a href="adminHome.php">Update Information</a></li>
+                    <li class="dropdown-header">Pick Up</li>
+                        <li><a href="matchPickUp.php">Match Pick Up</a></li>
+                        <li><a href="adminHome.php">Pick Up List</a></li>
                     <li class="divider"></li>
-                    <li class="dropdown-header">Manage Volunteer</li>
-                        <li><a href="adminHome.php">Update Information</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header"></li>
-                        <li><a href="delete_user.php">Delete Users</a></li>
-                        <li><a href="adminHome.php">Update Admin Information</a></li>
+                    <li class="dropdown-header">Home Share</li>
+                        <li><a href="adminHome.php">Match Home Share</a></li>
+                        <li><a href="adminHome.php">Home Share List</a></li>
                 </ul>
             </li>
+            <li><a href="delete_user.php">Delete Users</a></li>
+            <li><a href="adminHome.php">Update Admin Information</a></li>
           </ul>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div><!--/.nav-collapse -->
