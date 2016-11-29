@@ -172,11 +172,31 @@ session_start();
                                 echo "<td>".$gender."</td>";
                             $stu_user_id = $u_row['user_id'];
                             $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
+                                
+
+                                
                             $a_row = mysqli_fetch_assoc($stu_id);
+                                
+                                $availData = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$a_row.['Student_id']."'");
+                                
+
+                          
+                                
+                                
                                 echo "<td>".$a_row['flightNumber']."</td>";
                                 echo "<td>".$a_row['arrivalTime']."</td>";
                                 echo "<td>".$a_row['user_id']."</td>";
-                                echo "<td><input type='radio' name='stuSelect' value='".$a_row['user_id']."' id='stuSelect'></td>";
+                          
+                                $x_row = mysqli_fetch_assoc($availData);
+                         // echo ("Error VolAvail description: " . mysqli_error($dbc));
+                                echo $x_row['Student_id'];
+                                
+                                
+                                if($x_row['Student_id'] == $a_row.['Student_id']){
+                                    echo "<td>filled</td>";
+                                }else{
+                                    echo "<td><input type='radio' name='stuSelect' value='".$a_row['user_id']."' id='stuSelect'></td>";
+                                }
                             }
                         }
                     ?>
