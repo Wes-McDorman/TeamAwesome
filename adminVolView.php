@@ -100,13 +100,15 @@ session_start();
             <th>Email</th>
             <th>Phone</th>
             <th>Gender</th>
-            <th>Pick Up Begins</th>
-            <th>Pick Up Ends</th>
+
             <th># of Passengers</th>
             <th># of Suitcases</th>
             <th>Begin Home Share</th>
             <th>End Home Share</th>
             <th>User ID</th>
+            
+            <th>Pick Up Begins</th>
+            <th>Pick Up Ends</th>
         </tr>
         <?php
         $vol_query = mysqli_query($dbc, "SELECT * FROM users");
@@ -131,7 +133,7 @@ session_start();
 
 
                    $vol_id = $u_row['user_id'];
-                   $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volavailables WHERE user_id='".$vol_id."'");
+
 
                    /*
                    //not working
@@ -142,18 +144,7 @@ session_start();
                        echo "</tr>";
                    }
                    */
-                   while ($a_row = mysqli_fetch_array($vol_avail_query)) {
-                        //echo "<tr>";
-                        //echo "<td></td><td></td><td></td><td></td><td></td>";
-                  /*
-                        if($a_row['beginTime'] == null) {
-                          echo "<td>"."No times Given"."</td>";
-                        }
-                  */
-                        echo "<td>".$a_row['beginTime']."</td>";
-                        echo "<td>".$a_row['endTime']."</td>";
-
-                   }
+                  
 
                    $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
 
@@ -163,10 +154,32 @@ session_start();
                         echo "<td>".$b_row['beginHomeShare']."</td>";
                         echo "<td>".$b_row['endHomeShare']."</td>";
                         echo "<td>".$b_row['user_id']."</td>";
+                       
+                   $availFirst = true;
+                    $vol_id_query = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$b_row['Volunteer_id']."'");
+                       
+                    while ($a_row = mysqli_fetch_assoc($vol_id_query)) {
 
-
+                      if($a_row['volunteer_id'] == $b_row['Volunteer_id']){
+                        if ($availFirst){
+                          echo "<td>".$a_row['beginTime']."</td>";
+                          echo "<td>".$a_row['endTime']."</td>";
+                          echo "</tr>";
+                          $availFirst = false;
+                        }else{
+                          echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+                          echo "<td>".$a_row['beginTime']."</td>";
+                          echo "<td>".$a_row['endTime']."</td>";
+                          echo "</tr>";
+                      }
+                       }else{
+                          
+                      }
+                        }
                    }
-                   echo "</tr>";
+                   
+
+                   
                }
            }
     ?>
