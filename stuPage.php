@@ -17,14 +17,14 @@
                 $homeShare = mysqli_query($dbc, "SELECT * FROM homeshares WHERE Student_id='".$rowA['Student_id']."'");
                 $homeShare_fetch = mysqli_fetch_assoc($homeShare);
                 
-                $pickup_vol = mysqli_query($dbc, "SELECT * FROM volavailables WHERE Volunteer_id='".$pickup_fetch['Volunteer_id']."'");
+                $pickup_vol = mysqli_query($dbc, "SELECT * FROM volunteers WHERE Volunteer_id='".$pickup_fetch['Volunteer_id']."'");
                 $pickup_vol_fetch = mysqli_fetch_assoc($pickup_vol);
                 
                 $homeshare_vol = mysqli_query($dbc, "SELECT * FROM volunteers WHERE Volunteer_id='".$homeShare_fetch['Volunteer_id']."'");
                 $homeshare_vol_fetch = mysqli_fetch_assoc($homeshare_vol);
                 
                 $pickup_vol_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$pickup_vol_fetch['user_id']."'");
-                $pickup_vol_fetch = mysqli_fetch_assoc($pickup_vol_info);
+                $pickup_vol_info_fetch = mysqli_fetch_assoc($pickup_vol_info);
                 
                 $homeshare_vol_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$homeshare_vol_fetch['user_id']."'");
                 $homeshare_vol_info_fetch = mysqli_fetch_assoc($homeshare_vol_info);
@@ -123,7 +123,7 @@
                             <div class='panel panel-info'>
                                 <div class='panel-body'><b>Your Airline Information:</b>
                                     <ul>
-                                        <li><b>".$pickup_vol_fetch['fName']." ".$pickup_vol_fetch['lName']."</b> will pick you up from the airport</li>
+                                        <li><b>".$pickup_vol_info_fetch['fName']." ".$pickup_vol_info_fetch['lName']."</b> will pick you up from the airport</li>
                                         <li>Airline: <b>".$rowA['airline']."</b></li>
                                         <li>Flight Number: <b>".$rowA['flightNumber']."</b></li>
                                         <li>Arrival Time: <b>".$rowA['arrivalTime']."</b></li>
