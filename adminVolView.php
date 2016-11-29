@@ -111,8 +111,8 @@ session_start();
             <th>Pick Up Ends</th>
         </tr>
         <?php
-        $vol_query = mysqli_query($dbc, "SELECT * FROM users");
-        $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volAvailables");
+        $vol_query = mysqli_query($dbc, "SELECT * FROM Users");
+        $vol_avail_query = mysqli_query($dbc, "SELECT * FROM VolAvailables");
            while ($u_row = mysqli_fetch_array($vol_query)) {
                if($u_row['user_type'] === "vol"){
                     echo "<tr>";
@@ -146,7 +146,7 @@ session_start();
                    */
                   
 
-                   $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
+                   $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$vol_id."'");
 
                    while ($b_row = mysqli_fetch_array($vol_id_query1)) {
                         echo "<td>".$b_row['passengers']."</td>";
@@ -156,7 +156,7 @@ session_start();
                         echo "<td>".$b_row['user_id']."</td>";
                        
                    $availFirst = true;
-                    $vol_id_query = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$b_row['Volunteer_id']."'");
+                    $vol_id_query = mysqli_query($dbc, "SELECT * FROM VolAvailables WHERE volunteer_id='".$b_row['Volunteer_id']."'");
                        
                     while ($a_row = mysqli_fetch_assoc($vol_id_query)) {
 

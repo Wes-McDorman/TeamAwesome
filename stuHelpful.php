@@ -5,10 +5,10 @@
         
         include("connection.php");
         
-        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE user_id='".$_SESSION['user_id']."'");
+        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM Users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
-                $info = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$row['user_id']."'");
+                $info = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$row['user_id']."'");
                 $rowA = mysqli_fetch_assoc($info);
                 echo "
                 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
@@ -66,7 +66,7 @@
                                             <li><a href='stuProfile.php'>Update Information</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Account Information</li>
-                                            <li><a href='changepassword.php'>Change Password</a></li>
+                                            <li><a href='stuChangePw.php'>Change Password</a></li>
                                     </ul>
                                 </li>
                                 <li><a href='stuHelpful.php'>Helpful Links</a></li>

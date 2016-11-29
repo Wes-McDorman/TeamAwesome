@@ -20,15 +20,15 @@ session_start();
             
             $pickUpTime = $_POST['pickUpTime'];
 
-            $stuData = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stuUserId."'");
+            $stuData = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$stuUserId."'");
             $stuResult = mysqli_fetch_assoc($stuData);
-            $volData = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$volUserId."'");
+            $volData = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$volUserId."'");
             $volResult = mysqli_fetch_assoc($volData);
-            $availData = mysqli_query($dbc, "SELECT * FROM volavailables WHERE Avail_id='".$availId."'");
+            $availData = mysqli_query($dbc, "SELECT * FROM VolAvailables WHERE Avail_id='".$availId."'");
             $availResult = mysqli_fetch_assoc($availData);
             
-            $checkStu = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$stuResult['Student_id']."'");
-            $checkVol = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$volResult['Volunteer_id']."'");
+            $checkStu = mysqli_query($dbc, "SELECT * FROM PickUps WHERE Student_id='".$stuResult['Student_id']."'");
+            $checkVol = mysqli_query($dbc, "SELECT * FROM PickUps WHERE Student_id='".$volResult['Volunteer_id']."'");
             
             if(false) {
                 $msg = "<h1 class='text-warning'>Pick Up List has already created for this student!</h1><br><br>
@@ -39,14 +39,14 @@ session_start();
                 $stuR = $stuResult['Student_id'];
                 $volR = $volResult['Volunteer_id'];
                 $stuDate = $stuResult['arrivalTime'];
-                mysqli_query($dbc, "INSERT INTO pickups(Student_id, Volunteer_id, date) 
+                mysqli_query($dbc, "INSERT INTO PickUps(Student_id, Volunteer_id, date) 
                     VALUES ('$stuR', '$volUserId', '$stuDate')");
                     echo ("Error VolAvail description: " . mysqli_error($dbc));
                 
                 
                 
                 
-                mysqli_query($dbc, "UPDATE volavailables SET filled='1' WHERE Avail_id='".$availId."'");
+                mysqli_query($dbc, "UPDATE VolAvailables SET filled='1' WHERE Avail_id='".$availId."'");
                 $msg = "<h1 class='text-success'>Successfully added into Pick Up List!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
                 $showDivFlag = false;
@@ -159,8 +159,8 @@ session_start();
                         <th>Select </th>
                     </tr>
                     <?php
-                        $stu_query = mysqli_query($dbc, "SELECT * FROM users");
-                        $stu_avail_query = mysqli_query($dbc, "SELECT * FROM students");
+                        $stu_query = mysqli_query($dbc, "SELECT * FROM Users");
+                        $stu_avail_query = mysqli_query($dbc, "SELECT * FROM Students");
                         while($u_row = mysqli_fetch_array($stu_query)) {
                             if($u_row['user_type'] === "stu"){
                                 echo "<tr>";
@@ -171,13 +171,13 @@ session_start();
                                 }
                                 echo "<td>".$gender."</td>";
                             $stu_user_id = $u_row['user_id'];
-                            $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
+                            $stu_id = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$stu_user_id."'");
                                 
 
                                 
                             $a_row = mysqli_fetch_assoc($stu_id);
                                 
-                                $availData = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$a_row.['Student_id']."'");
+                                $availData = mysqli_query($dbc, "SELECT * FROM PickUps WHERE Student_id='".$a_row.['Student_id']."'");
                                 
 
                           
@@ -217,8 +217,8 @@ session_start();
             <th>Select</th>
         </tr>
         <?php
-            $vol_query = mysqli_query($dbc, "SELECT * FROM users");
-            $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volavailables");
+            $vol_query = mysqli_query($dbc, "SELECT * FROM Users");
+            $vol_avail_query = mysqli_query($dbc, "SELECT * FROM VolAvailables");
                while ($u_row = mysqli_fetch_array($vol_query)) {
                    if($u_row['user_type'] === "vol"){
                         echo "<tr>";
@@ -238,14 +238,14 @@ session_start();
 
 
 
-                       $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
+                       $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$vol_id."'");
                        while ($b_row = mysqli_fetch_array($vol_id_query1)) {
                             $availFirst = true;
                             echo "<td>".$gender."</td>";
                             echo "<td>".$b_row['passengers']."</td>";
                             echo "<td>".$b_row['user_id']."</td>";
                             
-                            $vol_id_query = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$b_row['Volunteer_id']."'");
+                            $vol_id_query = mysqli_query($dbc, "SELECT * FROM VolAvailables WHERE volunteer_id='".$b_row['Volunteer_id']."'");
                            
                     while ($a_row = mysqli_fetch_assoc($vol_id_query)) {
 

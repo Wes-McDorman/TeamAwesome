@@ -69,7 +69,7 @@ if (mysqli_query($dbc, "UPDATE users SET fName='".$fName."', lName='".$lName."',
         
 //Student update
         if(!empty($affiliation)){
-if (mysqli_query($dbc, "UPDATE students SET affiliation='".$affiliation."', needPickUp='".$needPickUp."', needHomeShare='".$needHomeShare."',   airline='".$airline."', flightNumber='".$flightNumber."', beginHomeShare='".$beginHomeShare."', arrivalTime='".$arrivalTime."',
+if (mysqli_query($dbc, "UPDATE Students SET affiliation='".$affiliation."', needPickUp='".$needPickUp."', needHomeShare='".$needHomeShare."',   airline='".$airline."', flightNumber='".$flightNumber."', beginHomeShare='".$beginHomeShare."', arrivalTime='".$arrivalTime."',
 endHomeShare='".$endHomeShare."' WHERE user_id='".$userId."'")){
     echo " Profile Updated!";	
 }else{
@@ -84,7 +84,7 @@ endHomeShare='".$endHomeShare."' WHERE user_id='".$userId."'";
     
 //Contact Update
     if(!empty($contactName) && !empty($contactRelation) && !empty($contactPhone)){
-if (mysqli_query($dbc, "UPDATE contacts SET contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."' WHERE user_id='".$userId."'")){
+if (mysqli_query($dbc, "UPDATE Contacts SET contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."' WHERE user_id='".$userId."'")){
     echo " Profile Updated!";	
 }else{
     echo "Error updating record:  contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."''";

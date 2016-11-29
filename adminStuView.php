@@ -109,8 +109,8 @@ session_start();
 
             </tr>
             <?php
-            $stu_query = mysqli_query($dbc, "SELECT * FROM users");
-            $stu_avail_query = mysqli_query($dbc, "SELECT * FROM students");
+            $stu_query = mysqli_query($dbc, "SELECT * FROM Users");
+            $stu_avail_query = mysqli_query($dbc, "SELECT * FROM Students");
         while($u_row = mysqli_fetch_array($stu_query)) {
            if($u_row['user_type'] === "stu"){
                 echo "<tr>";
@@ -127,7 +127,7 @@ session_start();
                echo "<td>".$gender."</td>";
 
                $stu_user_id = $u_row['user_id'];
-               $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
+               $stu_id = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$stu_user_id."'");
                $a_row = mysqli_fetch_assoc($stu_id);
 
                if(substr($a_row['beginHomeShare'], 0, 3) != "0000"){
