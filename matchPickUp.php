@@ -11,26 +11,43 @@ session_start();
         $userId = $_SESSION['user_id'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $stuUserId = $_POST['stuSelect'];
-            $volUserId = $_POST['volSelect'];
+            
+            $volSelect = $_POST['volSelect'];
+                $arr = explode("|", $volSelect);
+                $availId = $arr[0];
+                $volUserId = $arr[1];
+            
+            
             $pickUpTime = $_POST['pickUpTime'];
-
+echo $volUserId;
             $stuData = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stuUserId."'");
             $stuResult = mysqli_fetch_assoc($stuData);
             $volData = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$volUserId."'");
             $volResult = mysqli_fetch_assoc($volData);
+            $availData = mysqli_query($dbc, "SELECT * FROM volavailables WHERE Avail_id='".$availId."'");
+            $availResult = mysqli_fetch_assoc($availData);
             
             $checkStu = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$stuResult['Student_id']."'");
             $checkVol = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$volResult['Volunteer_id']."'");
             
-            if(mysqli_num_rows($checkStu) >=1) {
+            if(false) {
                 $msg = "<h1 class='text-warning'>Pick Up List has already created for this student!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
                 $showDivFlag = false;
             }
             else {
-                mysqli_query($dbc, "INSERT INTO pickups(student_id, volunteer_id, date) 
-                    VALUES ('".$stuResult['Student_id']."', '".$volResult['Volunteer_id']."', '$pickUpTime')");	
-                $msg = "<h1 class='text-success'>Successfully added into Pick Up List!</h1><br><br>
+                $stuR = $stuResult['Student_id'];
+                $volR = $volResult['Volunteer_id'];
+                $stuDate = $stuResult['arrivalTime'];
+                mysqli_query($dbc, "INSERT INTO pickups(Student_id, Volunteer_id, date) 
+                    VALUES ('$stuR', '$volUserId', '$stuDate')");
+                    echo ("Error VolAvail description: " . mysqli_error($dbc));
+                
+                
+                
+                
+                mysqli_query($dbc, "UPDATE volavailables SET filled='1' WHERE Avail_id='".$availId."'");
+                $msg = $stuR." Vol= ".$volUserId." date= ".$stuDate."<h1 class='text-success'>Successfully added into Pick Up List!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
                 $showDivFlag = false;
                 
@@ -139,7 +156,7 @@ session_start();
                         <th>Flight Number</th>
                         <th>Arrival Time</th>
                         <th>User ID</th>
-                        <th> </th>
+                        <th>Select </th>
                     </tr>
                     <?php
                         $stu_query = mysqli_query($dbc, "SELECT * FROM users");
@@ -165,54 +182,85 @@ session_start();
                     ?>
                 </table>
             </div>
-            <div class="panel-group" style="display: inline-block">
-                <label>VOLUNTEER</label>
-                <table class="table">
-                    <tr class="header">
-                        <th>M/F</th>
-                        <th>Pick Up Begins</th>
-                        <th>Pick Up Ends</th>
-                        <th>Passengers</th>
-                        <th>User ID</th>
-                        <th> </th>
-                    </tr>
-                    <?php
-                        $vol_query = mysqli_query($dbc, "SELECT * FROM users");
-                        $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volavailables");
-                           while ($u_row = mysqli_fetch_array($vol_query)) {
-                               if($u_row['user_type'] === "vol"){
-                                    echo "<tr>";
+            
+            
+<div class="panel-group" style="display: inline-block">
+    <label>VOLUNTEER</label>
+    <table class="table">
+        <tr class="header">
+            <th>Gender</th>
 
-                                   if($u_row['isMale']){
-                                       $gender = "Male";
-                                   }else{
-                                       $gender = "Female";
-                                   }
-                                   echo "<td>".$gender."</td>";
-                                   $vol_id = $u_row['user_id'];
-                                   $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volavailables WHERE user_id='".$vol_id."'");
-                                   while ($a_row = mysqli_fetch_array($vol_avail_query)) {
-                                        echo "<td>".$a_row['beginTime']."</td>";
-                                        echo "<td>".$a_row['endTime']."</td>";
+            <th>Passengers</th>
+            <th>User ID</th>
+            <th>Pick Up Begins</th>
+            <th>Pick Up Ends</th>
+            <th>Select</th>
+        </tr>
+        <?php
+            $vol_query = mysqli_query($dbc, "SELECT * FROM users");
+            $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volavailables");
+               while ($u_row = mysqli_fetch_array($vol_query)) {
+                   if($u_row['user_type'] === "vol"){
+                        echo "<tr>";
 
-                                   }
-                                   $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
-                                   while ($b_row = mysqli_fetch_array($vol_id_query1)) {
-                                        echo "<td>".$b_row['passengers']."</td>";
-                                        echo "<td>".$b_row['user_id']."</td>";
-                                        echo "<td><input type='radio' name='volSelect' value='".$b_row['user_id']."' id='volSelect'></td>";
-                                   }
-                                   echo "</tr>";
-                               }
-                           }
-                    ?>  
-                </table>
-            </div>
+                       if($u_row['isMale']){
+                           $gender = "Male";
+                       }else{
+                           $gender = "Female";
+                       }
+
+
+                       $vol_id = $u_row['user_id'];
+   
+
+
+                       
+
+
+
+                       $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
+                       while ($b_row = mysqli_fetch_array($vol_id_query1)) {
+                            $availFirst = true;
+                            echo "<td>".$gender."</td>";
+                            echo "<td>".$b_row['passengers']."</td>";
+                            echo "<td>".$b_row['user_id']."</td>";
+                            
+                            $vol_id_query = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$b_row['Volunteer_id']."'");
+                           
+                    while ($a_row = mysqli_fetch_assoc($vol_id_query)) {
+
+                      if($a_row['volunteer_id'] == $b_row['Volunteer_id']){
+                        if (!$availFirst){
+                            echo "<tr><td></td><td></td><td></td>";
+
+                          
+                        }else{
+                          $availFirst = false;
+
+                      }
+                        echo "<td>".$a_row['beginTime']."</td>";
+                        echo "<td>".$a_row['endTime']."</td>";
+                        echo "<td><input type='radio' name='volSelect' value='".$a_row['Avail_id']."|".$b_row['Volunteer_id']."' id='volSelect'></td>";
+                          echo "</tr>";
+                       }else{
+                          
+                      }
+                        }
+
+                           
+                           
+                       }
+                       echo "</tr>";
+                   }
+               }
+        ?>  
+    </table>
+</div>
             <div class="col-sm-10 col-sm-offset-3">
                 <label class="col-sm-2 control-label noPad" for="pickUpTime">Pick Up Date/Time:</label>
                 <div class="col-xs-12 col-sm-3 noPad">
                     <input class="form-control" type="datetime-local" name="pickUpTime"
-                    id="pickUpTime" required>
+                    id="pickUpTime" >
                 </div>
             </div>
             <div class="col-sm-10 col-sm-offset-5">
