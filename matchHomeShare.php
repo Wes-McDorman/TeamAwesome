@@ -12,7 +12,6 @@ session_start();
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $stuUserId = $_POST['stuSelect'];
             $volUserId = $_POST['volSelect'];
-            $pickUpTime = $_POST['pickUpTime'];
 
             $stuData = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stuUserId."'");
             $stuResult = mysqli_fetch_assoc($stuData);
@@ -23,14 +22,14 @@ session_start();
             $checkVol = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$volResult['Volunteer_id']."'");
             
             if(mysqli_num_rows($checkStu) >=1) {
-                $msg = "<h1 class='text-warning'>Pick Up List has already created for this student!</h1><br><br>
+                $msg = "<h1 class='text-warning'>Home Share List has already created for this student!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
                 $showDivFlag = false;
             }
             else {
-                mysqli_query($dbc, "INSERT INTO pickups(student_id, volunteer_id, date) 
-                    VALUES ('".$stuResult['Student_id']."', '".$volResult['Volunteer_id']."', '$pickUpTime')");	
-                $msg = "<h1 class='text-success'>Successfully added into Pick Up List!</h1><br><br>
+                mysqli_query($dbc, "INSERT INTO homeshares(student_id, volunteer_id) 
+                    VALUES ('".$stuResult['Student_id']."', '".$volResult['Volunteer_id']."')");	
+                $msg = "<h1 class='text-success'>Successfully added into Home Share List!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
                 $showDivFlag = false;
                 
@@ -108,7 +107,7 @@ session_start();
                         <li><a href="adminHome.php">Pick Up List</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Home Share</li>
-                        <li><a href="matchHomeShare.php">Match Home Share</a></li>
+                        <li><a href="adminHome.php">Match Home Share</a></li>
                         <li><a href="adminHome.php">Home Share List</a></li>
                 </ul>
             </li>
@@ -124,21 +123,21 @@ session_start();
 
 <!-- ============ (CONTENT) ============== -->
 <div class="col-sm-10 content">
-    <h2>Airport Pick Up Match</h2>
+    <h2>Home Share Match</h2>
     
     <br>
     <br>
      <!-- ===Information displayed === -->
         <?php echo $msg; ?>
     <div id = "formDiv" <?php if ($showDivFlag == false) { ?> style='display:none' <?php } ?>>
-        <form action="matchPickUp.php" method="post" >
+        <form action="matchHomeShare.php" method="post" >
             <div class="panel-group" style="display: inline-block">
                 <label>STUDENT</label>
                 <table class="table">
                     <tr class="header">
                         <th>M/F</th>
-                        <th>Flight Number</th>
-                        <th>Arrival Time</th>
+                        <th>Begin Date</th>
+                        <th>End Date</th>
                         <th>User ID</th>
                         <th> </th>
                     </tr>
@@ -157,8 +156,8 @@ session_start();
                             $stu_user_id = $u_row['user_id'];
                             $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
                             $a_row = mysqli_fetch_assoc($stu_id);
-                                echo "<td>".$a_row['flightNumber']."</td>";
-                                echo "<td>".$a_row['arrivalTime']."</td>";
+                                echo "<td>".$a_row['beginHomeShare']."</td>";
+                                echo "<td>".$a_row['endHomeShare']."</td>";
                                 echo "<td>".$a_row['user_id']."</td>";
                                 echo "<td><input type='radio' name='stuSelect' value='".$a_row['user_id']."' id='stuSelect'></td>";
                             }
@@ -171,9 +170,8 @@ session_start();
                 <table class="table">
                     <tr class="header">
                         <th>M/F</th>
-                        <th>Pick Up Begins</th>
-                        <th>Pick Up Ends</th>
-                        <th>Passengers</th>
+                        <th>Begin Date</th>
+                        <th>End Date</th>
                         <th>User ID</th>
                         <th> </th>
                     </tr>
@@ -193,13 +191,12 @@ session_start();
                                    $vol_id = $u_row['user_id'];
                                    $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volavailables WHERE user_id='".$vol_id."'");
                                    while ($a_row = mysqli_fetch_array($vol_avail_query)) {
-                                        echo "<td>".$a_row['beginTime']."</td>";
-                                        echo "<td>".$a_row['endTime']."</td>";
 
                                    }
                                    $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
                                    while ($b_row = mysqli_fetch_array($vol_id_query1)) {
-                                        echo "<td>".$b_row['passengers']."</td>";
+                                        echo "<td>".$b_row['beginHomeShare']."</td>";
+                                        echo "<td>".$b_row['endHomeShare']."</td>";
                                         echo "<td>".$b_row['user_id']."</td>";
                                         echo "<td><input type='radio' name='volSelect' value='".$b_row['user_id']."' id='volSelect'></td>";
                                    }
@@ -208,13 +205,6 @@ session_start();
                            }
                     ?>  
                 </table>
-            </div>
-            <div class="col-sm-10 col-sm-offset-3">
-                <label class="col-sm-2 control-label noPad" for="pickUpTime">Pick Up Date/Time:</label>
-                <div class="col-xs-12 col-sm-3 noPad">
-                    <input class="form-control" type="datetime-local" name="pickUpTime"
-                    id="pickUpTime" required>
-                </div>
             </div>
             <div class="col-sm-10 col-sm-offset-5">
                 <br/>

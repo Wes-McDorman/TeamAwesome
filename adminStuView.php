@@ -70,7 +70,7 @@ session_start();
                         <li><a href="adminHome.php">Pick Up List</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-header">Home Share</li>
-                        <li><a href="adminHome.php">Match Home Share</a></li>
+                        <li><a href="matchHomeShare.php">Match Home Share</a></li>
                         <li><a href="adminHome.php">Home Share List</a></li>
                 </ul>
             </li>
