@@ -145,7 +145,7 @@ session_start();
     <br>
     <br>
      <!-- ===Information displayed === -->
-        <?php echo $msg; ?>
+        <?php // echo $msg; ?>
     <div id = "formDiv" <?php if ($showDivFlag == false) { ?> style='display:none' <?php } ?>>
         <form action="matchPickUp.php" method="post" >
             <div class="panel-group" style="display: inline-block">
@@ -188,7 +188,7 @@ session_start();
                                 echo "<td>".$a_row['user_id']."</td>";
                           
                                 $x_row = mysqli_fetch_assoc($availData);
-                         // echo ("Error VolAvail description: " . mysqli_error($dbc));
+
                                 echo $x_row['Student_id'];
                                 
                                 
