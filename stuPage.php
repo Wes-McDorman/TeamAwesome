@@ -10,6 +10,31 @@
             while($row = mysqli_fetch_assoc($query)) {
                 $info = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$row['user_id']."'");
                 $rowA = mysqli_fetch_assoc($info);
+                
+                $pickup = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$rowA['Student_id']."'");
+                $pickup_fetch = mysqli_fetch_assoc($pickup);
+                
+                $homeShare = mysqli_query($dbc, "SELECT * FROM homeshares WHERE Student_id='".$rowA['Student_id']."'");
+                $homeShare_fetch = mysqli_fetch_assoc($homeShare);
+                
+                $pickup_vol = mysqli_query($dbc, "SELECT * FROM volavailables WHERE Volunteer_id='".$pickup_fetch['Volunteer_id']."'");
+                $pickup_vol_fetch = mysqli_fetch_assoc($pickup_vol);
+                
+                $homeshare_vol = mysqli_query($dbc, "SELECT * FROM volunteers WHERE Volunteer_id='".$homeShare_fetch['Volunteer_id']."'");
+                $homeshare_vol_fetch = mysqli_fetch_assoc($homeshare_vol);
+                
+                $pickup_vol_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$pickup_vol_fetch['user_id']."'");
+                $pickup_vol_fetch = mysqli_fetch_assoc($pickup_vol_info);
+                
+                $homeshare_vol_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$homeshare_vol_fetch['user_id']."'");
+                $homeshare_vol_info_fetch = mysqli_fetch_assoc($homeshare_vol_info);
+                
+                if($rowA['beginHomeShare'] != null) {
+                    $msg = "Yes";
+                } else {
+                    $msg = "No";
+                }
+                
                 echo "
                 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
 
@@ -69,6 +94,7 @@
                                             <li><a href='changepassword.php'>Change Password</a></li>
                                     </ul>
                                 </li>
+                                <li><a href='stuHelpful.php'>Helpful Links</a></li>
                               </ul>
                                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                           </div><!--/.nav-collapse -->
@@ -84,64 +110,41 @@
                         <br>
                          <!-- ===Information displayed === -->
                         <div class='panel-group'>
-                          <div class='panel panel-info'>
-                            <div class='panel-body'><b>General Information:</b>
-                                <ul>
-                                    <li>Student ID: ".$rowA['Student_id']."</li>
-                                    <li>Name: ".$row['fName']." ".$row['lName']."</li>
-                                    <li>Phone number: ".$row['phone']."</li>
-                                    <li>Affiliation: ".$rowA['affiliation']."</li>
-                                </ul>
-                              </div>
+                            <div class='panel panel-info'>
+                                <div class='panel-body'><b>General Information:</b>
+                                    <ul>
+                                        <li>Student ID: <b>".$rowA['Student_id']."</b></li>
+                                        <li>Name: <b>".$row['fName']." ".$row['lName']."</b></li>
+                                        <li>Phone number: <b>".$row['phone']."</b></li>
+                                        <li>Affiliation: <b>".$rowA['affiliation']."</b></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class='panel panel-info'>
-                              <div class='panel-body'><b>Your Airline Information:</b>
-                                <ul>
-                                    <li>Airline: ".$rowA['airline']."</li>
-                                    <li>Flight Number: ".$rowA['flightNumber']."</li>
-                                    <li>Arrival Time: ".$rowA['arrivalTime']."</li>
-                                </ul>
-                              </div>
+                                <div class='panel-body'><b>Your Airline Information:</b>
+                                    <ul>
+                                        <li><b>".$pickup_vol_fetch['fName']." ".$pickup_vol_fetch['lName']."</b> will pick you up from the airport</li>
+                                        <li>Airline: <b>".$rowA['airline']."</b></li>
+                                        <li>Flight Number: <b>".$rowA['flightNumber']."</b></li>
+                                        <li>Arrival Time: <b>".$rowA['arrivalTime']."</b></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class='panel panel-info'>
-                              <div class='panel-body'><b>Your Home Share Information:</b>
-                                <ul>
-                                    <li>Home Share Begins: ".$rowA['beginHomeShare']."</li>
-                                    <li>Home Share Ends: ".$rowA['endHomeShare']."</li>
-                                    <b>*** If you didn't request home share, you'll see 0000-00-00 00:00:00.</b>
-                                </ul>
-                              </div>
+                                <div class='panel-body'><b>Your Home Share Information:</b>
+                                    <ul>
+                                        <li>Did you request a Home Share? <b>".$msg."</b></li>
+                                        <li>You will stay at <b>".$homeshare_vol_info_fetch['fName']." ".$homeshare_vol_info_fetch['lName']."</b>'s house.
+                                            <ul>
+                                                <li>Period: from <b>".$rowA['beginHomeShare']."</b> to <b>".$rowA['endHomeShare']."</b></li>
+                                                <li>Home Share Address: <b>".$homeshare_vol_info_fetch['address']." ".$homeshare_vol_info_fetch['zip']."</b></li>
+                                                <li>Home Share Phone Number: <b>".$homeshare_vol_info_fetch['phone']."</b></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-
-                        <hr/>
-
-                        <div>
-                          <label>Places to go in Atlanta</label>
-                        </div>
-                        <div class='panel-group'>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='http://www.georgiaaquarium.org/experience/visit/tickets' target='_blank'>Georgia Aquarium</a></div>
-                            </div>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='https://www.worldofcoca-cola.com/purchase-tickets/' target='_blank'>World of Coca-Cola</a></div>
-                            </div>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='http://www.cnn.com/tour/' target='_blank'>CNN Center</a></div>
-                            </div>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='http://atlanta.braves.mlb.com/atl/ballpark/information/' target='_blank'>Turner Field</a></div>
-                            </div>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='http://foxtheatre.org/shows-and-events/' target='_blank'>Fox Theatre</a></div>
-                            </div>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='http://www.atlantahistorycenter.com/visit-us' target='_blank'>Atlanta History Center</a></div>
-                            </div>
-                            <div class='panel panel-info'>
-                                <div class='panel-body'><a href='http://www.piedmontpark.org/visit/history.html' target='_blank'>Piedmont Park</a></div>
-                            </div>
-                         </div>
 
                         <br><br><br><br>
                         <br>
