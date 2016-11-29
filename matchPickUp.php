@@ -19,7 +19,7 @@ session_start();
             
             
             $pickUpTime = $_POST['pickUpTime'];
-echo $volUserId;
+
             $stuData = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stuUserId."'");
             $stuResult = mysqli_fetch_assoc($stuData);
             $volData = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$volUserId."'");
@@ -47,7 +47,7 @@ echo $volUserId;
                 
                 
                 mysqli_query($dbc, "UPDATE volavailables SET filled='1' WHERE Avail_id='".$availId."'");
-                $msg = $stuR." Vol= ".$volUserId." date= ".$stuDate."<h1 class='text-success'>Successfully added into Pick Up List!</h1><br><br>
+                $msg = "<h1 class='text-success'>Successfully added into Pick Up List!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
                 $showDivFlag = false;
                 
