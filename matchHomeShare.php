@@ -112,7 +112,6 @@ session_start();
                 </ul>
             </li>
             <li><a href="delete_user.php">Delete Users</a></li>
-            <li><a href="adminHome.php">Update Admin Information</a></li>
           </ul>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div><!--/.nav-collapse -->
