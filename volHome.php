@@ -10,8 +10,40 @@
             while($row = mysqli_fetch_assoc($query)) {
                 $info = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$row['user_id']."'");
                 $rowA = mysqli_fetch_assoc($info);
+                
                 $pickup = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$rowA['Volunteer_id']."'");
                 $rowB = mysqli_fetch_assoc($pickup);
+                
+                $pickup_who = mysqli_query($dbc, "SELECT * FROM pickups WHERE volunteer_id='".$rowA['Volunteer_id']."'");
+                $pickup_who_fetch = mysqli_fetch_assoc($pickup_who);
+                
+                $homeshare_who = mysqli_query($dbc, "SELECT * FROM homeshares WHERE volunteer_id='".$rowA['Volunteer_id']."'");
+                $homeshare_who_fetch = mysqli_fetch_assoc($homeshare_who);
+                
+                $pickup_stu = mysqli_query($dbc, "SELECT * FROM students WHERE Student_id='".$pickup_who_fetch['Student_id']."'");
+                $pickup_stu_fetch = mysqli_fetch_assoc($pickup_stu);
+                
+                $homeshare_stu = mysqli_query($dbc, "SELECT * FROM students WHERE Student_id='".$homeshare_who_fetch['Student_id']."'");
+                $homeshare_stu_fetch = mysqli_fetch_assoc($homeshare_stu);
+                
+                $pickup_stu_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$pickup_stu_fetch['user_id']."'");
+                $pickup_stu_info_fetch = mysqli_fetch_assoc($pickup_stu_info);
+                
+                $homeshare_stu_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$homeshare_stu_fetch['user_id']."'");
+                $homeshare_stu_info_fetch = mysqli_fetch_assoc($homeshare_stu_info);
+                
+                if($rowB['beginTime'] != null) {
+                    $yesno = "Yes";
+                } else {
+                    $yesno = "No";
+                }
+                
+                if($rowA['beginHomeShare'] != null) {
+                    $msg = "Yes";
+                } else {
+                    $msg = "No";
+                }
+                
                 echo "
                 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
 
@@ -90,10 +122,10 @@
                           <div class='panel-body'>Volunteer ID: <b>".$rowA['Volunteer_id']."</b></div>
                           </div>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>Your next task: </div>
+                          <div class='panel-body'>You are picking up <b>".$pickup_stu_info_fetch['fName']." ".$pickup_stu_info_fetch['lName']."</b> from the airport   on <b>".$pickup_who_fetch['date']."</b></div>
                           </div>
                           <div class='panel panel-info'>
-                          <div class='panel-body'>Completed tasks: </div>
+                          <div class='panel-body'>Completed tasks: <b>".$homeshare_stu_info_fetch['fName']." ".$homeshare_stu_info_fetch['lName']."</b> will stay at your house from <b>".$homeshare_stu_fetch['beginHomeShare']."</b> to <b>".$homeshare_stu_fetch['endHomeShare']."</b></div>
                           </div>
                         </div>
 
@@ -103,7 +135,7 @@
                           </div>
                           <div class='panel-group'>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>Will you pick up students from the airport?:</div>
+                            <div class='panel-body'>Will you pick up students from the airport?: <b>".$yesno."</b></div>
                             </div>
                             <div class='panel panel-info'>
                             <div class='panel-body'>Time Period: From <b>".$rowB['beginTime']."</b> to <b>".$rowB['endTime']."</b></div>
@@ -118,14 +150,14 @@
                             </div>
                           <div class='panel-group'>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>Will you provide temporary housing?:<br/>
-                            <b>*** If you didn't provide home share, you'll see 0000-00-00 00:00:00 on Housing Period.</b></div>
+                            <div class='panel-body'>Will you provide temporary housing?: <b>".$msg."</b> </div>
                             </div>
                             <div class='panel panel-info'>
                             <div class='panel-body'>Home address: <b>".$row['address'].", ".$row['zip']."</b></div>
                             </div>
                             <div class='panel panel-info'>
-                            <div class='panel-body'>Housing Period: From <b>".$rowA['beginHomeShare']."</b> to <b>".$rowA['endHomeShare']."</b></div>
+                            <div class='panel-body'>Housing Period: From <b>".$rowA['beginHomeShare']."</b> to <b>".$rowA['endHomeShare']."</b>
+                            </div>
                             </div>
                           </div>
 
