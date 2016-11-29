@@ -3,16 +3,16 @@
 session_start();
 $logged_in_id = $_SESSION['user_id'];
 //echo "<h1>".$logged_in_id."</h1>"; It is just to check if it works
-$conn = mysqli_connect("localhost","root","","teamawesome");
+include('connection.php');
 
 if(count($_POST)>0) {
-$result = mysqli_query($conn, "SELECT * FROM users WHERE user_id='$logged_in_id'");
+$result = mysqli_query($conn, "SELECT * FROM Users WHERE user_id='$logged_in_id'");
 $row=mysqli_fetch_array($result);
 if(SHA1($_POST["currentPassword"]) == $row["password"]) {
     //echo "Current password: ".$row["password"]."<br>"; It is just to check if it works
     $encrypted_pw = SHA1($_POST["newPassword"]);
     //echo "Updated pw: ".$encrypted_pw; It is just to check if it works
-mysqli_query($conn, "UPDATE users set password='$encrypted_pw' WHERE user_id='$logged_in_id'");
+mysqli_query($conn, "UPDATE Users set password='$encrypted_pw' WHERE user_id='$logged_in_id'");
 $message = "Password Changed";
 } else 
     $message = "Current Password is not correct";
@@ -103,10 +103,11 @@ return output;
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class='nav navbar-nav'>
             <li class='active'><a href='stuPage.php'>Home</a></li>
+            <li><a href="stuProfile.php">Profile</a></li>
             <li class='dropdown'>
-              <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Profile<b class='caret'></b></a>
+              <a href='#' class='dropdown-toggle' data-toggle='dropdown'>More<b class='caret'></b></a>
                 <ul class='dropdown-menu'>
-                        <li><a href='stuProfile.php'>Update Information</a></li>
+                        <li><a href='stuUpdate.php'>Update Information</a></li>
                     <li class='divider'></li>
                     <li class='dropdown-header'>Account Information</li>
                         <li><a href='stuChangePw.php'>Change Password</a></li>

@@ -61,7 +61,7 @@ $contactPhone = filter_var($_POST['contactPhone'], FILTER_SANITIZE_STRING);
         
 
  //Parameters used to check for duplicate User registration   
-$query = mysqli_query($dbc, "SELECT * FROM users WHERE email='".$email."'");
+$query = mysqli_query($dbc, "SELECT * FROM Users WHERE email='".$email."'");
 $numrows = mysqli_num_rows($query);
     
 if($numrows != 0){   
@@ -100,7 +100,7 @@ $newVolId= $dbc->insert_id;
 //Create Contact Entry
     if(!empty($contactName) && !empty($contactPhone)){    
         echo "made it past three";
-		mysqli_query($dbc, "INSERT INTO contacts(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
+		mysqli_query($dbc, "INSERT INTO Contacts(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
 		VALUES ('$contactName', '$contactRelation', '$contactPhone', '0', '$newUserId')");
     }else{
         echo "ERROR: Missing Contact Information";

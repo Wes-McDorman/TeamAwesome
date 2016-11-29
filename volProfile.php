@@ -9,7 +9,7 @@ session_start();
 $userId = $_SESSION['user_id'];
 
 // User information collection
-$queryUser = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$userId."'");
+$queryUser = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$userId."'");
 if($queryUser) {
     $row = mysqli_fetch_assoc($queryUser);
     $fName = $row['fName'];
@@ -44,7 +44,7 @@ if($canPickUp){
     $volAvailEndArray = array();
     $volAvailFilledArray = array();
     $volAvailIdArray = array();
-    $queryVolAvail = mysqli_query($dbc, "SELECT * FROM volAvailables WHERE volunteer_id='".$volId."'");
+    $queryVolAvail = mysqli_query($dbc, "SELECT * FROM VolAvailables WHERE volunteer_id='".$volId."'");
     while($row = mysqli_fetch_assoc($queryVolAvail)) {       
         $beginTime = $row['beginTime'];
             $beginTime = str_replace(" ", "T", $beginTime);
@@ -478,6 +478,7 @@ id="firstNewRangeBut" onclick="addRange(1)">Add New Range</button>
 			<a style="margin-right:200px;" href="changepassword.php" class="btn btn-info btn-sm" role="button">Change Your Password</a>
         </div>
     </div>
+</div>
 </form>
 
 </div>

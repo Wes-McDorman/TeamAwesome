@@ -5,28 +5,28 @@
         
         include("connection.php");
         
-        $query = mysqli_query($dbc, "SELECT user_id, email, fName, lName, phone FROM users WHERE user_id='".$_SESSION['user_id']."'");
+        $query = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
-                $info = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$row['user_id']."'");
+                $info = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$row['user_id']."'");
                 $rowA = mysqli_fetch_assoc($info);
                 
-                $pickup = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$rowA['Student_id']."'");
+                $pickup = mysqli_query($dbc, "SELECT * FROM PickUps WHERE Student_id='".$rowA['Student_id']."'");
                 $pickup_fetch = mysqli_fetch_assoc($pickup);
                 
-                $homeShare = mysqli_query($dbc, "SELECT * FROM homeshares WHERE Student_id='".$rowA['Student_id']."'");
+                $homeShare = mysqli_query($dbc, "SELECT * FROM HomeShares WHERE Student_id='".$rowA['Student_id']."'");
                 $homeShare_fetch = mysqli_fetch_assoc($homeShare);
                 
-                $pickup_vol = mysqli_query($dbc, "SELECT * FROM volavailables WHERE Volunteer_id='".$pickup_fetch['Volunteer_id']."'");
+                $pickup_vol = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE Volunteer_id='".$pickup_fetch['Volunteer_id']."'");
                 $pickup_vol_fetch = mysqli_fetch_assoc($pickup_vol);
                 
-                $homeshare_vol = mysqli_query($dbc, "SELECT * FROM volunteers WHERE Volunteer_id='".$homeShare_fetch['Volunteer_id']."'");
+                $homeshare_vol = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE Volunteer_id='".$homeShare_fetch['Volunteer_id']."'");
                 $homeshare_vol_fetch = mysqli_fetch_assoc($homeshare_vol);
                 
-                $pickup_vol_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$pickup_vol_fetch['user_id']."'");
-                $pickup_vol_fetch = mysqli_fetch_assoc($pickup_vol_info);
+                $pickup_vol_info = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$pickup_vol_fetch['user_id']."'");
+                $pickup_vol_info_fetch = mysqli_fetch_assoc($pickup_vol_info);
                 
-                $homeshare_vol_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$homeshare_vol_fetch['user_id']."'");
+                $homeshare_vol_info = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$homeshare_vol_fetch['user_id']."'");
                 $homeshare_vol_info_fetch = mysqli_fetch_assoc($homeshare_vol_info);
                 
                 if($rowA['beginHomeShare'] != null) {
@@ -91,7 +91,7 @@
                                             <li><a href='stuProfile.php'>Update Information</a></li>
                                         <li class='divider'></li>
                                         <li class='dropdown-header'>Account Information</li>
-                                            <li><a href='changepassword.php'>Change Password</a></li>
+                                            <li><a href='stuChangePw.php'>Change Password</a></li>
                                     </ul>
                                 </li>
                                 <li><a href='stuHelpful.php'>Helpful Links</a></li>
@@ -123,7 +123,7 @@
                             <div class='panel panel-info'>
                                 <div class='panel-body'><b>Your Airline Information:</b>
                                     <ul>
-                                        <li><b>".$pickup_vol_fetch['fName']." ".$pickup_vol_fetch['lName']."</b> will pick you up from the airport</li>
+                                        <li><b>".$pickup_vol_info_fetch['fName']." ".$pickup_vol_info_fetch['lName']."</b> will pick you up from the airport</li>
                                         <li>Airline: <b>".$rowA['airline']."</b></li>
                                         <li>Flight Number: <b>".$rowA['flightNumber']."</b></li>
                                         <li>Arrival Time: <b>".$rowA['arrivalTime']."</b></li>

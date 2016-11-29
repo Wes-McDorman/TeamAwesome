@@ -75,7 +75,7 @@ $contactPhone = $_POST['contactPhone'];
 $puIterator = $_POST['pickUpRangeIterator'];
  
 //Parameters used to check for duplicate User registration
-$query = mysqli_query($dbc, "SELECT * FROM users WHERE email='".$email."'");
+$query = mysqli_query($dbc, "SELECT * FROM Users WHERE email='".$email."'");
 $numrows = mysqli_num_rows($query);
 
     
@@ -120,7 +120,7 @@ $newVolId= $dbc->insert_id;
     
 //Create Contact Entry
     if(!empty($contactName) && !empty($contactPhone)){    
-		mysqli_query($dbc, "INSERT INTO contacts(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
+		mysqli_query($dbc, "INSERT INTO Contacts(contactName, contactRelation, contactPhone, isVolunteer, user_id) 
 		VALUES ('$contactName', '$contactRelation', '$contactPhone', '1', '$newUserId')");
     }else{
         echo "ERROR: Missing Contact Information";
@@ -132,7 +132,7 @@ for ($x = ($puIterator - 1); $x >= 0; $x--) {
     $availPUStart = $_POST['availPUStart'.$x];
     $availPUEnd = $_POST['availPUEnd'.$x];
     if(!empty($availPUStart) && !empty($availPUEnd)){  
-		mysqli_query($dbc, "INSERT INTO volavailables(volunteer_id, beginTime, endTime, filled) 
+		mysqli_query($dbc, "INSERT INTO VolAvailables(volunteer_id, beginTime, endTime, filled) 
 		VALUES ('$newVolId', '$availPUStart', '$availPUEnd', '0')");
         echo ("Error description: " . mysqli_error($dbc));
     }else{

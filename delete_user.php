@@ -16,7 +16,7 @@ if ((isset($_SESSION['login']) && $_SESSION['login'] == "0")) {
         $getid = mysqli_real_escape_string($dbc, trim($_POST['id']));
 
     //delete user where email = $email_from_form_input: 
-        mysqli_query($dbc, "DELETE FROM users WHERE user_id='$getid'");		
+        mysqli_query($dbc, "DELETE FROM Users WHERE user_id='$getid'");		
         $successMsg = "<h1 class='text-success'>Successfully deleted!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
         $showDivFlag = false;

@@ -5,15 +5,15 @@
 
         include("connection.php");
 
-        $query = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$_SESSION['user_id']."'");
+        $query = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
-                $stu = mysqli_query($dbc, "SELECT * FROM students");
-                $vol = mysqli_query($dbc, "SELECT * FROM volunteers");
-                $volPickup = mysqli_query($dbc, "SELECT * FROM volavailables");
-                $contacts = mysqli_query($dbc, "SELECT * FROM contacts");
-                $homeshares = mysqli_query($dbc, "SELECT * FROM homeshares");
-                $pickups = mysqli_query($dbc, "SELECT * FROM pickups");
+                $stu = mysqli_query($dbc, "SELECT * FROM Students");
+                $vol = mysqli_query($dbc, "SELECT * FROM Volunteers");
+                $volPickup = mysqli_query($dbc, "SELECT * FROM VolAvailables");
+                $contacts = mysqli_query($dbc, "SELECT * FROM Contacts");
+                $homeshares = mysqli_query($dbc, "SELECT * FROM HomeShares");
+                $pickups = mysqli_query($dbc, "SELECT * FROM PickUps");
                 $stuInfo = mysqli_fetch_assoc($stu);
                 $volInfo = mysqli_fetch_assoc($vol);
                 $volPickupInfo = mysqli_fetch_assoc($volPickup);

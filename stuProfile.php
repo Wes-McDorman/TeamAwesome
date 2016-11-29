@@ -8,7 +8,7 @@ session_start();
 $userId = $_SESSION['user_id'];
 
 // User information collection
-$queryUser = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$userId."'");
+$queryUser = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$userId."'");
 if($queryUser) {
     $row = mysqli_fetch_assoc($queryUser);
     $fName = $row['fName'];

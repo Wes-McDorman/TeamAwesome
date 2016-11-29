@@ -13,13 +13,13 @@ session_start();
             $stuUserId = $_POST['stuSelect'];
             $volUserId = $_POST['volSelect'];
 
-            $stuData = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stuUserId."'");
+            $stuData = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$stuUserId."'");
             $stuResult = mysqli_fetch_assoc($stuData);
-            $volData = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$volUserId."'");
+            $volData = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$volUserId."'");
             $volResult = mysqli_fetch_assoc($volData);
             
-            $checkStu = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$stuResult['Student_id']."'");
-            $checkVol = mysqli_query($dbc, "SELECT * FROM pickups WHERE Student_id='".$volResult['Volunteer_id']."'");
+            $checkStu = mysqli_query($dbc, "SELECT * FROM PickUps WHERE Student_id='".$stuResult['Student_id']."'");
+            $checkVol = mysqli_query($dbc, "SELECT * FROM PickUps WHERE Student_id='".$volResult['Volunteer_id']."'");
             
             if(mysqli_num_rows($checkStu) >=1) {
                 $msg = "<h1 class='text-warning'>Home Share List has already created for this student!</h1><br><br>
@@ -27,7 +27,7 @@ session_start();
                 $showDivFlag = false;
             }
             else {
-                mysqli_query($dbc, "INSERT INTO homeshares(student_id, volunteer_id) 
+                mysqli_query($dbc, "INSERT INTO HomeShares(student_id, volunteer_id) 
                     VALUES ('".$stuResult['Student_id']."', '".$volResult['Volunteer_id']."')");	
                 $msg = "<h1 class='text-success'>Successfully added into Home Share List!</h1><br><br>
                 <button class='btn btn-warning' onclick='goBack()'>Go Back</button>";
@@ -141,8 +141,8 @@ session_start();
                         <th> </th>
                     </tr>
                     <?php
-                        $stu_query = mysqli_query($dbc, "SELECT * FROM users");
-                        $stu_avail_query = mysqli_query($dbc, "SELECT * FROM students");
+                        $stu_query = mysqli_query($dbc, "SELECT * FROM Users");
+                        $stu_avail_query = mysqli_query($dbc, "SELECT * FROM Students");
                         while($u_row = mysqli_fetch_array($stu_query)) {
                             if($u_row['user_type'] === "stu"){
                                 echo "<tr>";
@@ -153,7 +153,7 @@ session_start();
                                 }
                                 echo "<td>".$gender."</td>";
                             $stu_user_id = $u_row['user_id'];
-                            $stu_id = mysqli_query($dbc, "SELECT * FROM students WHERE user_id='".$stu_user_id."'");
+                            $stu_id = mysqli_query($dbc, "SELECT * FROM Students WHERE user_id='".$stu_user_id."'");
                             $a_row = mysqli_fetch_assoc($stu_id);
                                 echo "<td>".$a_row['beginHomeShare']."</td>";
                                 echo "<td>".$a_row['endHomeShare']."</td>";
@@ -175,8 +175,8 @@ session_start();
                         <th> </th>
                     </tr>
                     <?php
-                        $vol_query = mysqli_query($dbc, "SELECT * FROM users");
-                        $vol_avail_query = mysqli_query($dbc, "SELECT * FROM volavailables");
+                        $vol_query = mysqli_query($dbc, "SELECT * FROM Users");
+                        $vol_avail_query = mysqli_query($dbc, "SELECT * FROM VolAvailables");
                            while ($u_row = mysqli_fetch_array($vol_query)) {
                                if($u_row['user_type'] === "vol"){
                                     echo "<tr>";
@@ -188,11 +188,11 @@ session_start();
                                    }
                                    echo "<td>".$gender."</td>";
                                    $vol_id = $u_row['user_id'];
-                                   $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM volavailables WHERE user_id='".$vol_id."'");
+                                   $vol_id_query = mysqli_query($dbc, "SELECT volunteer_id FROM VolAvailables WHERE user_id='".$vol_id."'");
                                    while ($a_row = mysqli_fetch_array($vol_avail_query)) {
 
                                    }
-                                   $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$vol_id."'");
+                                   $vol_id_query1 = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$vol_id."'");
                                    while ($b_row = mysqli_fetch_array($vol_id_query1)) {
                                         echo "<td>".$b_row['beginHomeShare']."</td>";
                                         echo "<td>".$b_row['endHomeShare']."</td>";

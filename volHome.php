@@ -5,31 +5,31 @@
         
         include("connection.php");
         
-        $query = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$_SESSION['user_id']."'");
+        $query = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$_SESSION['user_id']."'");
         if($query) {
             while($row = mysqli_fetch_assoc($query)) {
-                $info = mysqli_query($dbc, "SELECT * FROM volunteers WHERE user_id='".$row['user_id']."'");
+                $info = mysqli_query($dbc, "SELECT * FROM Volunteers WHERE user_id='".$row['user_id']."'");
                 $rowA = mysqli_fetch_assoc($info);
                 
-                $pickup = mysqli_query($dbc, "SELECT * FROM volavailables WHERE volunteer_id='".$rowA['Volunteer_id']."'");
+                $pickup = mysqli_query($dbc, "SELECT * FROM VolAvailables WHERE volunteer_id='".$rowA['Volunteer_id']."'");
                 $rowB = mysqli_fetch_assoc($pickup);
                 
-                $pickup_who = mysqli_query($dbc, "SELECT * FROM pickups WHERE volunteer_id='".$rowA['Volunteer_id']."'");
+                $pickup_who = mysqli_query($dbc, "SELECT * FROM PickUps WHERE volunteer_id='".$rowA['Volunteer_id']."'");
                 $pickup_who_fetch = mysqli_fetch_assoc($pickup_who);
                 
-                $homeshare_who = mysqli_query($dbc, "SELECT * FROM homeshares WHERE volunteer_id='".$rowA['Volunteer_id']."'");
+                $homeshare_who = mysqli_query($dbc, "SELECT * FROM HomeShares WHERE volunteer_id='".$rowA['Volunteer_id']."'");
                 $homeshare_who_fetch = mysqli_fetch_assoc($homeshare_who);
                 
-                $pickup_stu = mysqli_query($dbc, "SELECT * FROM students WHERE Student_id='".$pickup_who_fetch['Student_id']."'");
+                $pickup_stu = mysqli_query($dbc, "SELECT * FROM Students WHERE Student_id='".$pickup_who_fetch['Student_id']."'");
                 $pickup_stu_fetch = mysqli_fetch_assoc($pickup_stu);
                 
-                $homeshare_stu = mysqli_query($dbc, "SELECT * FROM students WHERE Student_id='".$homeshare_who_fetch['Student_id']."'");
+                $homeshare_stu = mysqli_query($dbc, "SELECT * FROM Students WHERE Student_id='".$homeshare_who_fetch['Student_id']."'");
                 $homeshare_stu_fetch = mysqli_fetch_assoc($homeshare_stu);
                 
-                $pickup_stu_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$pickup_stu_fetch['user_id']."'");
+                $pickup_stu_info = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$pickup_stu_fetch['user_id']."'");
                 $pickup_stu_info_fetch = mysqli_fetch_assoc($pickup_stu_info);
                 
-                $homeshare_stu_info = mysqli_query($dbc, "SELECT * FROM users WHERE user_id='".$homeshare_stu_fetch['user_id']."'");
+                $homeshare_stu_info = mysqli_query($dbc, "SELECT * FROM Users WHERE user_id='".$homeshare_stu_fetch['user_id']."'");
                 $homeshare_stu_info_fetch = mysqli_fetch_assoc($homeshare_stu_info);
                 
                 if($rowB['beginTime'] != null) {

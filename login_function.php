@@ -7,7 +7,7 @@ $login_email = $_POST['login_email']; //must matching with the name in the login
 $login_pass = $_POST['login_pw'];
 $login_password = sha1($login_pass);
 //create the query and number of rows returned from the query
-$query = mysqli_query($dbc, "SELECT * FROM users WHERE email='".$login_email."'");
+$query = mysqli_query($dbc, "SELECT * FROM Users WHERE email='".$login_email."'");
 $numrows = mysqli_num_rows($query);
 // if user clicked submit
 if($_SERVER['REQUEST_METHOD'] == 'POST'){

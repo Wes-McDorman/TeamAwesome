@@ -83,7 +83,7 @@ $oldVolId = $_POST['volId'];
 //User update      
         if(!empty($fName) && !empty($lName) && !empty($email) && !empty($phone) ){
 
-if (mysqli_query($dbc, "UPDATE users SET fName='".$fName."', lName='".$lName."', email='".$email."', address='".$address."', zip='".$zip."', phone='".$phone."', isMale='".$isMale."' WHERE user_id='".$userId."'")){
+if (mysqli_query($dbc, "UPDATE Users SET fName='".$fName."', lName='".$lName."', email='".$email."', address='".$address."', zip='".$zip."', phone='".$phone."', isMale='".$isMale."' WHERE user_id='".$userId."'")){
     echo " Profile Updated!";	
 }else{
     echo "Error updating record: fName='".$fName.", lName='".$lName."', email='".$email."', address='".$address."', zip='".$zip."', phone='".$phone."', isMale='".$isMale."'";
@@ -96,7 +96,7 @@ if (mysqli_query($dbc, "UPDATE users SET fName='".$fName."', lName='".$lName."',
         
 //Volunteer update
         if(!empty($affiliation)){
-if (mysqli_query($dbc, "UPDATE volunteers SET affiliation='".$affiliation."', canPickUp='".$canPickUp."', canHomeShare='".$canHome."',   passengers='".$passengers."', suitcases='".$suitcases."', beginHomeShare='".$beginHomeShare."',
+if (mysqli_query($dbc, "UPDATE Volunteers SET affiliation='".$affiliation."', canPickUp='".$canPickUp."', canHomeShare='".$canHome."',   passengers='".$passengers."', suitcases='".$suitcases."', beginHomeShare='".$beginHomeShare."',
 endHomeShare='".$endHomeShare."' WHERE user_id='".$userId."'")){
     echo " Profile Updated!";	
 }else{
@@ -111,7 +111,7 @@ endHomeShare='".$endHomeShare."' WHERE user_id='".$userId."'")){
     
 //Contact Update
     if(!empty($contactName) && !empty($contactRelation) && !empty($contactPhone)){
-if (mysqli_query($dbc, "UPDATE contacts SET contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."' WHERE user_id='".$userId."'")){
+if (mysqli_query($dbc, "UPDATE Contacts SET contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."' WHERE user_id='".$userId."'")){
     echo " Profile Updated!";	
 }else{
     echo "Error updating record:  contactName='".$contactName."', contactRelation='".$contactRelation."', contactPhone='".$contactPhone."''";
@@ -130,7 +130,7 @@ for ($x = ($puIterator - 1); $x >= 1; $x--) {
     $availPUStart = $_POST['availPUStart'.$x];
     $availPUEnd = $_POST['availPUEnd'.$x];
     if(!empty($availPUStart) && !empty($availPUEnd)){  
-		mysqli_query($dbc, "INSERT INTO volavailables(volunteer_id, beginTime, endTime, filled) 
+		mysqli_query($dbc, "INSERT INTO VolAvailables(volunteer_id, beginTime, endTime, filled) 
 		VALUES ('$oldVolId', '$availPUStart', '$availPUEnd', '0')");
         echo ("Error VolAvail description: " . mysqli_error($dbc));
     }else{
@@ -155,7 +155,7 @@ if(strlen($rangeEditList) > 0){
         $availPUEnd = $_POST['availPUEnd'.$i];
         
       
-if (mysqli_query($dbc, "UPDATE volAvailables SET volunteer_id='".$oldVolId."', beginTime='".$availPUStart."', endTime='".$availPUEnd."' WHERE Avail_id='".$volAvailId."'")){
+if (mysqli_query($dbc, "UPDATE VolAvailables SET volunteer_id='".$oldVolId."', beginTime='".$availPUStart."', endTime='".$availPUEnd."' WHERE Avail_id='".$volAvailId."'")){
     echo " Profile Updated!";	
 }else{
     echo "volunteer_id='".$oldVolId."', beginTime='".$availPUStart."', endTime='".$availPUEnd."' WHERE Avail_id='".$volAvailId."'";
@@ -180,7 +180,7 @@ if(strlen($rangeDelList) > 0){
 
         $volAvailId = $rangeKeys[$i];
 
-        if (mysqli_query($dbc, "DELETE FROM volAvailables WHERE Avail_id='".$volAvailId."'")){
+        if (mysqli_query($dbc, "DELETE FROM VolAvailables WHERE Avail_id='".$volAvailId."'")){
             echo " Profile DELETED, everything worked fine!";
 
         }else{
@@ -191,7 +191,7 @@ if(strlen($rangeDelList) > 0){
 }
         
 if(!$canPickUp){
-            if (mysqli_query($dbc, "DELETE FROM volAvailables WHERE volunteer_id='".$oldVolId."'")){
+            if (mysqli_query($dbc, "DELETE FROM VolAvailables WHERE volunteer_id='".$oldVolId."'")){
             echo " Profile DELETED, everything worked fine!";
                 
         }else{
